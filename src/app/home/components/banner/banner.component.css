@@ -1,0 +1,15 @@
+:root {
+  --back: rgb(0, 0, 0);
+}
+
+.center-image {
+  margin: 1rem auto;
+  display: block;
+  width: 360px;
+}
+
+.carousel-caption {
+  color: var(--back);
+  text-transform: uppercase;
+  font-weight: 700;
+}
