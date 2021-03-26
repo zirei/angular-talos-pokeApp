@@ -3,7 +3,7 @@ import {Routes, RouterModule } from '@angular/router';
 import { PokemonGalleryComponent } from './components/pokemon-gallery/pokemon-gallery.component';
 
 const routes: Routes = [{
-  path: 'pokemon',
+  path: '',
   component: PokemonGalleryComponent
 }];
 

@@ -4,8 +4,8 @@
 
 .center-image {
   margin: 1rem auto;
-  display: block;
-  width: 360px;
+  width: 22.5rem;
+  image-rendering: pixelated;
 }
 
 .carousel-caption {

@@ -17,7 +17,7 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
       {
-        path: 'pokemonGalery',
+        path: 'pokemonGallery',
         loadChildren: () => import('./pokemon/pokemon.module').then(m => m.PokemonModule)
       }
     ],

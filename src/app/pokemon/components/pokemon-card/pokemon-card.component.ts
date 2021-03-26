@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 
 @Component({
   selector: 'app-pokemon-card',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PokemonCardComponent implements OnInit {
 
+  // Receive information of father component
+  @Input() pokemon: any;
   constructor() { }
 
   ngOnInit(): void {
+    this.pokemon.image = `${environment.POKEMONIMAGEAPI}${this.pokemon.url.split('/')[6]}.png`
+  }
+
+  selectPokemon(){
+    // TODO: Add modal and remove alert
+    alert(`${this.pokemon.name} was selected`)
   }
 
 }

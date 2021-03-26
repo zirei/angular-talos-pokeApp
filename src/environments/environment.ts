@@ -3,9 +3,11 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
-};
+  production: false,
+  POKEMONDATAAPI: 'https://pokeapi.co/api/v2/',
+  POKEMONIMAGEAPI: 'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/',
 
+};
 /*
  * For easier debugging in development mode, you can import the following file
  * to ignore zone related error stack frames such as `zone.run`, `zoneDelegate.invokeTask`.
