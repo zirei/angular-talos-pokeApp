@@ -18,7 +18,7 @@ export class PokemonDataService {
     return this.http.get<Pokemon[]>(this.pokemonDataApi)
       .pipe(
         tap(data => console.log('All: ' + JSON.stringify(data))),
-        // catchError(this.handleError)
+        // TODO: catchError(this.handleError)
       );
   }
 }

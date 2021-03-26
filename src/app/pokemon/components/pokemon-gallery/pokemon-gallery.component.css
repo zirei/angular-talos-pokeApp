@@ -1,9 +1,6 @@
 .cards-container-base {
   margin: calc(var(--bs-gutter-x) + 0.25rem) 0rem 0rem
     calc(var(--bs-gutter-x) + 2rem);
-  /* margin: calc(var(--bs-gutter-x) + 2rem); */
-  /* margin-top: calc(var(--bs-gutter-y) * -1);
-    margin-right: calc(var(--bs-gutter-x)/ -2); */
 }
 
 .cards-settings {
