@@ -12,6 +12,7 @@ export class PokemonGalleryComponent implements OnInit {
   errorMessage = '';
   sub!: Subscription;
   pokemonsList: any = [];
+  showModal:boolean =false;
 
   constructor(private PokemonDataService: PokemonDataService) { }
 
@@ -19,6 +20,7 @@ export class PokemonGalleryComponent implements OnInit {
     this.getPokemonsData();
     console.log('Lista de pokemones', this.pokemonsList)
   }
+
   getPokemonsData() {
     this.sub = this.PokemonDataService.getPokemonsData().subscribe({
       next: pokemonsList => {
@@ -27,5 +29,9 @@ export class PokemonGalleryComponent implements OnInit {
       error: err => this.errorMessage = err
     });
   }
+  receiveMessage($event: boolean) {
+    this.showModal = $event
+  }
+  
 
 }

@@ -2,7 +2,7 @@
   <div class='col-11'>
     <div class='row cards-container-base'>
       <div class='col-3 col-xl-auto col-md-auto col-sm-auto col-xs-auto cards-settings' *ngFor='let pokemon of pokemonsList.results'>
-        <app-pokemon-card [pokemon]='pokemon'></app-pokemon-card>
+        <app-pokemon-card [pokemon]='pokemon' (sendShowModalToParent)='receiveMessage($event)'></app-pokemon-card>
       </div>
     </div>
   </div>
@@ -16,3 +16,6 @@
 
 </div>
 <!-- TODO: Modal -->
+<!-- <app-pokemon-card (sendShowModalToParent)='receiveMessage($event)'> </app-pokemon-card> -->
+<!-- <h1 *ngIf='showModal'>Open Modal</h1> -->
+<app-pokemons-modal *ngIf='showModal'></app-pokemons-modal>
