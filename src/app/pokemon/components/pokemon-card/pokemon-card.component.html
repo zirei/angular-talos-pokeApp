@@ -1,26 +1,8 @@
-<!-- <mat-card class="example-card">
-  <mat-card-header>
-    <div mat-card-avatar class="example-header-image"></div>
-    <mat-card-title>Shiba Inu</mat-card-title>
-    <mat-card-subtitle>Dog Breed</mat-card-subtitle>
-  </mat-card-header>
-  <img mat-card-image src="{{ pokemon.image }}" alt="Not found image" />
-  <mat-card-content>
-    <p>
-      The Shiba Inu is the smallest of the six original and distinct spitz
-      breeds of dog from Japan. A small, agile dog that copes very well with
-      mountainous terrain, the Shiba Inu was originally bred for hunting.
-    </p>
-  </mat-card-content>
-  <mat-card-actions>
-    <button mat-button>LIKE</button>
-    <button mat-button>SHARE</button>
-  </mat-card-actions>
-</mat-card> -->
-<div class='card card-settings ' (click)='selectPokemon()'>
-    <img src='{{pokemon.image}}' class='center-image' alt=' Not found image'>
-    <span class='card-header fix-text'>{{pokemon.name}}</span>
-</div>
+<mat-card class="example-card" (click)='selectPokemon()'>
+  <img mat-card-image src="{{ pokemon.image }}" alt=" Not found image" />
+  <mat-card-footer class="fix-text">{{ pokemon.name }}</mat-card-footer>
+</mat-card>
+
 <!-- <h1 *ngIf='showModal'>Open Modal</h1> -->
 <!-- <app-pokemons-modal *ngIf='showModal' ></app-pokemons-modal> -->
 <!--  -->

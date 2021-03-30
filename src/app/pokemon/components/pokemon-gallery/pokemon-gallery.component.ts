@@ -32,6 +32,5 @@ export class PokemonGalleryComponent implements OnInit {
   receiveMessage($event: boolean) {
     this.showModal = $event
   }
-  
 
 }

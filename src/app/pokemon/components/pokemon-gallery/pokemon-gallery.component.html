@@ -1,20 +1,11 @@
-<div class='row'>
-  <div class='col-11'>
-    <div class='row cards-container-base'>
-      <div class='col-3 col-xl-auto col-md-auto col-sm-auto col-xs-auto cards-settings' *ngFor='let pokemon of pokemonsList.results'>
-        <app-pokemon-card [pokemon]='pokemon' (sendShowModalToParent)='receiveMessage($event)'></app-pokemon-card>
-      </div>
+<div class="cards-container-base" >
+  <div fxLayout="row wrap" fxLayoutGap="1.5rem grid">
+    <div fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.md="25%" *ngFor="let pokemon of pokemonsList.results">
+      <app-pokemon-card [pokemon]='pokemon' (sendShowModalToParent)='receiveMessage($event)'></app-pokemon-card>
     </div>
   </div>
-  <div class='col-1'>
-    <div class='row'>
-      <div class='col-12 col-xl-12 col-md-12 col-sm-12 col-xs-12'>
-        <!-- TODO: Toast -->
-      </div>
-    </div>
-  </div>
-
 </div>
+
 <!-- TODO: Modal -->
 <!-- <app-pokemon-card (sendShowModalToParent)='receiveMessage($event)'> </app-pokemon-card> -->
 <!-- <h1 *ngIf='showModal'>Open Modal</h1> -->
