@@ -1,4 +1,5 @@
 export interface Pokemon {
     name: String;
-    description: String;
+    url: String;
+    results: [];
 }

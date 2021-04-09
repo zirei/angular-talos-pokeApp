@@ -10,8 +10,8 @@ export class PokemonCardComponent implements OnInit {
 
   // Receive information of father component
   @Input() pokemon: any;
-  showModal: boolean = false;
-  @Output() sendShowModalToParent = new EventEmitter<boolean>();
+  // showModal: boolean = false;
+  // @Output() sendShowModalToParent = new EventEmitter<boolean>();
 
   constructor() { }
 
@@ -19,12 +19,12 @@ export class PokemonCardComponent implements OnInit {
     this.pokemon.image = `${environment.POKEMONIMAGEAPI}${this.pokemon.url.split('/')[6]}.png`
   }
 
-  selectPokemon(){
-    // TODO: Add modal and remove alert
-    alert(`${this.pokemon.name} was selected`)
-    this.showModal = !this.showModal;
-    this.sendShowModalToParent.emit(this.showModal)
-  }
+  // selectPokemon(){
+  //   // TODO: Add modal and remove alert
+  //   alert(`${this.pokemon.name} was selected`)
+  //   this.showModal = !this.showModal;
+  //   this.sendShowModalToParent.emit(this.showModal)
+  // }
   
 
 }

@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { MaterialModule } from '../material/material.module';
+import { FormsModule } from '@angular/forms';
+import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 
@@ -11,12 +13,15 @@ import { MaterialModule } from '../material/material.module';
     NavbarComponent
   ],
   exports: [
-    NavbarComponent
+    NavbarComponent,
+    InfiniteScrollModule,
   ],
   imports: [
     CommonModule,
     RouterModule,
-    MaterialModule
+    MaterialModule, 
+    FormsModule,
+    InfiniteScrollModule,
   ]
 })
 export class SharedModule { }

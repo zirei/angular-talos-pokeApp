@@ -1,5 +1,6 @@
 .cards-container-base {
-  margin: 2% 10%;
+  margin: 1% 10%;
+  padding-top: 3.5rem;
 }
 
 .cards-settings {

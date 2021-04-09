@@ -1,7 +1,22 @@
-<div class="cards-container-base" >
+<div
+  class="cards-container-base"
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="getPokemonsFromApi()"
+>
   <div fxLayout="row wrap" fxLayoutGap="1.5rem grid">
-    <div fxFlex="20%" fxFlex.xs="100%" fxFlex.sm="33%" fxFlex.md="25%" *ngFor="let pokemon of pokemonsList.results">
-      <app-pokemon-card [pokemon]='pokemon' (sendShowModalToParent)='receiveMessage($event)'></app-pokemon-card>
+    <div
+      fxFlex="20%"
+      fxFlex.xs="50%"
+      fxFlex.sm="33%"
+      fxFlex.md="25%"
+      *ngFor="let pokemon of rootPokemonList"
+    >
+      <app-pokemon-card
+        [pokemon]="pokemon"
+        (click)="selectPokemon()"
+      ></app-pokemon-card>
     </div>
   </div>
 </div>
@@ -9,4 +24,3 @@
 <!-- TODO: Modal -->
 <!-- <app-pokemon-card (sendShowModalToParent)='receiveMessage($event)'> </app-pokemon-card> -->
 <!-- <h1 *ngIf='showModal'>Open Modal</h1> -->
-<app-pokemons-modal *ngIf='showModal'></app-pokemons-modal>

@@ -6,16 +6,25 @@ import { SharedModule } from '../shared/shared.module';
 import { PokemonRoutingModule } from './pokemon-routing.module';
 import { PokemonsModalComponent } from './components/pokemons-modal/pokemons-modal.component';
 import { MaterialModule } from '../material/material.module';
-
-
+import { StoreModule } from '@ngrx/store';
+import { pokemonReducer } from './state/pokemon.reducer';
+import { EffectsModule } from '@ngrx/effects';
+import { PokemonEffects } from './state/pokemon.effects';
 
 @NgModule({
-  declarations: [ PokemonCardComponent, PokemonGalleryComponent, PokemonsModalComponent, PokemonsModalComponent ],
+  declarations: [ 
+    PokemonCardComponent,
+    PokemonGalleryComponent,
+    PokemonsModalComponent,
+
+  ],
   imports: [
     CommonModule,
     SharedModule,
     PokemonRoutingModule,
-    MaterialModule
+    MaterialModule,
+    StoreModule.forFeature('rootPokemonList', pokemonReducer),
+    EffectsModule.forFeature([PokemonEffects]),
   ]
 })
 export class PokemonModule { }

@@ -1,6 +1,22 @@
-<nav class='navbar navbar-expand-md navbar-light bg-light'>
-  <div class='container-fluid'>
+<!-- <mat-toolbar color="warn">
+  <mat-toolbar-row>
     <a class='navbar-brand' routerLink='/home'>Home</a>
+    <span class="example-spacer"></span>
+    <div>
+      <span>pokemons</span>
+    </div>
+    <span class="example-spacer"></span>
+    <button mat-icon-button class="example-icon" aria-label="Example icon-button with menu icon">
+      <mat-icon>menu</mat-icon>
+    </button>
+  </mat-toolbar-row>
+
+
+</mat-toolbar> -->
+
+<nav class='navbar navbar-expand-md navbar-light bg-light fixed-top'>
+  <div class='container-fluid'>
+    <a class='navbar-brand' routerLink='/home'>PokeApp</a>
     <button
       class='navbar-toggler'
       type='button'
@@ -30,11 +46,16 @@
       <form class='d-flex'>
         <input
           class='form-control me-2'
-          type='search'
+          type='text'
           placeholder='Search'
           aria-label='Search'
+          [(ngModel)]='searchPokemon'
+          [ngModelOptions]='{standalone: true}'
         />
       </form>
     </div>
+  </div>
+  <div class="col-md-6">
+    <h4> filtered by: {{searchPokemon}}</h4>
   </div>
 </nav>
