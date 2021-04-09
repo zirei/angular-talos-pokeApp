@@ -9,6 +9,7 @@ import { Pokemon } from 'src/app/core/models/pokemon.model';
 import { State, getPokemons, getSelectedPokemons } from '../../state/pokemon.reducer'
 import * as PokemonActions from '../../state/pokemon.actions'
 import { Store } from '@ngrx/store';
+import { environment } from 'src/environments/environment';
 
 
 @Component({
@@ -28,25 +29,37 @@ export class PokemonGalleryComponent implements OnInit {
     public dialog: MatDialog,
   ) {}
 
-  selectPokemon(pokemonName: string, urlPokemonImage: string) {
-    const dialogRef = this.dialog.open(PokemonsModalComponent);
-    // const dialogRef = this.dialog.open(PokemonsModalComponent, {
-    //   width: '512px'
-    // });
-    localStorage.setItem('pokemonName', pokemonName);
-    localStorage.setItem('urlPokemonImage', urlPokemonImage);
-
-    dialogRef.afterClosed().subscribe((result) => {
-      console.log(`Dialog result: ${result}`);
-    });
-  }
-
+  
   ngOnInit(): void {
     this.getPokemonsFromApi();
     this.getPokemonsDataFromStore();
     // console.log('Lista de pokemones', this.pokemonsList);
   }
 
+  pokemonDescriptionUrl = (url: string) => {
+    return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`
+  }
+
+  // productSelected(product: Product): void {
+  //   this.store.dispatch(ProductActions.setCurrentProduct({ product }));
+  // }
+
+  selectPokemon(pokemonName: string, urlPokemonImage: string) {
+    const dialogRef = this.dialog.open(PokemonsModalComponent);
+    // const dialogRef = this.dialog.open(PokemonsModalComponent, {
+    //   width: '512px'
+    // });
+    const pokemonDescriptionUrl2 = this.pokemonDescriptionUrl(urlPokemonImage);
+    localStorage.setItem('pokemonName', pokemonName);
+    localStorage.setItem('urlPokemonImage', urlPokemonImage);
+    localStorage.setItem('pokemonDescriptionUrl2', pokemonDescriptionUrl2);
+    console.log('info: ' , pokemonDescriptionUrl2);
+
+    dialogRef.afterClosed().subscribe((result) => {
+      console.log(`Dialog result: ${result}`);
+    });
+  }
+  
   getPokemonsFromApi() {
     this.PokemonDataService.getPokemonsFromApi().subscribe({
       next: (rootPokemonList: any) => {

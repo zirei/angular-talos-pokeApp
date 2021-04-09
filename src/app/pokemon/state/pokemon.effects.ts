@@ -28,4 +28,11 @@ export class PokemonEffects {
       )
     );
   });
+
+  // selectedPokemon$ = createEffect (() => {
+  //   return (
+
+  //   );
+  // });
+
 }

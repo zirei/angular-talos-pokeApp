@@ -93,4 +93,43 @@ export const pokemonReducer = createReducer<PokemonState>(
     };
     }
   ),
+  on(
+    PokemonActions.selectedPokemons,
+    (state, action): PokemonState => {
+      return {
+        ...state,
+        showSelected: true,
+        keepSelected: true,
+        selectedPokemons: [
+          ...state.selectedPokemons,
+          ...action.pokemons,
+        ],
+        error: '',
+      };
+    }
+  ),
+  on(
+    PokemonActions.unSelectedPokemons,
+    (state): PokemonState => {
+      return {
+        ...state,
+        showSelected: false,
+        keepSelected: false,
+        selectedPokemons: [],
+    };
+    }
+  ),
+  on(
+    PokemonActions.keepSelectedPokemons,
+    (state): PokemonState => {
+      return {
+        ...state,
+        showSelected: false,
+        keepSelected: true,
+        selectedPokemons: [
+          ...state.selectedPokemons,
+        ],
+    };
+    }
+  ),
 );

@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { environment } from 'src/environments/environment';
 // import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pokemons-modal',
@@ -9,11 +10,16 @@ import { environment } from 'src/environments/environment';
 })
 export class PokemonsModalComponent implements OnInit {
   @Input() pokemon: any;
-  name: string = ''
-  url: string = ''
-  image: string = ''
-  constructor() {}
+  name: string = '';
+  url: string = '';
+  image: string = '';
 
+  constructor(private _snackBar: MatSnackBar) {}
+
+  openToast() {
+    this._snackBar.openFromComponent(PokemonsModalComponent, {
+    });
+  }
   ngOnInit(): void {
     this.getPokemonInfo();
   }
@@ -22,5 +28,4 @@ export class PokemonsModalComponent implements OnInit {
     this.url = localStorage.getItem('urlPokemonImage') || 'Not Found url';
     this.image = `${environment.POKEMONIMAGEAPI}${this.url.split('/')[6]}.png`;
   }
-
 }

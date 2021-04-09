@@ -19,3 +19,17 @@ export const loadPokemonsFailure = createAction(
 export const setPokemonsModalView = createAction(
   '[Pokemon] Set Pokemons Modal View',
 );
+
+// selected
+export const selectedPokemons = createAction(
+  '[Pokemon] selected Success',
+  props<{ pokemons: Pokemon[] }>()
+);
+
+export const unSelectedPokemons = createAction(
+  '[Pokemon] selected Fail',
+);
+
+export const keepSelectedPokemons = createAction(
+  '[Pokemon] keep selected pokemon'
+);

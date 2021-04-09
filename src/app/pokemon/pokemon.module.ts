@@ -10,12 +10,14 @@ import { StoreModule } from '@ngrx/store';
 import { pokemonReducer } from './state/pokemon.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PokemonEffects } from './state/pokemon.effects';
+import { PokemonToastComponent } from './components/pokemon-toast/pokemon-toast.component';
 
 @NgModule({
   declarations: [ 
     PokemonCardComponent,
     PokemonGalleryComponent,
     PokemonsModalComponent,
+    PokemonToastComponent,
 
   ],
   imports: [
