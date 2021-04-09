@@ -1,5 +1,5 @@
 export interface Pokemon {
-    name: String;
-    url: String;
+    name: string;
+    url: string;
     results: [];
 }

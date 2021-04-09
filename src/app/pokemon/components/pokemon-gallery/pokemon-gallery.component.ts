@@ -28,11 +28,13 @@ export class PokemonGalleryComponent implements OnInit {
     public dialog: MatDialog,
   ) {}
 
-  selectPokemon() {
+  selectPokemon(pokemonName: string, urlPokemonImage: string) {
     const dialogRef = this.dialog.open(PokemonsModalComponent);
     // const dialogRef = this.dialog.open(PokemonsModalComponent, {
     //   width: '512px'
     // });
+    localStorage.setItem('pokemonName', pokemonName);
+    localStorage.setItem('urlPokemonImage', urlPokemonImage);
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);

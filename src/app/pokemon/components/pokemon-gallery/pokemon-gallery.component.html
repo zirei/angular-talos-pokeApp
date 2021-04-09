@@ -15,7 +15,7 @@
     >
       <app-pokemon-card
         [pokemon]="pokemon"
-        (click)="selectPokemon()"
+        (click)="selectPokemon(pokemon.name, pokemon.url)"
       ></app-pokemon-card>
     </div>
   </div>

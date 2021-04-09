@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { environment } from 'src/environments/environment';
 // import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
@@ -8,9 +9,18 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class PokemonsModalComponent implements OnInit {
   @Input() pokemon: any;
+  name: string = ''
+  url: string = ''
+  image: string = ''
   constructor() {}
 
   ngOnInit(): void {
-    console.log(this.pokemon);
+    this.getPokemonInfo();
   }
+  getPokemonInfo() {
+    this.name = localStorage.getItem('pokemonName') || 'Not Found name';
+    this.url = localStorage.getItem('urlPokemonImage') || 'Not Found url';
+    this.image = `${environment.POKEMONIMAGEAPI}${this.url.split('/')[6]}.png`;
+  }
+
 }
