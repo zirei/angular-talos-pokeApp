@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { mergeMap, map, catchError } from 'rxjs/operators';
+import { mergeMap, map, catchError, concatMap, tap } from 'rxjs/operators';
 import { of } from 'rxjs';
 import { PokemonDataService } from 'src/app/core/services/pokemon/pokemon-data.service';
 
@@ -30,9 +30,30 @@ export class PokemonEffects {
   });
 
   // selectedPokemon$ = createEffect (() => {
-  //   return (
-
-  //   );
+  //   return this.actions$
+  //     .pipe(
+  //       ofType(PokemonActions.selectedPokemons),
+  //       mergeMap(action =>
+  //         this.PokemonDataService.selectedPokemonFromStore()
+  //           .pipe(
+  //             map(pokemons => PokemonActions.selectedPokemonsSuccess({ pokemons })),
+  //             catchError(error => of(PokemonActions.selectedPokemonsFailure({ error })))
+  //           )
+  //       )
+  //     );
+  // });
+  // selectedPokemon$ = createEffect (() => {
+  //   return this.actions$
+  //     .pipe(
+  //       ofType(PokemonActions.selectedPokemons),
+  //       concatMap(action =>
+  //         this.PokemonDataService.selectedPokemonFromStore()
+  //           .pipe(
+  //             map(pokemons => PokemonActions.selectedPokemonsSuccess({ pokemons })),
+  //             catchError(error => of(PokemonActions.selectedPokemonsFailure({ error })))
+  //           )
+  //       )
+  //     );
   // });
 
 }

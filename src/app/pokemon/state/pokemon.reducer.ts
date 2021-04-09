@@ -21,7 +21,7 @@ export interface PokemonState {
   rootPokemonList: Pokemon[];
   pokemonsList: Pokemon[];
   selectedPokemons: Pokemon[];
-  isFetching: boolean;
+  // isFetching: boolean;
   showSelected: boolean;
   keepSelected: boolean;
   scrollCounter: number;
@@ -33,7 +33,7 @@ const initialState: PokemonState = {
   rootPokemonList: [],
   pokemonsList: [],
   selectedPokemons: [],
-  isFetching: false,
+  // isFetching: false,
   showSelected: false,
   keepSelected: false,
   scrollCounter: 0,
@@ -43,10 +43,10 @@ const initialState: PokemonState = {
 
 // Selector functions
 const getPokemonFeatureState = createFeatureSelector<PokemonState>(
-  'rootPokemonList'
+  'pokemons'
 );
 const getSelectedPokemonFeatureState = createFeatureSelector<PokemonState>(
-  'selectedPokemons'
+  'pokemons'
 );
 
 export const getPokemons = createSelector(
@@ -58,18 +58,34 @@ export const getSelectedPokemons = createSelector(
   getSelectedPokemonFeatureState,
   state => state.selectedPokemons
 );
+// export const getSelectedPokemons = createSelector(
+//   getSelectedPokemonFeatureState,
+//   getCurrentProductId,
+//   (state, currentProductId) => {
+//     if (currentProductId === 0) {
+//       return {
+//         id: 0,
+//         productName: '',
+//         productCode: 'New',
+//         description: '',
+//         starRating: 0
+//       };
+//     } else {
+//       return currentProductId ? state.products.find(p => p.id === currentProductId) : null;
+//     }
+//   }
+// );
 
 export const pokemonReducer = createReducer<PokemonState>(
   initialState,
   on(
     PokemonActions.loadPokemonsSuccess,
     (state, action): PokemonState => {
+      // const updatedProducts = action.pokemons.map(
+      //   item =>  item);
       return {
         ...state,
-        rootPokemonList: [
-          ...state.rootPokemonList,
-          ...action.pokemons,
-        ],
+        rootPokemonList: action.pokemons,
         error: '',
       };
     }
@@ -85,16 +101,7 @@ export const pokemonReducer = createReducer<PokemonState>(
     }
   ),
   on(
-    PokemonActions.setPokemonsModalView,
-    (state): PokemonState => {
-      return {
-        ...state,
-        showSelected: !state.showSelected
-    };
-    }
-  ),
-  on(
-    PokemonActions.selectedPokemons,
+    PokemonActions.selectedPokemonsSuccess,
     (state, action): PokemonState => {
       return {
         ...state,

@@ -27,7 +27,20 @@ export class PokemonDataService {
         catchError(this.handleError)
       );
   }
+  pokemonDescriptionUrl = (url: string) => {
+    return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`
+  }
 
+  // selectedPokemonFromStore(pokemon: Pokemon[]): Observable<Pokemon[]> {
+  //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
+  //   // Product Id must be null for the Web API to assign an Id
+  //   const newProduct = { ...product, id: null };
+  //   return this.http.get<Pokemon>(this., newProduct, { headers })
+  //     .pipe(
+  //       tap(data => console.log('createProduct: ' + JSON.stringify(data))),
+  //       catchError(this.handleError)
+  //     );
+  // }
   
   
   private handleError(err: any) {

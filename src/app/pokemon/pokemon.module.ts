@@ -25,7 +25,7 @@ import { PokemonToastComponent } from './components/pokemon-toast/pokemon-toast.
     SharedModule,
     PokemonRoutingModule,
     MaterialModule,
-    StoreModule.forFeature('rootPokemonList', pokemonReducer),
+    StoreModule.forFeature('pokemons', pokemonReducer),
     EffectsModule.forFeature([PokemonEffects]),
   ]
 })

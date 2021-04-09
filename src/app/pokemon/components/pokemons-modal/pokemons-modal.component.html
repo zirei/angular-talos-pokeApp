@@ -1,11 +1,11 @@
-<h1 class="title-name" mat-dialog-title>{{name}}</h1>
-<button class="button" mat-dialog-title (click)="openToast()" aria-label="Show an example snack-bar/toast">
-  Compare to...
-</button>
-<hr />
 <mat-dialog-content class="mat-typography">
+  <h1 class="fix-text" mat-dialog-title>{{ name }}</h1>
+  <button mat-dialog-title>Compare to...</button>
+  <hr />
   <mat-grid-list cols="12" rowHeight="72px">
-    <mat-grid-tile colspan="4" rowspan="3"> <img mat-card-image src="{{image}}" alt=" Not found image" /> </mat-grid-tile>
+    <mat-grid-tile colspan="4" rowspan="3">
+      <img mat-card-image src="{{ image }}" alt=" Not found image" />
+    </mat-grid-tile>
     <mat-grid-tile colspan="8" rowspan="1">
       <div class="container">
         <p>Description</p>
