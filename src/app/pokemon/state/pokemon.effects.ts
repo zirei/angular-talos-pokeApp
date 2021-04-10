@@ -5,7 +5,7 @@ import { of } from 'rxjs';
 import { PokemonDataService } from 'src/app/core/services/pokemon/pokemon-data.service';
 
 /* NgRx */
-import { Actions, createEffect, ofType } from '@ngrx/effects';
+import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
 import * as PokemonActions from './pokemon.actions';
 
 @Injectable()
@@ -28,6 +28,13 @@ export class PokemonEffects {
       )
     );
   });
+
+  // selectedPokemons$ = createEffect(() =>
+  //   return this.actions$.pipe(
+  //     ofType(PokemonActions.selectedPokemons)
+  //     .switchMap(() => this.PokemonDataService.)
+  //   )
+  //   )
 
   // selectedPokemon$ = createEffect (() => {
   //   return this.actions$

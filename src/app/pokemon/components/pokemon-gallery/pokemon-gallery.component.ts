@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { from, Subscription } from 'rxjs';
+import { from,Observable, Subscription } from 'rxjs';
 import { PokemonDataService } from 'src/app/core/services/pokemon/pokemon-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PokemonsModalComponent } from '../pokemons-modal/pokemons-modal.component';
@@ -14,6 +14,7 @@ import {
 import * as PokemonActions from '../../state/pokemon.actions';
 import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
+import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-pokemon-gallery',
@@ -25,12 +26,16 @@ export class PokemonGalleryComponent implements OnInit {
   rootPokemonList: Pokemon[] = [];
   pokemonsList: Pokemon[] = [];
   showModal: boolean = false;
+  // poke$: Observable<any> | undefined;
 
   constructor(
     private PokemonDataService: PokemonDataService,
     private store: Store<State>,
     public dialog: MatDialog
-  ) {}
+  ) {
+    // this.loadPokemonsFromApi();
+    // this.getPokemonsDataFromStore();
+  }
 
   ngOnInit(): void {
     this.loadPokemonsFromApi();
@@ -47,6 +52,9 @@ export class PokemonGalleryComponent implements OnInit {
   };
 
   selectPokemon(pokemonName: string, urlPokemonImage: string) {
+    this.store.dispatch(PokemonActions.selectedPokemons());
+    // this.poke$ = this.store.select(state => state.pokemons);
+    // console.log('esto es la tiendita', this.poke$);
     const dialogRef = this.dialog.open(PokemonsModalComponent);
     // const dialogRef = this.dialog.open(PokemonsModalComponent, {
     //   width: '512px'
@@ -58,6 +66,7 @@ export class PokemonGalleryComponent implements OnInit {
     console.log('info: ', pokemonDescriptionUrl2);
 
     dialogRef.afterClosed().subscribe((result) => {
+      this.store.dispatch(PokemonActions.unSelectedPokemons());
       console.log(`Dialog result: ${result}`);
     });
   }
