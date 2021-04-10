@@ -1,12 +1,16 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
 import { Observable } from 'rxjs';
+import { Pokemon } from 'src/app/core/models/pokemon.model';
 import { environment } from 'src/environments/environment';
 import {
   State,
   getPokemons,
   getSelectedPokemons,
+  getKeepSelected,
+  PokemonState,
 } from '../../state/pokemon.reducer';
+import * as PokemonActions from '../../state/pokemon.actions';
 // import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import {MatSnackBar} from '@angular/material/snack-bar';
 
@@ -15,12 +19,16 @@ import {
   templateUrl: './pokemons-modal.component.html',
   styleUrls: ['./pokemons-modal.component.css'],
 })
-export class PokemonsModalComponent implements OnInit {
+export class PokemonsModalComponent implements OnInit, OnDestroy {
   @Input() pokemon: any;
   name: string = '';
   url: string = '';
   image: string = '';
+  keepSelected: boolean = false;
+  showSelected: boolean = true;
+  selectedPokemons2: PokemonState | undefined;
   description: string = '';
+  selectedPokemons: Pokemon[] = [];
   poke$: Observable<any> | undefined;
 
   constructor(private store: Store<State>) {
@@ -33,17 +41,51 @@ export class PokemonsModalComponent implements OnInit {
   //   });
   // }
   ngOnInit(): void {
-    this.getPokemonInfo();
-    console.log('cargo en modal', this.poke$);
+    this.getSelectedPokemonsFromStore();
+    console.log('cargo en modal****************');
   }
 
-  getPokemonInfo() {
-    console.log('entro en modal', this.store);
-    this.name = localStorage.getItem('pokemonName') || 'Not Found name';
-    this.url = localStorage.getItem('urlPokemonImage') || 'Not Found url';
-    this.image = `${environment.POKEMONIMAGEAPI}${this.url.split('/')[6]}.png`;
+  // getPokemonInfo() {
+  //   console.log('entro en modal', this.store);
+  //   this.name = localStorage.getItem('pokemonName') || 'Not Found name';
+  //   this.url = localStorage.getItem('urlPokemonImage') || 'Not Found url';
+  //   this.image = `${environment.POKEMONIMAGEAPI}${this.url.split('/')[6]}.png`;
+  // }
+  pokemonDescriptionUrl = (url: string) => {
+    return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`
   }
-  getSelectedPokemons(){
-    // this.poke$ = this.PokemonDataService.getSelectedPokemons(); 
+  getSelectedPokemonsFromStore() {
+    this.store.select(getSelectedPokemons).subscribe(
+      pokemon => {
+        if (pokemon) {
+          this.selectedPokemons.push(...pokemon)
+          this.image = `${environment.POKEMONIMAGEAPI}${this.selectedPokemons[0].url.split('/')[6]}.png`
+          console.log('selectedPokemons:', this.selectedPokemons, 'Pokemons: ', pokemon)
+        }
+      }
+    )
+  }
+  
+  getKeepSelectedFromStore() {
+    this.store.select(getKeepSelected).subscribe(
+      pokemon => {
+        if (pokemon) {
+          this.keepSelected=pokemon.keepSelected
+          console.log('keepSelected store:', pokemon.keepSelected, 'keepSelected new valor: ', pokemon)
+          console.log('array2: ', pokemon.selectedPokemons)
+        }
+      }
+    )
+  }
+  // getSelectedPokemons(){
+  //   this.poke$ = this.PokemonDataService.getSelectedPokemons(); 
+  // }
+  ngOnDestroy(): void {
+    console.log(this.keepSelected)
+    if (!this.keepSelected) {
+      console.log('destroy selected pokemon', this.selectedPokemons );
+      this.store.dispatch(PokemonActions.unSelectedPokemons());
+      console.log('Unselected pokemon', this.selectedPokemons);
+    }
   }
 }

@@ -1,6 +1,13 @@
 import { Injectable } from '@angular/core';
 
-import { mergeMap, map, catchError, concatMap, tap } from 'rxjs/operators';
+import {
+  mergeMap,
+  map,
+  catchError,
+  concatMap,
+  tap,
+  switchMap,
+} from 'rxjs/operators';
 import { of } from 'rxjs';
 import { PokemonDataService } from 'src/app/core/services/pokemon/pokemon-data.service';
 
@@ -10,6 +17,7 @@ import * as PokemonActions from './pokemon.actions';
 
 @Injectable()
 export class PokemonEffects {
+  store: any;
   constructor(
     private actions$: Actions,
     private PokemonDataService: PokemonDataService
@@ -29,12 +37,18 @@ export class PokemonEffects {
     );
   });
 
-  // selectedPokemons$ = createEffect(() =>
+  // working in this
+
+  // selectedPokemons$ = createEffect(() => {
   //   return this.actions$.pipe(
-  //     ofType(PokemonActions.selectedPokemons)
-  //     .switchMap(() => this.PokemonDataService.)
-  //   )
-  //   )
+  //     ofType(PokemonActions.selectedPokemons),
+  //     switchMap(() =>
+  //       this.store.getState().map((pokemon) =>
+  //         PokemonActions.selectedPokemonsSuccess(pokemon)
+  //       )
+  //     )
+  //   );
+  // });
 
   // selectedPokemon$ = createEffect (() => {
   //   return this.actions$
@@ -62,5 +76,4 @@ export class PokemonEffects {
   //       )
   //     );
   // });
-
 }

@@ -1,6 +1,6 @@
 <mat-dialog-content class="mat-typography">
-  <h1 class="fix-text" mat-dialog-title>{{ name }}</h1>
-  <button mat-dialog-title>Compare to...</button>
+  <h1 class="fix-text" mat-dialog-title>{{ selectedPokemons[0].name }}</h1>
+  <button mat-dialog-title (click)="getKeepSelectedFromStore()" [mat-dialog-close]="true">Compare to...</button>
   <hr />
   <mat-grid-list cols="12" rowHeight="72px">
     <mat-grid-tile colspan="4" rowspan="3">

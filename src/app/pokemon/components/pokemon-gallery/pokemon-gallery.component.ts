@@ -25,6 +25,7 @@ export class PokemonGalleryComponent implements OnInit {
   errorMessage = '';
   rootPokemonList: Pokemon[] = [];
   pokemonsList: Pokemon[] = [];
+  selectedPokemons: Pokemon[] = [];
   showModal: boolean = false;
   // poke$: Observable<any> | undefined;
 
@@ -51,24 +52,35 @@ export class PokemonGalleryComponent implements OnInit {
     return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`;
   };
 
-  selectPokemon(pokemonName: string, urlPokemonImage: string) {
-    this.store.dispatch(PokemonActions.selectedPokemons());
+  // getselectPokemon() {
+  //   this.store.select(getSelectedPokemons).subscribe((selectedPokemons) => {
+  //     if (selectedPokemons) {
+  //       this.selectedPokemons = selectedPokemons;
+  //       console.log('selectedPokemons: GET', this.selectedPokemons);
+  //     }
+  //     console.log('Dont selectedPokemons:', this.selectedPokemons);
+  //   });
+  // }
+
+  selectPokemon(pokemon: Pokemon) {
+    this.store.dispatch(PokemonActions.selectedPokemons({pokemon}));
+    // this.getselectPokemon()
     // this.poke$ = this.store.select(state => state.pokemons);
     // console.log('esto es la tiendita', this.poke$);
     const dialogRef = this.dialog.open(PokemonsModalComponent);
     // const dialogRef = this.dialog.open(PokemonsModalComponent, {
     //   width: '512px'
     // });
-    const pokemonDescriptionUrl2 = this.pokemonDescriptionUrl(urlPokemonImage);
-    localStorage.setItem('pokemonName', pokemonName);
-    localStorage.setItem('urlPokemonImage', urlPokemonImage);
-    localStorage.setItem('pokemonDescriptionUrl2', pokemonDescriptionUrl2);
-    console.log('info: ', pokemonDescriptionUrl2);
+    // const pokemonDescriptionUrl2 = this.pokemonDescriptionUrl(urlPokemonImage);
+    // localStorage.setItem('pokemonName', pokemonName);
+    // localStorage.setItem('urlPokemonImage', urlPokemonImage);
+    // localStorage.setItem('pokemonDescriptionUrl2', pokemonDescriptionUrl2);
+    // console.log('info: ', pokemonDescriptionUrl2);
 
-    dialogRef.afterClosed().subscribe((result) => {
-      this.store.dispatch(PokemonActions.unSelectedPokemons());
-      console.log(`Dialog result: ${result}`);
-    });
+    // dialogRef.afterClosed().subscribe((result) => {
+      // this.store.dispatch(PokemonActions.unSelectedPokemons());
+      // console.log(`Modal unselected: ${result}`);
+    // });
   }
 
   // selectPokemon(pokemon: Pokemon[]):void {

@@ -27,9 +27,9 @@ export class PokemonDataService {
         catchError(this.handleError)
       );
   }
-  pokemonDescriptionUrl = (url: string) => {
-    return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`
-  }
+  // pokemonDescriptionUrl = (url: string) => {
+  //   return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`
+  // }
 
   // selectedPokemonFromStore(pokemon: Pokemon[]): Observable<Pokemon[]> {
   //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });

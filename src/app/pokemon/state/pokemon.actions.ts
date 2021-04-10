@@ -18,13 +18,13 @@ export const loadPokemonsFailure = createAction(
 
 // selected
 
-export const selectedPokemons = createAction(
-  '[Pokemon] Selected Pokemon',
-);
+// export const selectedPokemons = createAction(
+//   '[Pokemon] Selected Pokemon',
+// );
 
-export const selectedPokemonsSuccess = createAction(
+export const selectedPokemons = createAction(
   '[Pokemon] selected Success',
-  props<{ pokemons: Pokemon[] }>()
+  props<{ pokemon: Pokemon }>()
 );
 
 export const selectedPokemonsFailure = createAction(
@@ -38,4 +38,5 @@ export const unSelectedPokemons = createAction(
 
 export const keepSelectedPokemons = createAction(
   '[Pokemon] keep selected pokemon'
+  
 );

@@ -45,9 +45,9 @@ const initialState: PokemonState = {
 const getPokemonFeatureState = createFeatureSelector<PokemonState>(
   'pokemons'
 );
-const getSelectedPokemonFeatureState = createFeatureSelector<PokemonState>(
-  'pokemons'
-);
+// const getSelectedPokemonFeatureState = createFeatureSelector<PokemonState>(
+//   'pokemons'
+// );
 
 export const getPokemons = createSelector(
   getPokemonFeatureState,
@@ -55,8 +55,13 @@ export const getPokemons = createSelector(
 );
 
 export const getSelectedPokemons = createSelector(
-  getSelectedPokemonFeatureState,
+  getPokemonFeatureState,
   state => state.selectedPokemons
+);
+
+export const getKeepSelected = createSelector(
+  getPokemonFeatureState,
+  state => state
 );
 // export const getSelectedPokemons = createSelector(
 //   getSelectedPokemonFeatureState,
@@ -104,7 +109,7 @@ export const pokemonReducer = createReducer<PokemonState>(
     }
   ),
   on(
-    PokemonActions.selectedPokemonsSuccess,
+    PokemonActions.selectedPokemons,
     (state, action): PokemonState => {
       return {
         ...state,
@@ -112,7 +117,7 @@ export const pokemonReducer = createReducer<PokemonState>(
         keepSelected: true,
         selectedPokemons: [
           ...state.selectedPokemons,
-          ...action.pokemons,
+          action.pokemon,
         ],
         error: '',
       };
