@@ -27,6 +27,7 @@ export class PokemonDataService {
         catchError(this.handleError)
       );
   }
+  // TODO: Descriptions for modal
   // pokemonDescriptionUrl = (url: string) => {
   //   return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`
   // }

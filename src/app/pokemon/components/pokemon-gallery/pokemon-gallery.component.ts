@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { from,Observable, Subscription } from 'rxjs';
 import { PokemonDataService } from 'src/app/core/services/pokemon/pokemon-data.service';
 import { MatDialog } from '@angular/material/dialog';
 import { PokemonsModalComponent } from '../pokemons-modal/pokemons-modal.component';
@@ -14,7 +13,6 @@ import {
 import * as PokemonActions from '../../state/pokemon.actions';
 import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
-import { state } from '@angular/animations';
 
 @Component({
   selector: 'app-pokemon-gallery',
@@ -27,7 +25,6 @@ export class PokemonGalleryComponent implements OnInit {
   pokemonsList: Pokemon[] = [];
   selectedPokemons: Pokemon[] = [];
   showModal: boolean = false;
-  // poke$: Observable<any> | undefined;
 
   constructor(
     private PokemonDataService: PokemonDataService,
@@ -41,7 +38,6 @@ export class PokemonGalleryComponent implements OnInit {
   ngOnInit(): void {
     this.loadPokemonsFromApi();
     this.getPokemonsDataFromStore();
-    // console.log('Lista de pokemones', this.pokemonsList);
   }
 
   ngOnChanged(): void {
@@ -52,62 +48,17 @@ export class PokemonGalleryComponent implements OnInit {
     return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`;
   };
 
-  // getselectPokemon() {
-  //   this.store.select(getSelectedPokemons).subscribe((selectedPokemons) => {
-  //     if (selectedPokemons) {
-  //       this.selectedPokemons = selectedPokemons;
-  //       console.log('selectedPokemons: GET', this.selectedPokemons);
-  //     }
-  //     console.log('Dont selectedPokemons:', this.selectedPokemons);
-  //   });
-  // }
-
   selectPokemon(pokemon: Pokemon) {
     this.store.dispatch(PokemonActions.selectedPokemons({pokemon}));
-    // this.getselectPokemon()
-    // this.poke$ = this.store.select(state => state.pokemons);
-    // console.log('esto es la tiendita', this.poke$);
     const dialogRef = this.dialog.open(PokemonsModalComponent);
     // const dialogRef = this.dialog.open(PokemonsModalComponent, {
     //   width: '512px'
     // });
-    // const pokemonDescriptionUrl2 = this.pokemonDescriptionUrl(urlPokemonImage);
-    // localStorage.setItem('pokemonName', pokemonName);
-    // localStorage.setItem('urlPokemonImage', urlPokemonImage);
-    // localStorage.setItem('pokemonDescriptionUrl2', pokemonDescriptionUrl2);
-    // console.log('info: ', pokemonDescriptionUrl2);
-
     // dialogRef.afterClosed().subscribe((result) => {
       // this.store.dispatch(PokemonActions.unSelectedPokemons());
       // console.log(`Modal unselected: ${result}`);
     // });
   }
-
-  // selectPokemon(pokemon: Pokemon[]):void {
-  //   const dialogRef = this.dialog.open(PokemonsModalComponent);
-  //   // const dialogRef = this.dialog.open(PokemonsModalComponent, {
-  //     //   width: '512px'
-  //     // });
-  //   this.store.dispatch(PokemonActions.selectedPokemons({pokemon}));
-  //   // const pokemonDescriptionUrl2 = this.pokemonDescriptionUrl(urlPokemonImage);
-  //   // localStorage.setItem('pokemonName', pokemonName);
-  //   // localStorage.setItem('urlPokemonImage', urlPokemonImage);
-  //   // localStorage.setItem('pokemonDescriptionUrl2', pokemonDescriptionUrl2);
-  //   // console.log('info: ' , pokemonDescriptionUrl2);
-
-  //   // dialogRef.afterClosed().subscribe((result) => {
-  //   //   console.log(`Dialog result: ${result}`);
-  //   // });
-
-  // getPokemonsFromApi() {
-  //   this.PokemonDataService.getPokemonsFromApi().subscribe({
-  //     next: (rootPokemonList: any) => {
-  //       this.rootPokemonList = [...this.rootPokemonList, ...rootPokemonList.results];
-  //       console.log(this.store);
-  //     },
-  //     error: err => this.errorMessage = err
-  //   });
-  // }
 
   getPokemonsDataFromStore() {
     this.store.select(getPokemons).subscribe((rootPokemonList) => {
@@ -123,7 +74,4 @@ export class PokemonGalleryComponent implements OnInit {
     this.store.dispatch(PokemonActions.loadPokemons());
     this.getPokemonsDataFromStore();
   }
-  // receiveMessage($event: boolean) {
-  //   this.showModal = $event;
-  // }
 }

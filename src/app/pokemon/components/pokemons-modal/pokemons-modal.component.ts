@@ -11,7 +11,6 @@ import {
   PokemonState,
 } from '../../state/pokemon.reducer';
 import * as PokemonActions from '../../state/pokemon.actions';
-// import { NgbActiveModal, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 // import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -35,7 +34,6 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
     this.poke$ = this.store.select(state => state.pokemons);
   }
   // constructor(private _snackBar: MatSnackBar) {}
-
   // openToast() {
   //   this._snackBar.openFromComponent(PokemonsModalComponent, {
   //   });
@@ -45,12 +43,6 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
     console.log('cargo en modal****************');
   }
 
-  // getPokemonInfo() {
-  //   console.log('entro en modal', this.store);
-  //   this.name = localStorage.getItem('pokemonName') || 'Not Found name';
-  //   this.url = localStorage.getItem('urlPokemonImage') || 'Not Found url';
-  //   this.image = `${environment.POKEMONIMAGEAPI}${this.url.split('/')[6]}.png`;
-  // }
   pokemonDescriptionUrl = (url: string) => {
     return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`
   }
@@ -77,9 +69,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
       }
     )
   }
-  // getSelectedPokemons(){
-  //   this.poke$ = this.PokemonDataService.getSelectedPokemons(); 
-  // }
+
   ngOnDestroy(): void {
     console.log(this.keepSelected)
     if (!this.keepSelected) {

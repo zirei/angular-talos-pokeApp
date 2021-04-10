@@ -1,19 +1,19 @@
-<mat-dialog-content class="mat-typography">
-  <h1 class="fix-text" mat-dialog-title>{{ selectedPokemons[0].name }}</h1>
-  <button mat-dialog-title (click)="getKeepSelectedFromStore()" [mat-dialog-close]="true">Compare to...</button>
+<mat-dialog-content class='mat-typography'>
+  <h1 class='fix-text' mat-dialog-title>{{ selectedPokemons[0].name }}</h1>
+  <button mat-dialog-title (click)='getKeepSelectedFromStore()' [mat-dialog-close]='true'>Compare to...</button>
   <hr />
-  <mat-grid-list cols="12" rowHeight="72px">
-    <mat-grid-tile colspan="4" rowspan="3">
-      <img mat-card-image src="{{ image }}" alt=" Not found image" />
+  <mat-grid-list cols='12' rowHeight='72px'>
+    <mat-grid-tile colspan='4' rowspan='3'>
+      <img mat-card-image src='{{ image }}' alt=' Not found image' />
     </mat-grid-tile>
-    <mat-grid-tile colspan="8" rowspan="1">
-      <div class="container">
+    <mat-grid-tile colspan='8' rowspan='1'>
+      <div class='container'>
         <p>Description</p>
         <hr />
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="8" rowspan="1">
-      <table style="width: 100%">
+    <mat-grid-tile colspan='8' rowspan='1'>
+      <table style='width: 100%'>
         <tr>
           <th>Height</th>
           <th>Weight</th>
@@ -27,8 +27,8 @@
         </tr>
       </table>
     </mat-grid-tile>
-    <mat-grid-tile colspan="8" rowspan="1">
-      <table style="width: 100%">
+    <mat-grid-tile colspan='8' rowspan='1'>
+      <table style='width: 100%'>
         <tr>
           <th>Abilitys</th>
           <th>Type</th>
@@ -52,7 +52,7 @@
     </mat-grid-tile>
   </mat-grid-list>
   <hr />
-  <mat-grid-list cols="12" rowHeight="5rem">
+  <mat-grid-list cols='12' rowHeight='5rem'>
     <span>Grafica</span>
     <p>
       provides the Router service to help you define navigation paths among
@@ -60,40 +60,3 @@
     </p>
   </mat-grid-list>
 </mat-dialog-content>
-
-<!-- <div tabindex="100">
-  <h1 mat-dialog-title>Dialog with elements</h1>
-  <div mat-dialog-content>
-    This dialog showcases the title, close, content and actions elements.
-  </div>
-  <div mat-dialog-actions>
-    <button mat-button mat-dialog-close>Close</button>
-  </div>
-</div> -->
-
-<!-- <div class="modal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Modal title</h5>
-        <button
-          type="button"
-          class="close"
-          data-dismiss="modal"
-          aria-label="Close"
-        >
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-        <p>Modal body text goes here.</p>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">
-          Close
-        </button>
-        <button type="button" class="btn btn-primary">Save changes</button>
-      </div>
-    </div>
-  </div>
-</div> -->

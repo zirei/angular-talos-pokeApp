@@ -6,8 +6,6 @@ import { MaterialModule } from '../material/material.module';
 import { FormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
-
-
 @NgModule({
   declarations: [
     NavbarComponent
