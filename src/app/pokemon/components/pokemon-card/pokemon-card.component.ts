@@ -10,13 +10,14 @@ export class PokemonCardComponent implements OnInit {
 
   // Receive information of father component
   @Input() pokemon: any;
+  image: string = '';
   // showModal: boolean = false;
   // @Output() sendShowModalToParent = new EventEmitter<boolean>();
 
   constructor() { }
 
   ngOnInit(): void {
-    this.pokemon.image = `${environment.POKEMONIMAGEAPI}${this.pokemon.url.split('/')[6]}.png`
+    this.image = `${environment.POKEMONIMAGEAPI}${this.pokemon.url.split('/')[6]}.png`
   }
 
   // selectPokemon(){

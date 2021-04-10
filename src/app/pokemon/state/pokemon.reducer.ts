@@ -80,12 +80,15 @@ export const pokemonReducer = createReducer<PokemonState>(
   initialState,
   on(
     PokemonActions.loadPokemonsSuccess,
-    (state, action): PokemonState => {
+    (state, action: any): PokemonState => {
       // const updatedProducts = action.pokemons.map(
       //   item =>  item);
       return {
         ...state,
-        rootPokemonList: action.pokemons,
+        rootPokemonList: [
+          ...state.rootPokemonList,
+          ...action.pokemons.results,
+        ],
         error: '',
       };
     }

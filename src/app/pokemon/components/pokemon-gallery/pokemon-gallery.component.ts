@@ -6,11 +6,14 @@ import { PokemonsModalComponent } from '../pokemons-modal/pokemons-modal.compone
 import { Pokemon } from 'src/app/core/models/pokemon.model';
 
 // Redux
-import { State, getPokemons, getSelectedPokemons } from '../../state/pokemon.reducer'
-import * as PokemonActions from '../../state/pokemon.actions'
+import {
+  State,
+  getPokemons,
+  getSelectedPokemons,
+} from '../../state/pokemon.reducer';
+import * as PokemonActions from '../../state/pokemon.actions';
 import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
-
 
 @Component({
   selector: 'app-pokemon-gallery',
@@ -26,20 +29,22 @@ export class PokemonGalleryComponent implements OnInit {
   constructor(
     private PokemonDataService: PokemonDataService,
     private store: Store<State>,
-    public dialog: MatDialog,
+    public dialog: MatDialog
   ) {}
 
-  
   ngOnInit(): void {
     this.loadPokemonsFromApi();
-    this.getPokemonsFromApi();
     this.getPokemonsDataFromStore();
     // console.log('Lista de pokemones', this.pokemonsList);
   }
 
-  pokemonDescriptionUrl = (url: string) => {
-    return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`
+  ngOnChanged(): void {
+    this.loadPokemonsFromApi();
   }
+
+  pokemonDescriptionUrl = (url: string) => {
+    return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`;
+  };
 
   selectPokemon(pokemonName: string, urlPokemonImage: string) {
     const dialogRef = this.dialog.open(PokemonsModalComponent);
@@ -50,7 +55,7 @@ export class PokemonGalleryComponent implements OnInit {
     localStorage.setItem('pokemonName', pokemonName);
     localStorage.setItem('urlPokemonImage', urlPokemonImage);
     localStorage.setItem('pokemonDescriptionUrl2', pokemonDescriptionUrl2);
-    console.log('info: ' , pokemonDescriptionUrl2);
+    console.log('info: ', pokemonDescriptionUrl2);
 
     dialogRef.afterClosed().subscribe((result) => {
       console.log(`Dialog result: ${result}`);
@@ -72,32 +77,30 @@ export class PokemonGalleryComponent implements OnInit {
   //   // dialogRef.afterClosed().subscribe((result) => {
   //   //   console.log(`Dialog result: ${result}`);
   //   // });
-  
-  
-  getPokemonsFromApi() {
-    this.PokemonDataService.getPokemonsFromApi().subscribe({
-      next: (rootPokemonList: any) => {
-        this.rootPokemonList = [...this.rootPokemonList, ...rootPokemonList.results];
-        console.log(this.store);
-      },
-      error: err => this.errorMessage = err
+
+  // getPokemonsFromApi() {
+  //   this.PokemonDataService.getPokemonsFromApi().subscribe({
+  //     next: (rootPokemonList: any) => {
+  //       this.rootPokemonList = [...this.rootPokemonList, ...rootPokemonList.results];
+  //       console.log(this.store);
+  //     },
+  //     error: err => this.errorMessage = err
+  //   });
+  // }
+
+  getPokemonsDataFromStore() {
+    this.store.select(getPokemons).subscribe((rootPokemonList) => {
+      if (rootPokemonList) {
+        this.rootPokemonList = rootPokemonList;
+        console.log('rootPokemonList:', this.rootPokemonList);
+      }
+      console.log('Dont if rootPokemonList:', this.rootPokemonList);
     });
   }
 
-  getPokemonsDataFromStore() {
-    console.log('entre')
-    this.store.select(getPokemons).subscribe(
-      rootPokemonList => {
-        if (rootPokemonList) {
-          this.pokemonsList = rootPokemonList
-          console.log('rootPokemonList:', this.rootPokemonList)
-        }
-        console.log('Dont if rootPokemonList:', this.rootPokemonList)
-      }
-    )
-  }
   loadPokemonsFromApi(): void {
-    this.store.dispatch(PokemonActions.loadPokemons())
+    this.store.dispatch(PokemonActions.loadPokemons());
+    this.getPokemonsDataFromStore();
   }
   // receiveMessage($event: boolean) {
   //   this.showModal = $event;
