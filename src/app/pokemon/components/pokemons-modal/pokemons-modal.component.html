@@ -1,32 +1,32 @@
-<mat-dialog-content class="mat-typography">
-  <mat-grid-list mat-dialog-title cols="12">
-    <mat-grid-tile colspan="4">
-      <h1 class="fix-text">{{ selectedPokemons[0].name }}</h1>
+<mat-dialog-content class='mat-typography'>
+  <mat-grid-list mat-dialog-title cols='12'>
+    <mat-grid-tile colspan='4'>
+      <h1 class='fix-text'>{{ selectedPokemons[0].name }}</h1>
     </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <button (click)="getKeepSelectedFromStore()" [mat-dialog-close]="true">
+    <mat-grid-tile colspan='4'>
+      <button (click)='getKeepSelectedFromStore()' [mat-dialog-close]='true'>
         Compare to...
       </button>
     </mat-grid-tile>
-    <mat-grid-tile colspan="4">
-      <button (click)="setFavs()">
+    <mat-grid-tile colspan='4'>
+      <button (click)='setFavs()'>
         Favs
       </button>
     </mat-grid-tile>
   </mat-grid-list>
   <hr />
-  <mat-grid-list cols="12" rowHeight="4rem">
-    <mat-grid-tile colspan="4" rowspan="3">
-      <img mat-card-image class='img-fluid' src="{{ image }}" alt=" Not found image" />
+  <mat-grid-list cols='12' rowHeight='4rem'>
+    <mat-grid-tile colspan='4' rowspan='3'>
+      <img mat-card-image class='img-fluid' src='{{ image }}' alt=' Not found image' />
     </mat-grid-tile>
-    <mat-grid-tile colspan="8" rowspan="1">
-      <div class="container">
+    <mat-grid-tile colspan='8' rowspan='1'>
+      <div class='container'>
         <p class='text-description' >{{ selectedPokemons[0].name }}Description</p>
         <hr />
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="8" rowspan="1">
-      <table style="width: 100%">
+    <mat-grid-tile colspan='8' rowspan='1'>
+      <table style='width: 100%'>
         <tr>
           <th>Height</th>
           <th>Weight</th>
@@ -40,21 +40,21 @@
         </tr>
       </table>
     </mat-grid-tile>
-    <mat-grid-tile colspan="8" rowspan="1">
-      <table style="width: 100%">
+    <mat-grid-tile colspan='8' rowspan='1'>
+      <table style='width: 100%'>
         <tr>
           <th>Abilitys</th>
           <th>Type</th>
         </tr>
         <tr>
           <td>
-            <ul *ngFor="let pokemon of selectedPokemons">
+            <ul *ngFor='let pokemon of selectedPokemons'>
               <li>{{ pokemon.name }}Abilities</li>
             </ul>
           </td>
           <td>
             <ul>
-              <li *ngFor="let pokemon of selectedPokemons">
+              <li *ngFor='let pokemon of selectedPokemons'>
                 {{ pokemon.name }}Type
               </li>
             </ul>
@@ -64,7 +64,7 @@
     </mat-grid-tile>
   </mat-grid-list>
   <hr />
-  <mat-grid-list cols="12" rowHeight="5rem">
+  <mat-grid-list cols='12' rowHeight='5rem'>
     <span>Grafica</span>
     <p>
       provides the Router service to help you define navigation paths among
