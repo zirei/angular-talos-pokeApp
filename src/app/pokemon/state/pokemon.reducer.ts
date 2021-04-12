@@ -22,7 +22,7 @@ export interface PokemonState {
   pokemonsList: Pokemon[];
   selectedPokemons: Pokemon[];
   favoritePokemons: Pokemon[];
-  // isFetching: boolean;
+  isFetching: boolean;
   showSelected: boolean;
   keepSelected: boolean;
   favoriteSelected: boolean;
@@ -36,7 +36,7 @@ const initialState: PokemonState = {
   pokemonsList: [],
   selectedPokemons: [],
   favoritePokemons: [],
-  // isFetching: false,
+  isFetching: false,
   showSelected: false,
   keepSelected: false,
   favoriteSelected: false,
@@ -61,11 +61,6 @@ export const getSelectedPokemons = createSelector(
   getPokemonFeatureState,
   state => state.selectedPokemons
 );
-// keepSelected pokemons
-// export const getKeepSelected = createSelector(
-//   getPokemonFeatureState,
-//   state => state
-// );
 
 // state info
 export const getPokemonsInfo = createSelector(
@@ -79,31 +74,11 @@ export const getFavoritePokemon = createSelector(
   state => state.favoritePokemons
 );
 
-// export const getSelectedPokemons = createSelector(
-//   getSelectedPokemonFeatureState,
-//   getCurrentProductId,
-//   (state, currentProductId) => {
-//     if (currentProductId === 0) {
-//       return {
-//         id: 0,
-//         productName: '',
-//         productCode: 'New',
-//         description: '',
-//         starRating: 0
-//       };
-//     } else {
-//       return currentProductId ? state.products.find(p => p.id === currentProductId) : null;
-//     }
-//   }
-// );
-
 export const pokemonReducer = createReducer<PokemonState>(
   initialState,
   on(
     PokemonActions.loadPokemonsSuccess,
     (state, action: any): PokemonState => {
-      // const updatedProducts = action.pokemons.map(
-      //   item =>  item);
       return {
         ...state,
         rootPokemonList: [

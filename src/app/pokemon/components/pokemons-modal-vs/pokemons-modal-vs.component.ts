@@ -38,33 +38,11 @@ export class PokemonsModalVsComponent implements OnInit {
         this.selectedPokemons.push(...pokemon);
         this.image = `${environment.POKEMONIMAGEAPI}${this.selectedPokemons[0].url.split('/')[6]}.png`;
         this.image2 = `${environment.POKEMONIMAGEAPI}${this.selectedPokemons[1].url.split('/')[6]}.png`;
-        console.log(
-          this.image, '***images***' , this.image2
-        );
       }
     });
   }
 
-  // getKeepSelectedFromStore() {
-  //   this.store.dispatch(PokemonActions.keepSelectedPokemons());
-  //   this.store.select(getPokemonsInfo).subscribe((pokemon) => {
-  //     if (pokemon) {
-  //       this.keepSelected = pokemon.keepSelected;
-  //       console.log(
-  //         'keepSelected store:',
-  //         pokemon.keepSelected,
-  //         'keepSelected new valor: ',
-  //         pokemon
-  //       );
-  //       console.log('array2: ', pokemon.selectedPokemons);
-  //     }
-  //   });
-  // }
-
   ngOnDestroy(): void {
-    console.log('destroy selected pokemon in VS', this.selectedPokemons);
     this.store.dispatch(PokemonActions.unSelectedPokemons());
-    console.log('Unselected pokemon in VS', this.selectedPokemons);
-    console.log('Cerrando modal pokemon in VS', this.selectedPokemons);
   }
 }

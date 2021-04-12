@@ -36,32 +36,20 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   description: string = '';
   selectedPokemons: Pokemon[] = [];
 
-  constructor(private store: Store<State>) {
-    // this.pokemones$ = this.store.select(state => state.pokemons.selectedPokemons);
-  }
+  constructor(private store: Store<State>) {}
+  // TODO: launch the toast component
   // constructor(private _snackBar: MatSnackBar) {}
   // openToast() {
   //   this._snackBar.openFromComponent(PokemonsModalComponent, {
   //   });
   // }
   ngOnInit(): void {
-    // console.log('selecciones',  this.pokemones$);
     this.getSelectedPokemonsFromStore();
   }
 
   ngOnChange() {
-    console.log('hola mundo', this.selectedPokemons.length);
-    // this.getShowModal(this.pokemon.length);
-    // this.getPokemonsDescriptionFromApi();
-    console.log('cargo en modal****************');
-    // this.getPokemonsDescriptionFromApi(url);
-  }
 
-  // getShowModal(length: number): void {
-  //   length >= 2
-  //   ? this.showModalVS = true
-  //   : this.showModalVS = false
-  // }
+  }
 
   pokemonDescriptionUrl = (url: string) => {
     return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`;
@@ -72,18 +60,6 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
     // this.getPokemonsDescriptionFromStore();
   }
 
-  // getPokemonsDescriptionFromStore() {
-  //   this.store.select(getPokemonsInfo).subscribe(
-  //     pokemon => {
-  //       if (pokemon) {
-  //         this.image = `${environment.POKEMONIMAGEAPI}${this.selectedPokemons[0].url.split('/')[6]}.png`
-  //         console.log('descripcion', pokemon)
-  //         // console.log('selectedPokemons:', this.selectedPokemons, 'Pokemons: ', pokemon)
-  //       }
-  //     }
-  //   )
-  // }
-
   getSelectedPokemonsFromStore() {
     this.store.select(getSelectedPokemons).subscribe((pokemon) => {
       if (pokemon) {
@@ -91,15 +67,12 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
         this.image = `${environment.POKEMONIMAGEAPI}${
           this.selectedPokemons[0].url.split('/')[6]
         }.png`;
-        console.log(
-          'selectedPokemons:',
-          this.selectedPokemons,
-          'Pokemons: ',
-          pokemon
-        );
+
       }
     });
   }
+
+  // TODO: implement favs
   setFavs() {
     if (this.favoriteSelected) {
       console.log('remove favs');
