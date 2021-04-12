@@ -1,3 +1,18 @@
+:root {
+  --backGgroundColor:  rgba(110, 117, 124, 1); 
+  --textColor: rgba(241, 242, 242, 1);
+}
+.img-fluid {
+  width: 8rem;
+}
+
 .fix-text {
   text-transform: uppercase;
+  padding: 0;
+}
+
+.compare-button {
+  margin-left: 1rem;
+  color: var(--textColor);
+  background-color: var(--backGgroundColor);
 }

@@ -6,13 +6,14 @@ import { Pokemon } from '../../models/pokemon.model';
 import { catchError, map, tap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class PokemonDataService {
   counter: number = 0;
   pokemonDataApi: string = '';
+  pokemonDescriptionUrl: string = '';
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {}
 
   counterChange() {
     this.pokemonDataApi = `${environment.POKEMONDATAAPI}pokemon?offset=${this.counter}&limit=20`;
@@ -20,16 +21,28 @@ export class PokemonDataService {
   }
 
   getPokemonsFromApi(): Observable<Pokemon[]> {
-    this.counterChange()
-    return this.http.get<Pokemon[]>(this.pokemonDataApi)
-      .pipe(
-        tap(data => console.log('All: ' + JSON.stringify(data))),
-        catchError(this.handleError)
-      );
+    this.counterChange();
+    return this.http.get<Pokemon[]>(this.pokemonDataApi).pipe(
+      // tap(data => console.log('All: ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
   }
-  // TODO: Descriptions for modal
-  // pokemonDescriptionUrl = (url: string) => {
-  //   return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`
+
+
+
+  getPokemonsDescriptionFromApi(url: string): Observable<any> {
+    // const pokemonDescriptionUrl = `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`;
+    return this.http.get<any>(url).pipe(
+      tap((data) => console.log('Description: ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+
+  // TODO: Descriptions for modal ()
+  // pokemonDescriptionUrlMethod(url: string) {
+  //   this.pokemonDescriptionUrl = `${
+  //     environment.POKEMONDATAAPI
+  //   }pokemon-species/${url.split('/')[6]}/`;
   // }
 
   // selectedPokemonFromStore(pokemon: Pokemon[]): Observable<Pokemon[]> {
@@ -42,8 +55,7 @@ export class PokemonDataService {
   //       catchError(this.handleError)
   //     );
   // }
-  
-  
+
   private handleError(err: any) {
     // in a real world app, we may send the server to some remote logging infrastructure
     // instead of just logging it to the console
@@ -58,5 +70,5 @@ export class PokemonDataService {
     }
     console.error(err);
     return throwError(errorMessage);
-    }
+  }
 }

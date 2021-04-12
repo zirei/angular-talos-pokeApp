@@ -11,6 +11,8 @@ import { pokemonReducer } from './state/pokemon.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PokemonEffects } from './state/pokemon.effects';
 import { PokemonToastComponent } from './components/pokemon-toast/pokemon-toast.component';
+import { PokemonsModalVsComponent } from './components/pokemons-modal-vs/pokemons-modal-vs.component';
+import { ChartComponent } from './components/chart/chart.component';
 
 @NgModule({
   declarations: [ 
@@ -18,6 +20,8 @@ import { PokemonToastComponent } from './components/pokemon-toast/pokemon-toast.
     PokemonGalleryComponent,
     PokemonsModalComponent,
     PokemonToastComponent,
+    PokemonsModalVsComponent,
+    ChartComponent,
 
   ],
   imports: [

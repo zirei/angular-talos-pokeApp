@@ -18,8 +18,17 @@ export const loadPokemonsFailure = createAction(
 
 // selected
 
-// export const selectedPokemons = createAction(
+// export const loadPokemonsDescription = createAction(
 //   '[Pokemon] Selected Pokemon',
+//   props<{ url:string }>()
+// );
+// export const loadPokemonsDescriptionSuccess = createAction(
+//   '[Pokemon] Selected Pokemon',
+//   props<{ pokemons:any }>()
+// );
+// export const loadPokemonsDescriptionFailure = createAction(
+//   '[Pokemon] Load Fail',
+//   props<{ error: string }>()
 // );
 
 export const selectedPokemons = createAction(
@@ -33,10 +42,21 @@ export const selectedPokemonsFailure = createAction(
 );
 
 export const unSelectedPokemons = createAction(
-  '[Pokemon] selected Fail',
+  '[Pokemon] unselected pokemon',
 );
 
 export const keepSelectedPokemons = createAction(
   '[Pokemon] keep selected pokemon'
   
+);
+
+// FAVS
+export const selectedFavorite = createAction(
+  '[Pokemon] selected Success',
+  props<{ pokemon: Pokemon }>()
+);
+
+export const unselectedFavorite = createAction(
+  '[Pokemon] selected Success',
+  props<{ pokemon: Pokemon }>()
 );

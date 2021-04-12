@@ -1,0 +1,18 @@
+.imgFluid {
+  width: 8rem;
+  display: block;
+  margin: auto;
+}
+
+.fix-text {
+  text-transform: uppercase;
+}
+
+.titles{
+  vertical-align: super;
+  margin: auto;
+}
+
+.text-description{
+  vertical-align: sub;
+}

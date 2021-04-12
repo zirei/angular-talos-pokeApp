@@ -13,6 +13,8 @@ import {
 import * as PokemonActions from '../../state/pokemon.actions';
 import { Store } from '@ngrx/store';
 import { environment } from 'src/environments/environment';
+import { PokemonsModalVsComponent } from '../pokemons-modal-vs/pokemons-modal-vs.component';
+
 
 @Component({
   selector: 'app-pokemon-gallery',
@@ -31,17 +33,11 @@ export class PokemonGalleryComponent implements OnInit {
     private store: Store<State>,
     public dialog: MatDialog
   ) {
-    // this.loadPokemonsFromApi();
-    // this.getPokemonsDataFromStore();
+    this.loadPokemonsFromApi();
   }
 
   ngOnInit(): void {
-    this.loadPokemonsFromApi();
     this.getPokemonsDataFromStore();
-  }
-
-  ngOnChanged(): void {
-    this.loadPokemonsFromApi();
   }
 
   pokemonDescriptionUrl = (url: string) => {
@@ -49,15 +45,45 @@ export class PokemonGalleryComponent implements OnInit {
   };
 
   selectPokemon(pokemon: Pokemon) {
-    this.store.dispatch(PokemonActions.selectedPokemons({pokemon}));
-    const dialogRef = this.dialog.open(PokemonsModalComponent);
+    this.store.dispatch(PokemonActions.selectedPokemons({ pokemon }));
+    // this.PokemonDataService.getPokemonsDescriptionFromApi(pokemon.url);
+    // this.store.dispatch(PokemonActions.loadPokemonsDescription());
+    
+    this.getSelectedPokemonsFromStore()
+    if (this.selectedPokemons.length > 1) {
+      const url = this.selectedPokemons[0].url;
+      const url2 = this.selectedPokemons[1].url;
+      console.log('url2', url2);
+      // this.store.dispatch(PokemonActions.loadPokemonsDescription({ url }));
+      const dialogRef = this.dialog.open(PokemonsModalVsComponent);
+    }else{
+      const url = this.selectedPokemons[0].url;
+      console.log('url1', url);
+      // this.store.dispatch(PokemonActions.loadPokemonsDescription({ url }));
+      const dialogRef = this.dialog.open(PokemonsModalComponent);
+    }
+    
+
     // const dialogRef = this.dialog.open(PokemonsModalComponent, {
     //   width: '512px'
     // });
     // dialogRef.afterClosed().subscribe((result) => {
-      // this.store.dispatch(PokemonActions.unSelectedPokemons());
-      // console.log(`Modal unselected: ${result}`);
+    // this.store.dispatch(PokemonActions.unSelectedPokemons());
+    // console.log(`Modal unselected: ${result}`);
     // });
+  }
+  // getPokemonsDescriptionFromApi(): void {
+  //   this.store.dispatch(PokemonActions.loadPokemonsDescription());
+  //   console.log('descripcion')
+  //   // this.getPokemonsDescriptionFromStore();
+  // }
+  getSelectedPokemonsFromStore() {
+    this.store.select(getSelectedPokemons).subscribe((selectedPokemons) => {
+      if (selectedPokemons) {
+        this.selectedPokemons = selectedPokemons;
+        console.log('selectedPokemons:', this.selectedPokemons);
+      }
+    });
   }
 
   getPokemonsDataFromStore() {
@@ -66,7 +92,6 @@ export class PokemonGalleryComponent implements OnInit {
         this.rootPokemonList = rootPokemonList;
         console.log('rootPokemonList:', this.rootPokemonList);
       }
-      console.log('Dont if rootPokemonList:', this.rootPokemonList);
     });
   }
 

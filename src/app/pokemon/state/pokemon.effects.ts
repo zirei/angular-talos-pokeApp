@@ -37,11 +37,49 @@ export class PokemonEffects {
     );
   });
 
-  // working in this
-
-  // selectedPokemons$ = createEffect(() => {
+  // loadPokemonsDescription$ = createEffect(() => {
   //   return this.actions$.pipe(
-  //     ofType(PokemonActions.selectedPokemons),
+  //     ofType(PokemonActions.loadPokemonsDescription),
+  //     switchMap((action) =>
+  //       this.PokemonDataService.getPokemonsDescriptionFromApi(action.url).pipe(
+  //         map((info) => PokemonActions.loadPokemonsDescriptionSuccess({ info[] })),
+  //         catchError((error) =>
+  //           of(PokemonActions.loadPokemonsDescriptionFailure({ error }))
+  //         )
+  //       )
+  //     )
+  //   );
+  // });
+  // loadPokemonsDescription$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(PokemonActions.loadPokemonsDescription),
+  //     concatMap(action =>
+  //       this.PokemonDataService.getPokemonsDescriptionFromApi(action.pokemons).pipe(
+  //         map(pokemons => PokemonActions.loadPokemonsDescriptionSuccess({ pokemons })),
+  //         catchError((error) =>
+  //           of(PokemonActions.loadPokemonsDescriptionFailure({ error }))
+  //         )
+  //       )
+  //     )
+  //   );
+  // });
+  // loadPokemonsDescription$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(PokemonActions.loadPokemonsDescription),
+  //     mergeMap(() =>
+  //       this.PokemonDataService.getPokemonsDescriptionFromApi().pipe(
+  //         map((pokemons) => PokemonActions.loadPokemonsDescriptionSuccess({ pokemons })),
+  //         catchError((error) =>
+  //           of(PokemonActions.loadPokemonsFailure({ error }))
+  //         )
+  //       )
+  //     )
+  //   );
+  // });
+
+  // loadPokemonsDescription$ = createEffect(() => {
+  //   return this.actions$.pipe(
+  //     ofType(PokemonActions.loadPokemonsDescription),
   //     switchMap(() =>
   //       this.store.getState().map((pokemon) =>
   //         PokemonActions.selectedPokemonsSuccess(pokemon)

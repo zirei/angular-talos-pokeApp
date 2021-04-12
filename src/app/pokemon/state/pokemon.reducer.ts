@@ -21,9 +21,11 @@ export interface PokemonState {
   rootPokemonList: Pokemon[];
   pokemonsList: Pokemon[];
   selectedPokemons: Pokemon[];
+  favoritePokemons: Pokemon[];
   // isFetching: boolean;
   showSelected: boolean;
   keepSelected: boolean;
+  favoriteSelected: boolean;
   scrollCounter: number;
   search_bar: string;
   error: string;
@@ -33,9 +35,11 @@ const initialState: PokemonState = {
   rootPokemonList: [],
   pokemonsList: [],
   selectedPokemons: [],
+  favoritePokemons: [],
   // isFetching: false,
   showSelected: false,
   keepSelected: false,
+  favoriteSelected: false,
   scrollCounter: 0,
   search_bar: '',
   error: '',
@@ -45,24 +49,36 @@ const initialState: PokemonState = {
 const getPokemonFeatureState = createFeatureSelector<PokemonState>(
   'pokemons'
 );
-// const getSelectedPokemonFeatureState = createFeatureSelector<PokemonState>(
-//   'pokemons'
-// );
 
+// Root Pokemon List
 export const getPokemons = createSelector(
   getPokemonFeatureState,
   state => state.rootPokemonList
 );
 
+// Selected pokemons
 export const getSelectedPokemons = createSelector(
   getPokemonFeatureState,
   state => state.selectedPokemons
 );
+// keepSelected pokemons
+// export const getKeepSelected = createSelector(
+//   getPokemonFeatureState,
+//   state => state
+// );
 
-export const getKeepSelected = createSelector(
+// state info
+export const getPokemonsInfo = createSelector(
   getPokemonFeatureState,
   state => state
 );
+
+// Favorite info
+export const getFavoritePokemon = createSelector(
+  getPokemonFeatureState,
+  state => state.favoritePokemons
+);
+
 // export const getSelectedPokemons = createSelector(
 //   getSelectedPokemonFeatureState,
 //   getCurrentProductId,
@@ -147,4 +163,61 @@ export const pokemonReducer = createReducer<PokemonState>(
     };
     }
   ),
+  on(
+    PokemonActions.selectedFavorite,
+    (state, action): PokemonState => {
+      return {
+        ...state,
+        favoriteSelected: true,
+        favoritePokemons: [
+          ...state.favoritePokemons,
+          action.pokemon,
+        ],
+        error: '',
+      };
+    }
+  ),
+  on(
+    PokemonActions.unselectedFavorite,
+    (state,action): PokemonState => {
+      return {
+        ...state,
+        favoriteSelected: false,
+        favoritePokemons: [
+          action.pokemon
+        ],
+    };
+    }
+  ),
+  // on(
+  //   PokemonActions.loadPokemonsDescriptionSuccess,
+  //   (state, action: any): PokemonState => {
+  //     return {
+  //       ...state,
+  //       showSelected: true,
+  //       keepSelected: true,
+  //       selectedPokemons: [
+  //         ...state.selectedPokemons,
+  //         {
+  //           ...action.pokemons,
+  //           ...action.pokemonsInfo,
+  //           ...action.pokemonsDescription,
+  //         }
+  //       ],
+  //       error: '',
+  //     };
+  //   }
+  // ),
+  // on(
+  //   PokemonActions.loadPokemonsDescriptionFailure,
+  //   (state, action: any): PokemonState => {
+  //     return {
+  //       ...state,
+  //       selectedPokemons: [
+  //         ...state.selectedPokemons,
+  //       ],
+  //       error: '',
+  //     };
+  //   }
+  // ),
 );

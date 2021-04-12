@@ -1,0 +1,63 @@
+<mat-dialog-content class='mat-typography'>
+  <h1 class='fix-text' mat-dialog-title>
+    {{ selectedPokemons[0].name }} VS {{ selectedPokemons[1].name }}
+  </h1>
+  <hr />
+  <mat-grid-list cols='12' rowHeight='4rem'>
+    <mat-grid-tile colspan='6' rowspan='2'>
+      <img
+        mat-card-image
+        class='imgFluid'
+        src='{{ image }}'
+        alt=' Not found image'
+      />
+    </mat-grid-tile>
+    <mat-grid-tile colspan='6' rowspan='2'>
+      <img
+        mat-card-image
+        class='imgFluid'
+        src='{{ image2 }}'
+        alt=' Not found image'
+      />
+    </mat-grid-tile>
+  </mat-grid-list>
+  <hr />
+  <mat-grid-list cols='12' rowHeight='4rem'>
+    <mat-grid-tile colspan='5' rowspan='2'>
+      <div mat-dialog-content>
+        <span class='text-description' > {{ selectedPokemons[0].name }}/10m </span><br />
+        <span class='text-description' > {{ selectedPokemons[0].name }}/10kg </span><br />
+        <span class='text-description' > {{ selectedPokemons[0].name }} </span><br />
+        <div *ngFor='let pokemon of selectedPokemons'>
+          <span class='text-description'> {{ pokemon.name }}Abilities</span>
+        </div>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan='2' rowspan='2'>
+      <div mat-dialog-content>
+        <span class='titles'> Height </span><br />
+        <span class='titles'> Weight </span><br />
+        <span class='titles'> Gender </span><br />
+        <span class='titles'> Abilities </span>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan='5' rowspan='2'>
+      <div mat-dialog-content>
+        <span class='text-description' > {{ selectedPokemons[1].name }}/10m </span><br />
+        <span class='text-description'> {{ selectedPokemons[1].name }}/10kg </span><br />
+        <span class='text-description'> {{ selectedPokemons[1].name }} </span><br />
+        <div *ngFor='let pokemon of selectedPokemons'>
+          <span class='text-description'> {{ pokemon.name }}Abilities</span>
+        </div>
+      </div>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <hr />
+  <mat-grid-list cols='12' rowHeight='5rem'>
+    <span>Grafica</span>
+    <p>
+      provides the Router service to help you define navigation paths among
+      views.
+    </p>
+  </mat-grid-list>
+</mat-dialog-content>
