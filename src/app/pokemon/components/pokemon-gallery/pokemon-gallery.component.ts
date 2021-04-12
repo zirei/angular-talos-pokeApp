@@ -46,42 +46,33 @@ export class PokemonGalleryComponent implements OnInit {
 
   selectPokemon(pokemon: Pokemon) {
     this.store.dispatch(PokemonActions.selectedPokemons({ pokemon }));
-    // this.PokemonDataService.getPokemonsDescriptionFromApi(pokemon.url);
-    // this.store.dispatch(PokemonActions.loadPokemonsDescription());
     
     this.getSelectedPokemonsFromStore()
     if (this.selectedPokemons.length > 1) {
       const url = this.selectedPokemons[0].url;
       const url2 = this.selectedPokemons[1].url;
-      console.log('url2', url2);
+      // TODO: send description to store
       // this.store.dispatch(PokemonActions.loadPokemonsDescription({ url }));
       const dialogRef = this.dialog.open(PokemonsModalVsComponent);
     }else{
       const url = this.selectedPokemons[0].url;
-      console.log('url1', url);
+      // TODO: send description to store
       // this.store.dispatch(PokemonActions.loadPokemonsDescription({ url }));
       const dialogRef = this.dialog.open(PokemonsModalComponent);
     }
     
-
-    // const dialogRef = this.dialog.open(PokemonsModalComponent, {
-    //   width: '512px'
-    // });
-    // dialogRef.afterClosed().subscribe((result) => {
-    // this.store.dispatch(PokemonActions.unSelectedPokemons());
-    // console.log(`Modal unselected: ${result}`);
-    // });
   }
+
   // getPokemonsDescriptionFromApi(): void {
   //   this.store.dispatch(PokemonActions.loadPokemonsDescription());
   //   console.log('descripcion')
   //   // this.getPokemonsDescriptionFromStore();
   // }
+  
   getSelectedPokemonsFromStore() {
     this.store.select(getSelectedPokemons).subscribe((selectedPokemons) => {
       if (selectedPokemons) {
         this.selectedPokemons = selectedPokemons;
-        console.log('selectedPokemons:', this.selectedPokemons);
       }
     });
   }
@@ -90,7 +81,6 @@ export class PokemonGalleryComponent implements OnInit {
     this.store.select(getPokemons).subscribe((rootPokemonList) => {
       if (rootPokemonList) {
         this.rootPokemonList = rootPokemonList;
-        console.log('rootPokemonList:', this.rootPokemonList);
       }
     });
   }

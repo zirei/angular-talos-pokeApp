@@ -23,13 +23,11 @@ export class PokemonDataService {
   getPokemonsFromApi(): Observable<Pokemon[]> {
     this.counterChange();
     return this.http.get<Pokemon[]>(this.pokemonDataApi).pipe(
-      // tap(data => console.log('All: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
 
-
-
+  // doing
   getPokemonsDescriptionFromApi(url: string): Observable<any> {
     // const pokemonDescriptionUrl = `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`;
     return this.http.get<any>(url).pipe(
@@ -44,7 +42,6 @@ export class PokemonDataService {
   //     environment.POKEMONDATAAPI
   //   }pokemon-species/${url.split('/')[6]}/`;
   // }
-
   // selectedPokemonFromStore(pokemon: Pokemon[]): Observable<Pokemon[]> {
   //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
   //   // Product Id must be null for the Web API to assign an Id
