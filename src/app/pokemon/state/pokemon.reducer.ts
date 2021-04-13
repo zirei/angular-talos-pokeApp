@@ -4,7 +4,6 @@ import {
   on,
   createFeatureSelector,
   createSelector,
-  State,
 } from '@ngrx/store';
 import { getPokemonId, Pokemon } from 'src/app/core/models/pokemon.model';
 import * as PokemonActions from './pokemon.actions';
@@ -176,7 +175,7 @@ export const pokemonReducer = createReducer<PokemonState>(
       return {
         ...state,
         selectedPokemons:[
-          // state.selectedPokemons
+          
           // action.pokemonData.
           // action.results:[
           //   action.pokemonData: updatedPokemon
