@@ -27,22 +27,39 @@ export class PokemonsModalVsComponent implements OnInit {
   selectedPokemons: Pokemon[] = [];
   image: string = '';
   image2: string = '';
-  
+  descriptionPokemons: any[] = [];
+  descriptionPokemonsGender: any[] = [];
+
   ngOnInit(): void {
     this.getSelectedPokemonsFromStore();
   }
 
   getSelectedPokemonsFromStore() {
-    this.store.select(getSelectedPokemons).subscribe((pokemon) => {
+    this.store.select(getPokemonsInfo).subscribe((pokemon) => {
       if (pokemon) {
-        this.selectedPokemons.push(...pokemon);
-        this.image = `${environment.POKEMONIMAGEAPI}${this.selectedPokemons[0].url.split('/')[6]}.png`;
-        this.image2 = `${environment.POKEMONIMAGEAPI}${this.selectedPokemons[1].url.split('/')[6]}.png`;
+        this.descriptionPokemons = pokemon.descriptionPokemons;
+        this.descriptionPokemonsGender = pokemon.descriptionPokemonsGender;
+        console.log('pokeINfo', this.descriptionPokemons[0]);
+        console.log('pokeINfoGender', this.descriptionPokemonsGender[0]);
+      }
+    });
+    this.store.select(getSelectedPokemons).subscribe((selectedPokemons) => {
+      if (selectedPokemons) {
+        this.selectedPokemons = selectedPokemons;
+        console.log('modal', this.selectedPokemons);
+
+        this.image = `${environment.POKEMONIMAGEAPI}${
+          this.selectedPokemons[0].url.split('/')[6]
+        }.png`;
+        this.image2 = `${environment.POKEMONIMAGEAPI}${
+          this.selectedPokemons[1].url.split('/')[6]
+        }.png`;
       }
     });
   }
 
   ngOnDestroy(): void {
     this.store.dispatch(PokemonActions.unSelectedPokemons());
+    this.store.dispatch(PokemonActions.unloadPokemonsDescription());
   }
 }

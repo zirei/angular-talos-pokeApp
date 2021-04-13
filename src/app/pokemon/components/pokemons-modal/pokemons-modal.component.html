@@ -15,17 +15,18 @@
     </mat-grid-tile>
   </mat-grid-list>
   <hr />
-  <mat-grid-list cols='12' rowHeight='4rem'>
-    <mat-grid-tile colspan='4' rowspan='3'>
+  <mat-grid-list cols='12' rowHeight='1.8rem'>
+    <mat-grid-tile colspan='4' rowspan='8'>
       <img mat-card-image class='img-fluid' src='{{ image }}' alt=' Not found image' />
     </mat-grid-tile>
-    <mat-grid-tile colspan='8' rowspan='1'>
+    <mat-grid-tile colspan='8' rowspan='3'>
       <div class='container'>
-        <p class='text-description' >{{ selectedPokemons[0].name }}Description</p>
+        <p class='text-description' >{{ selectedPokemons[0].name.toLowerCase() }} Description</p>
+        <!-- <p class='text-description' >{{ descriptionPokemonsGender[0].flavor_text_entries[1].flavor_text.toLowerCase() }} </p> -->
         <hr />
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan='8' rowspan='1'>
+    <mat-grid-tile colspan='8' rowspan='2'>
       <table style='width: 100%'>
         <tr>
           <th>Height</th>
@@ -34,13 +35,13 @@
         </tr>
 
         <tr>
-        <td class='text-description' > {{ selectedPokemons[0].name }}/10m </td>
-        <td class='text-description'> {{ selectedPokemons[0].name }}/10kg </td>
-        <td class='text-description'> {{ selectedPokemons[0].name }}Gender </td>
+        <td class='text-description' > {{ descriptionPokemons[0].height/10 }}m </td>
+        <td class='text-description'> {{ descriptionPokemons[0].weight/10 }}kg </td>
+        <td class='text-description'> {{ descriptionPokemons[0].base_experience }} </td>
         </tr>
       </table>
     </mat-grid-tile>
-    <mat-grid-tile colspan='8' rowspan='1'>
+    <mat-grid-tile colspan='8' rowspan='3'>
       <table style='width: 100%'>
         <tr>
           <th>Abilitys</th>
@@ -48,15 +49,13 @@
         </tr>
         <tr>
           <td>
-            <ul *ngFor='let pokemon of selectedPokemons'>
-              <li>{{ pokemon.name }}Abilities</li>
+            <ul *ngFor='let pokemon of descriptionPokemons'>
+              <li *ngFor='let abilities of pokemon.abilities'>{{ abilities.ability.name }}</li>
             </ul>
           </td>
           <td>
-            <ul>
-              <li *ngFor='let pokemon of selectedPokemons'>
-                {{ pokemon.name }}Type
-              </li>
+            <ul *ngFor='let pokemon of descriptionPokemons'>
+              <li *ngFor='let types of pokemon.types'>{{ types.type.name }}</li>
             </ul>
           </td>
         </tr>

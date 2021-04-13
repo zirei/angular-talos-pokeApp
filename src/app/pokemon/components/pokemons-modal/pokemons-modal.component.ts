@@ -15,7 +15,8 @@ import {
 import * as PokemonActions from '../../state/pokemon.actions';
 import { state } from '@angular/animations';
 import { tap } from 'rxjs/operators';
-// import {MatSnackBar} from '@angular/material/snack-bar';
+import { PokemonData } from 'src/app/core/models/pokemon-data.model';
+
 
 @Component({
   selector: 'app-pokemons-modal',
@@ -35,14 +36,11 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   selectedPokemons2: PokemonState | undefined;
   description: string = '';
   selectedPokemons: Pokemon[] = [];
+  descriptionPokemons: any[] = [];
+  descriptionPokemonsGender: any[] = [];
 
   constructor(private store: Store<State>) {}
-  // TODO: launch the toast component
-  // constructor(private _snackBar: MatSnackBar) {}
-  // openToast() {
-  //   this._snackBar.openFromComponent(PokemonsModalComponent, {
-  //   });
-  // }
+
   ngOnInit(): void {
     this.getSelectedPokemonsFromStore();
   }
@@ -51,23 +49,22 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
 
   }
 
-  pokemonDescriptionUrl = (url: string) => {
-    return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`;
-  };
-  getPokemonsDescriptionFromApi(): void {
-    // this.store.dispatch(PokemonActions.loadPokemonsDescription(this.se));
-    console.log('descripcion');
-    // this.getPokemonsDescriptionFromStore();
-  }
-
   getSelectedPokemonsFromStore() {
-    this.store.select(getSelectedPokemons).subscribe((pokemon) => {
+    this.store.select(getPokemonsInfo).subscribe((pokemon) => {
       if (pokemon) {
-        this.selectedPokemons.push(...pokemon);
+        this.descriptionPokemons = pokemon.descriptionPokemons;
+        this.descriptionPokemonsGender = pokemon.descriptionPokemonsGender;
+        console.log('pokeINfo', this.descriptionPokemons[0]);
+        console.log('pokeINfoGender', this.descriptionPokemonsGender[0]);
+      }
+    });
+    this.store.select(getSelectedPokemons).subscribe((selectedPokemons) => {
+      if (selectedPokemons) {
+        this.selectedPokemons = selectedPokemons;
         this.image = `${environment.POKEMONIMAGEAPI}${
           this.selectedPokemons[0].url.split('/')[6]
         }.png`;
-
+        console.log('selectPomenosModal', this.selectedPokemons[0])
       }
     });
   }
@@ -108,6 +105,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
     if (!this.keepSelected) {
       console.log('destroy selected pokemon', this.selectedPokemons);
       this.store.dispatch(PokemonActions.unSelectedPokemons());
+      this.store.dispatch(PokemonActions.unloadPokemonsDescription());
       console.log('Unselected pokemon', this.selectedPokemons);
     }
     console.log('Cerrando modal pokemon', this.selectedPokemons);

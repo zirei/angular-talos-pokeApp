@@ -15,6 +15,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,6 +31,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     StoreDevtoolsModule.instrument({name: 'AngularTalosPokeApp', maxAge: 25, logOnly:environment.production}),
     EffectsModule.forRoot([]),
     InfiniteScrollModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]

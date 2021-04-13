@@ -27,11 +27,16 @@ export class PokemonDataService {
       catchError(this.handleError)
     );
   }
-
-  // doing
-  getPokemonsDescriptionFromApi(id: number): Observable<PokemonData> {
+  
+  getPokemonsDescriptionGenderFromApi(id: number): Observable<PokemonData> {
     const pokemonDescriptionUrl = `${environment.POKEMONDATAAPI}pokemon-species/${id}/`;
     return this.http.get<PokemonData>(pokemonDescriptionUrl).pipe(
+      tap((data) => console.log('Description: ' + JSON.stringify(data))),
+      catchError(this.handleError)
+    );
+  }
+  getPokemonsDescriptionFromApi(url: string): Observable<PokemonData> {
+    return this.http.get<PokemonData>(url).pipe(
       tap((data) => console.log('Description: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );

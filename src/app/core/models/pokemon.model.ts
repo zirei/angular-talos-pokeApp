@@ -4,7 +4,8 @@ export interface Pokemon {
   name: string;
   url: string;
   id: number;
-  results: PokemonData[];
+  gender_rate: any;
+  results: any;
 }
 
 export function getPokemonId(pokemon: Pokemon): number {

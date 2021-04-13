@@ -48,7 +48,7 @@ export class PokemonEffects {
     return this.actions$.pipe(
       ofType(PokemonActions.loadPokemonsDescription),
       switchMap((action) =>
-        this.PokemonDataService.getPokemonsDescriptionFromApi(action.pokemon.id).pipe(
+        this.PokemonDataService.getPokemonsDescriptionFromApi(action.pokemon.url).pipe(
           map((pokemonData) => 
            PokemonActions.loadPokemonsDescriptionSuccess({ pokemonData })),
           catchError((error) =>
@@ -58,68 +58,18 @@ export class PokemonEffects {
       )
     );
   });
-  // loadPokemonsDescription$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(PokemonActions.loadPokemonsDescription),
-  //     concatMap(action =>
-  //       this.PokemonDataService.getPokemonsDescriptionFromApi(action.pokemons).pipe(
-  //         map(pokemons => PokemonActions.loadPokemonsDescriptionSuccess({ pokemons })),
-  //         catchError((error) =>
-  //           of(PokemonActions.loadPokemonsDescriptionFailure({ error }))
-  //         )
-  //       )
-  //     )
-  //   );
-  // });
-  // loadPokemonsDescription$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(PokemonActions.loadPokemonsDescription),
-  //     mergeMap(() =>
-  //       this.PokemonDataService.getPokemonsDescriptionFromApi().pipe(
-  //         map((pokemons) => PokemonActions.loadPokemonsDescriptionSuccess({ pokemons })),
-  //         catchError((error) =>
-  //           of(PokemonActions.loadPokemonsFailure({ error }))
-  //         )
-  //       )
-  //     )
-  //   );
-  // });
-
-  // loadPokemonsDescription$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(PokemonActions.loadPokemonsDescription),
-  //     switchMap(() =>
-  //       this.store.getState().map((pokemon) =>
-  //         PokemonActions.selectedPokemonsSuccess(pokemon)
-  //       )
-  //     )
-  //   );
-  // });
-
-  // selectedPokemon$ = createEffect (() => {
-  //   return this.actions$
-  //     .pipe(
-  //       ofType(PokemonActions.selectedPokemons),
-  //       mergeMap(action =>
-  //         this.PokemonDataService.selectedPokemonFromStore()
-  //           .pipe(
-  //             map(pokemons => PokemonActions.selectedPokemonsSuccess({ pokemons })),
-  //             catchError(error => of(PokemonActions.selectedPokemonsFailure({ error })))
-  //           )
-  //       )
-  //     );
-  // });
-  // selectedPokemon$ = createEffect (() => {
-  //   return this.actions$
-  //     .pipe(
-  //       ofType(PokemonActions.selectedPokemons),
-  //       concatMap(action =>
-  //         this.PokemonDataService.selectedPokemonFromStore()
-  //           .pipe(
-  //             map(pokemons => PokemonActions.selectedPokemonsSuccess({ pokemons })),
-  //             catchError(error => of(PokemonActions.selectedPokemonsFailure({ error })))
-  //           )
-  //       )
-  //     );
-  // });
+  loadPokemonsDescriptionGender$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(PokemonActions.loadPokemonsDescriptionGender),
+      switchMap((action) =>
+        this.PokemonDataService.getPokemonsDescriptionGenderFromApi(action.pokemon.id).pipe(
+          map((pokemonData) => 
+           PokemonActions.loadPokemonsDescriptionGenderSuccess({ pokemonData })),
+          catchError((error) =>
+            of(PokemonActions.loadPokemonsDescriptionGenderFailure({ error }))
+          )
+        )
+      )
+    );
+  });
 }

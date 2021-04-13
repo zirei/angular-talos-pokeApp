@@ -13,6 +13,7 @@ import { PokemonEffects } from './state/pokemon.effects';
 import { PokemonToastComponent } from './components/pokemon-toast/pokemon-toast.component';
 import { PokemonsModalVsComponent } from './components/pokemons-modal-vs/pokemons-modal-vs.component';
 import { ChartComponent } from './components/chart/chart.component';
+import { ToastComponent } from './components/toast/toast.component';
 
 @NgModule({
   declarations: [ 
@@ -22,6 +23,7 @@ import { ChartComponent } from './components/chart/chart.component';
     PokemonToastComponent,
     PokemonsModalVsComponent,
     ChartComponent,
+    ToastComponent,
 
   ],
   imports: [

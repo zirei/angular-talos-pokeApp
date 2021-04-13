@@ -44,9 +44,8 @@ export interface PokemonData {
     }
   ];
   weight: number;
-  gender?: string;
+  gender_rate: number;
   flavor_text?: {
     flavor_text: string;
   };
-  photo?: string;
 }

@@ -9,6 +9,7 @@ import { getPokemonId, Pokemon } from 'src/app/core/models/pokemon.model';
 import * as PokemonActions from './pokemon.actions';
 import * as AppState from '../../state/app.state.module';
 import { Actions } from '@ngrx/effects';
+import { PokemonData } from 'src/app/core/models/pokemon-data.model';
 
 // Extends the app state to include the product feature.
 // This is required because products are lazy loaded.
@@ -23,6 +24,8 @@ export interface PokemonState {
   pokemonsList: Pokemon[];
   selectedPokemons: Pokemon[];
   favoritePokemons: Pokemon[];
+  descriptionPokemons: any[];
+  descriptionPokemonsGender: any[];
   favoriteSelected: boolean;
   isFetching: boolean;
   showSelected: boolean;
@@ -37,6 +40,8 @@ const initialState: PokemonState = {
   pokemonsList: [],
   selectedPokemons: [],
   favoritePokemons: [],
+  descriptionPokemons: [],
+  descriptionPokemonsGender: [],
   favoriteSelected: false,
   isFetching: false,
   showSelected: false,
@@ -67,6 +72,11 @@ export const getSelectedPokemons = createSelector(
 export const getPokemonsInfo = createSelector(
   getPokemonFeatureState,
   state => state
+);
+// state Gender
+export const getPokemonsGender = createSelector(
+  getPokemonFeatureState,
+  state => state.descriptionPokemonsGender
 );
 
 // Favorite info
@@ -169,21 +179,16 @@ export const pokemonReducer = createReducer<PokemonState>(
   ),
   on(
     PokemonActions.loadPokemonsDescriptionSuccess,
-    (state, action): PokemonState => {
+    (state, action:any ): PokemonState => {
       const updatedPokemon = state.selectedPokemons.map(
         data => action.pokemonData.id === data.id ? action.pokemonData : data);
+        console.log(action.pokemonData);
       return {
         ...state,
-        selectedPokemons:[
-          
-          // action.pokemonData.
-          // action.results:[
-          //   action.pokemonData: updatedPokemon
-          ]
-        // [
-        //   ...state.selectedPokemons,
-        //   action.pokemonData,
-        // ]
+        descriptionPokemons:[
+          ...state.descriptionPokemons,
+          action.pokemonData
+        ]
       };
     }
   ),
@@ -192,9 +197,43 @@ export const pokemonReducer = createReducer<PokemonState>(
     (state, action): PokemonState => {
       return {
         ...state,
-        selectedPokemons: [
-          ...state.selectedPokemons,
-        ],
+        descriptionPokemons: [],
+        error: '',
+      };
+    }
+  ),
+  on(
+    PokemonActions.loadPokemonsDescriptionGenderSuccess,
+    (state, action:any ): PokemonState => {
+      const updatedPokemon = state.selectedPokemons.map(
+        data => action.pokemonData.id === data.id ? action.pokemonData : data);
+        console.log(action.pokemonData);
+      return {
+        ...state,
+        descriptionPokemonsGender:[
+          ...state.descriptionPokemonsGender,
+          action.pokemons
+        ]
+      };
+    }
+  ),
+  on(
+    PokemonActions.loadPokemonsDescriptionGenderFailure,
+    (state, action): PokemonState => {
+      return {
+        ...state,
+        descriptionPokemonsGender: [],
+        error: '',
+      };
+    }
+  ),
+  on(
+    PokemonActions.unloadPokemonsDescription,
+    (state, action): PokemonState => {
+      return {
+        ...state,
+        descriptionPokemons: [],
+        descriptionPokemonsGender: [],
         error: '',
       };
     }
