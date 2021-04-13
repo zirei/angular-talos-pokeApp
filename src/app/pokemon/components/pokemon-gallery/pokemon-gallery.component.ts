@@ -46,6 +46,7 @@ export class PokemonGalleryComponent implements OnInit {
 
   selectPokemon(pokemon: Pokemon) {
     this.store.dispatch(PokemonActions.selectedPokemons({ pokemon }));
+    this.store.dispatch(PokemonActions.loadPokemonsDescription({ pokemon }));
     
     this.getSelectedPokemonsFromStore()
     if (this.selectedPokemons.length > 1) {
@@ -68,7 +69,7 @@ export class PokemonGalleryComponent implements OnInit {
   //   console.log('descripcion')
   //   // this.getPokemonsDescriptionFromStore();
   // }
-  
+
   getSelectedPokemonsFromStore() {
     this.store.select(getSelectedPokemons).subscribe((selectedPokemons) => {
       if (selectedPokemons) {

@@ -14,6 +14,7 @@ import { PokemonDataService } from 'src/app/core/services/pokemon/pokemon-data.s
 /* NgRx */
 import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
 import * as PokemonActions from './pokemon.actions';
+import { getPokemonId, Pokemon } from 'src/app/core/models/pokemon.model';
 
 @Injectable()
 export class PokemonEffects {
@@ -28,7 +29,13 @@ export class PokemonEffects {
       ofType(PokemonActions.loadPokemons),
       mergeMap(() =>
         this.PokemonDataService.getPokemonsFromApi().pipe(
-          map((pokemons) => PokemonActions.loadPokemonsSuccess({ pokemons })),
+          map((pokemons:any) => 
+            {
+              console.log(pokemons)
+              pokemons["results"].forEach( (pokemon:any) => pokemon.id = getPokemonId(pokemon))
+              return PokemonActions.loadPokemonsSuccess({ pokemons })
+            }
+          ),
           catchError((error) =>
             of(PokemonActions.loadPokemonsFailure({ error }))
           )
@@ -37,19 +44,20 @@ export class PokemonEffects {
     );
   });
 
-  // loadPokemonsDescription$ = createEffect(() => {
-  //   return this.actions$.pipe(
-  //     ofType(PokemonActions.loadPokemonsDescription),
-  //     switchMap((action) =>
-  //       this.PokemonDataService.getPokemonsDescriptionFromApi(action.url).pipe(
-  //         map((info) => PokemonActions.loadPokemonsDescriptionSuccess({ info[] })),
-  //         catchError((error) =>
-  //           of(PokemonActions.loadPokemonsDescriptionFailure({ error }))
-  //         )
-  //       )
-  //     )
-  //   );
-  // });
+  loadPokemonsDescription$ = createEffect(() => {
+    return this.actions$.pipe(
+      ofType(PokemonActions.loadPokemonsDescription),
+      switchMap((action) =>
+        this.PokemonDataService.getPokemonsDescriptionFromApi(action.pokemon.id).pipe(
+          map((pokemonData) => 
+           PokemonActions.loadPokemonsDescriptionSuccess({ pokemonData })),
+          catchError((error) =>
+            of(PokemonActions.loadPokemonsDescriptionFailure({ error }))
+          )
+        )
+      )
+    );
+  });
   // loadPokemonsDescription$ = createEffect(() => {
   //   return this.actions$.pipe(
   //     ofType(PokemonActions.loadPokemonsDescription),

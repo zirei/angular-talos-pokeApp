@@ -1,5 +1,6 @@
 /* NgRx */
 import { createAction, props } from '@ngrx/store';
+import { PokemonData } from 'src/app/core/models/pokemon-data.model';
 import { Pokemon } from 'src/app/core/models/pokemon.model'
 
 export const loadPokemons = createAction(
@@ -18,24 +19,29 @@ export const loadPokemonsFailure = createAction(
 
 // selected
 
-// export const loadPokemonsDescription = createAction(
-//   '[Pokemon] Selected Pokemon',
-//   props<{ url:string }>()
-// );
-// export const loadPokemonsDescriptionSuccess = createAction(
-//   '[Pokemon] Selected Pokemon',
-//   props<{ pokemons:any }>()
-// );
-// export const loadPokemonsDescriptionFailure = createAction(
-//   '[Pokemon] Load Fail',
-//   props<{ error: string }>()
-// );
+export const loadPokemonsDescription = createAction(
+  '[Pokemon] Selected Pokemon Description',
+  props<{ pokemon: Pokemon }>()
+);
+export const loadPokemonsDescriptionSuccess = createAction(
+  '[Pokemon] Selected Pokemon',
+  props<{ pokemonData: PokemonData }>()
+);
+export const loadPokemonsDescriptionFailure = createAction(
+  '[Pokemon] Load Fail',
+  props<{ error: string }>()
+);
 
 export const selectedPokemons = createAction(
   '[Pokemon] selected Success',
   props<{ pokemon: Pokemon }>()
 );
 
+// export const selectedPokemonsSuccess = createAction(
+//   '[Pokemon] Selected Pokemon',
+//   props<{ pokemonData: Pokemon }>()
+// );
+ 
 export const selectedPokemonsFailure = createAction(
   '[Pokemon] Load Fail',
   props<{ error: string }>()

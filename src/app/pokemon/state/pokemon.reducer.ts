@@ -4,10 +4,12 @@ import {
   on,
   createFeatureSelector,
   createSelector,
+  State,
 } from '@ngrx/store';
-import { Pokemon } from 'src/app/core/models/pokemon.model';
+import { getPokemonId, Pokemon } from 'src/app/core/models/pokemon.model';
 import * as PokemonActions from './pokemon.actions';
 import * as AppState from '../../state/app.state.module';
+import { Actions } from '@ngrx/effects';
 
 // Extends the app state to include the product feature.
 // This is required because products are lazy loaded.
@@ -22,10 +24,10 @@ export interface PokemonState {
   pokemonsList: Pokemon[];
   selectedPokemons: Pokemon[];
   favoritePokemons: Pokemon[];
+  favoriteSelected: boolean;
   isFetching: boolean;
   showSelected: boolean;
   keepSelected: boolean;
-  favoriteSelected: boolean;
   scrollCounter: number;
   search_bar: string;
   error: string;
@@ -36,10 +38,10 @@ const initialState: PokemonState = {
   pokemonsList: [],
   selectedPokemons: [],
   favoritePokemons: [],
+  favoriteSelected: false,
   isFetching: false,
   showSelected: false,
   keepSelected: false,
-  favoriteSelected: false,
   scrollCounter: 0,
   search_bar: '',
   error: '',
@@ -73,6 +75,8 @@ export const getFavoritePokemon = createSelector(
   getPokemonFeatureState,
   state => state.favoritePokemons
 );
+
+
 
 export const pokemonReducer = createReducer<PokemonState>(
   initialState,
@@ -164,35 +168,36 @@ export const pokemonReducer = createReducer<PokemonState>(
     };
     }
   ),
-  // on(
-  //   PokemonActions.loadPokemonsDescriptionSuccess,
-  //   (state, action: any): PokemonState => {
-  //     return {
-  //       ...state,
-  //       showSelected: true,
-  //       keepSelected: true,
-  //       selectedPokemons: [
-  //         ...state.selectedPokemons,
-  //         {
-  //           ...action.pokemons,
-  //           ...action.pokemonsInfo,
-  //           ...action.pokemonsDescription,
-  //         }
-  //       ],
-  //       error: '',
-  //     };
-  //   }
-  // ),
-  // on(
-  //   PokemonActions.loadPokemonsDescriptionFailure,
-  //   (state, action: any): PokemonState => {
-  //     return {
-  //       ...state,
-  //       selectedPokemons: [
-  //         ...state.selectedPokemons,
-  //       ],
-  //       error: '',
-  //     };
-  //   }
-  // ),
+  on(
+    PokemonActions.loadPokemonsDescriptionSuccess,
+    (state, action): PokemonState => {
+      const updatedPokemon = state.selectedPokemons.map(
+        data => action.pokemonData.id === data.id ? action.pokemonData : data);
+      return {
+        ...state,
+        selectedPokemons:[
+          // state.selectedPokemons
+          // action.pokemonData.
+          // action.results:[
+          //   action.pokemonData: updatedPokemon
+          ]
+        // [
+        //   ...state.selectedPokemons,
+        //   action.pokemonData,
+        // ]
+      };
+    }
+  ),
+  on(
+    PokemonActions.loadPokemonsDescriptionFailure,
+    (state, action): PokemonState => {
+      return {
+        ...state,
+        selectedPokemons: [
+          ...state.selectedPokemons,
+        ],
+        error: '',
+      };
+    }
+  ),
 );

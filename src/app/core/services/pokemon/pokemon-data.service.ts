@@ -4,6 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../../models/pokemon.model';
 import { catchError, map, tap } from 'rxjs/operators';
+import { PokemonData } from '../../models/pokemon-data.model';
 
 @Injectable({
   providedIn: 'root',
@@ -28,30 +29,13 @@ export class PokemonDataService {
   }
 
   // doing
-  getPokemonsDescriptionFromApi(url: string): Observable<any> {
-    // const pokemonDescriptionUrl = `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`;
-    return this.http.get<any>(url).pipe(
+  getPokemonsDescriptionFromApi(id: number): Observable<PokemonData> {
+    const pokemonDescriptionUrl = `${environment.POKEMONDATAAPI}pokemon-species/${id}/`;
+    return this.http.get<PokemonData>(pokemonDescriptionUrl).pipe(
       tap((data) => console.log('Description: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
-
-  // TODO: Descriptions for modal ()
-  // pokemonDescriptionUrlMethod(url: string) {
-  //   this.pokemonDescriptionUrl = `${
-  //     environment.POKEMONDATAAPI
-  //   }pokemon-species/${url.split('/')[6]}/`;
-  // }
-  // selectedPokemonFromStore(pokemon: Pokemon[]): Observable<Pokemon[]> {
-  //   const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  //   // Product Id must be null for the Web API to assign an Id
-  //   const newProduct = { ...product, id: null };
-  //   return this.http.get<Pokemon>(this., newProduct, { headers })
-  //     .pipe(
-  //       tap(data => console.log('createProduct: ' + JSON.stringify(data))),
-  //       catchError(this.handleError)
-  //     );
-  // }
 
   private handleError(err: any) {
     // in a real world app, we may send the server to some remote logging infrastructure
