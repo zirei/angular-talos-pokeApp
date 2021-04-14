@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { PokemonCardComponent } from './components/pokemon-card/pokemon-card.component';
 import { PokemonGalleryComponent } from './components/pokemon-gallery/pokemon-gallery.component';
 import { SharedModule } from '../shared/shared.module';
@@ -14,6 +13,8 @@ import { PokemonToastComponent } from './components/pokemon-toast/pokemon-toast.
 import { PokemonsModalVsComponent } from './components/pokemons-modal-vs/pokemons-modal-vs.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { ToastComponent } from './components/toast/toast.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+
 
 @NgModule({
   declarations: [ 
@@ -27,12 +28,12 @@ import { ToastComponent } from './components/toast/toast.component';
 
   ],
   imports: [
-    CommonModule,
     SharedModule,
     PokemonRoutingModule,
     MaterialModule,
     StoreModule.forFeature('pokemons', pokemonReducer),
     EffectsModule.forFeature([PokemonEffects]),
+    NgxChartsModule,
   ]
 })
 export class PokemonModule { }

@@ -18,3 +18,6 @@
 .carousel-control-prev {
   color: var(--backGgroundColor);
 }
+.colors{
+  background-color: var(--backGgroundColor);
+}

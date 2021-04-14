@@ -13,6 +13,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
   exports: [
     NavbarComponent,
     InfiniteScrollModule,
+
   ],
   imports: [
     CommonModule,
@@ -20,6 +21,7 @@ import { InfiniteScrollModule } from 'ngx-infinite-scroll';
     MaterialModule, 
     FormsModule,
     InfiniteScrollModule,
+    
   ]
 })
 export class SharedModule { }
