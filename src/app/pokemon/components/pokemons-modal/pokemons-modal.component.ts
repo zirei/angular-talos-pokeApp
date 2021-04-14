@@ -57,7 +57,6 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
     this.store
       .select(getPokemonsInfo)
       .pipe(
-        first(),
         map((pokemon) => {
           if (pokemon) {
             this.descriptionPokemons = pokemon.descriptionPokemons;

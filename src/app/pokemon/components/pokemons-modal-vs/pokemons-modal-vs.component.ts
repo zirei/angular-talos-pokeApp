@@ -46,7 +46,6 @@ export class PokemonsModalVsComponent implements OnInit {
   }
   getSelectedPokemonsFromStore() {
     this.store.select(getPokemonsInfo).pipe(
-      first(),
       map((pokemon) => {
         if (pokemon) {
           this.descriptionPokemons = pokemon.descriptionPokemons;

@@ -27,7 +27,6 @@ export class BannerComponent implements OnInit {
 
   getImage(id: number) {
     this.images = this.favoritePokemons.map((n) => `https://picsum.photos/id/${n}/900/500`);
-    console.log('ingreso de datos banner', id);
     return `${environment.POKEMONIMAGEAPI}${id}.png`;
   }
 
@@ -38,7 +37,6 @@ export class BannerComponent implements OnInit {
       .pipe(
         first(),
         map((favorites) => {
-          console.log('sdfsd', favorites);
           if (favorites) {
             this.favoritePokemons = favorites;
           }
