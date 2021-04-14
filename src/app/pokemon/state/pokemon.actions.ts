@@ -16,6 +16,14 @@ export const loadPokemonsFailure = createAction(
   '[Pokemon] Load Fail',
   props<{ error: string }>()
 );
+// queryPokemon
+export const queryPokemon = createAction(
+  '[Pokemon] query Pokemons',
+  props<{ query: string }>()
+);
+export const unqueryPokemon = createAction(
+  '[Pokemon] unquery Pokemons',
+);
 
 
 // Descrition
@@ -74,12 +82,12 @@ export const keepSelectedPokemons = createAction(
 
 // FAVS
 export const selectedFavorite = createAction(
-  '[Pokemon] selected Success',
+  '[Pokemon] selected favorite Success ',
   props<{ pokemon: Pokemon }>()
 );
 
 export const unselectedFavorite = createAction(
-  '[Pokemon] selected Success',
+  '[Pokemon] selected unload favorite',
   props<{ pokemon: Pokemon }>()
 );
 

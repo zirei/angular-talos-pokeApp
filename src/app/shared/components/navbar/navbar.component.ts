@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-
+import { Store } from '@ngrx/store';
+import { State } from 'src/app/pokemon/state/pokemon.reducer';
+import * as PokemonActions from '../../../pokemon/state/pokemon.actions';
 
 @Component({
   selector: 'app-navbar',
@@ -15,11 +17,14 @@ export class NavbarComponent implements OnInit {
 
   set searchPokemon(value: string){
     this._searchPokemon = value;
-    console.log('In setter:' , value);
+    if (this._searchPokemon === '') {
+      this.store.dispatch(PokemonActions.unqueryPokemon());
+    }else{
+      this.store.dispatch(PokemonActions.queryPokemon({query: this._searchPokemon}));
+    }
   }
 
-  
-  constructor() { }
+  constructor(private store: Store<State>) { }
   
   ngOnInit(): void {
   }

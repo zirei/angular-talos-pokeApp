@@ -21,13 +21,12 @@ export interface State extends AppState.State {
 // State for this feature (Product)
 export interface PokemonState {
   rootPokemonList: Pokemon[];
-  pokemonsList: Pokemon[];
+  queriedPokemons: Pokemon[];
   selectedPokemons: Pokemon[];
   favoritePokemons: Pokemon[];
   descriptionPokemons: any[];
   descriptionPokemonsGender: any[];
-  favoriteSelected: boolean;
-  isFetching: boolean;
+  isSearching: boolean;
   showSelected: boolean;
   keepSelected: boolean;
   scrollCounter: number;
@@ -37,13 +36,28 @@ export interface PokemonState {
 
 const initialState: PokemonState = {
   rootPokemonList: [],
-  pokemonsList: [],
+  queriedPokemons: [],
   selectedPokemons: [],
-  favoritePokemons: [],
+  favoritePokemons: [
+    {
+      name: 'bulbasaur',
+      url: 'https://pokeapi.co/api/v2/pokemon/1/',
+      id: 1
+    },
+    {
+      name: 'charmander',
+      url: 'https://pokeapi.co/api/v2/pokemon/4/',
+      id: 4
+    },
+    {
+      name: 'squirtle',
+      url: 'https://pokeapi.co/api/v2/pokemon/7/',
+      id: 7
+    },
+  ],
   descriptionPokemons: [],
   descriptionPokemonsGender: [],
-  favoriteSelected: false,
-  isFetching: false,
+  isSearching: false,
   showSelected: false,
   keepSelected: false,
   scrollCounter: 0,
@@ -67,7 +81,11 @@ export const getSelectedPokemons = createSelector(
   getPokemonFeatureState,
   state => state.selectedPokemons
 );
-
+// state info
+export const getIsSearching = createSelector(
+  getPokemonFeatureState,
+  state => state.isSearching
+);
 // state info
 export const getPokemonsInfo = createSelector(
   getPokemonFeatureState,
@@ -89,6 +107,20 @@ export const getFavoritePokemon = createSelector(
 
 export const pokemonReducer = createReducer<PokemonState>(
   initialState,
+  on(PokemonActions.queryPokemon, (state, action):PokemonState => {
+    return {
+      ...state,
+      queriedPokemons: state.rootPokemonList.filter(pokemon => pokemon.name.includes(action.query)),
+      search_bar:action.query,
+      isSearching: true,
+    };
+  }),
+  on(PokemonActions.unqueryPokemon, (state):PokemonState =>{
+    return {
+      ...state,
+      isSearching: false,
+    };
+  }),
   on(
     PokemonActions.loadPokemonsSuccess,
     (state, action: any): PokemonState => {
@@ -154,26 +186,25 @@ export const pokemonReducer = createReducer<PokemonState>(
   on(
     PokemonActions.selectedFavorite,
     (state, action): PokemonState => {
+      console.log('selecfav reducer', action.pokemon, action);
       return {
         ...state,
-        favoriteSelected: true,
         favoritePokemons: [
           ...state.favoritePokemons,
-          action.pokemon,
+          action.pokemon
         ],
         error: '',
       };
     }
   ),
+  // TODO: unselected function
   on(
     PokemonActions.unselectedFavorite,
     (state,action): PokemonState => {
+      console.log('selecfav reducer', action.pokemon, action);
       return {
         ...state,
-        favoriteSelected: false,
-        favoritePokemons: [
-          action.pokemon
-        ],
+        favoritePokemons: state.favoritePokemons.filter(pokemon => pokemon.id !== action.pokemon.id)
     };
     }
   ),
@@ -207,12 +238,12 @@ export const pokemonReducer = createReducer<PokemonState>(
     (state, action:any ): PokemonState => {
       const updatedPokemon = state.selectedPokemons.map(
         data => action.pokemonData.id === data.id ? action.pokemonData : data);
-        console.log(action.pokemonData);
+        console.log('reducer descriotion', action.pokemonData);
       return {
         ...state,
         descriptionPokemonsGender:[
           ...state.descriptionPokemonsGender,
-          action.pokemons
+          action.pokemonData
         ]
       };
     }

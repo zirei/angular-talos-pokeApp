@@ -1,6 +1,6 @@
 import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
+import { Observable, Subscriber } from 'rxjs';
 import { Pokemon } from 'src/app/core/models/pokemon.model';
 import { environment } from 'src/environments/environment';
 import {
@@ -14,9 +14,8 @@ import {
 } from '../../state/pokemon.reducer';
 import * as PokemonActions from '../../state/pokemon.actions';
 import { state } from '@angular/animations';
-import { tap } from 'rxjs/operators';
+import { first, map, tap } from 'rxjs/operators';
 import { PokemonData } from 'src/app/core/models/pokemon-data.model';
-
 
 @Component({
   selector: 'app-pokemons-modal',
@@ -24,8 +23,6 @@ import { PokemonData } from 'src/app/core/models/pokemon-data.model';
   styleUrls: ['./pokemons-modal.component.css'],
 })
 export class PokemonsModalComponent implements OnInit, OnDestroy {
-  // @Input() pokemon: any;
-  // pokemones$: Observable<any>;
   name: string = '';
   url: string = '';
   image: string = '';
@@ -45,59 +42,105 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
     this.getSelectedPokemonsFromStore();
   }
 
-  ngOnChange() {
-
+  ConvertGender(gender_rate: number) {
+    let default_gender = 'male';
+    if (gender_rate >= 4) {
+      return (default_gender = 'female');
+    } else if (gender_rate === -1) {
+      return (default_gender = 'genderless');
+    } else {
+      return default_gender;
+    }
   }
 
   getSelectedPokemonsFromStore() {
-    this.store.select(getPokemonsInfo).subscribe((pokemon) => {
-      if (pokemon) {
-        this.descriptionPokemons = pokemon.descriptionPokemons;
-        this.descriptionPokemonsGender = pokemon.descriptionPokemonsGender;
-        console.log('pokeINfo', this.descriptionPokemons[0]);
-        console.log('pokeINfoGender', this.descriptionPokemonsGender[0]);
-      }
-    });
-    this.store.select(getSelectedPokemons).subscribe((selectedPokemons) => {
-      if (selectedPokemons) {
-        this.selectedPokemons = selectedPokemons;
-        this.image = `${environment.POKEMONIMAGEAPI}${
-          this.selectedPokemons[0].url.split('/')[6]
-        }.png`;
-        console.log('selectPomenosModal', this.selectedPokemons[0])
-      }
-    });
+    this.store
+      .select(getPokemonsInfo)
+      .pipe(
+        first(),
+        map((pokemon) => {
+          if (pokemon) {
+            this.descriptionPokemons = pokemon.descriptionPokemons;
+            this.descriptionPokemonsGender = pokemon.descriptionPokemonsGender;
+          }
+        })
+      )
+      .subscribe();
+    this.store
+      .select(getSelectedPokemons)
+      .pipe(
+        first(),
+        map((selectedPokemons) => {
+          if (selectedPokemons) {
+            this.selectedPokemons = selectedPokemons;
+            this.image = `${environment.POKEMONIMAGEAPI}${
+              this.selectedPokemons[0].url.split('/')[6]
+            }.png`;
+          }
+        })
+      )
+      .subscribe();
+  }
+  // Last version
+  // this.store.select(getSelectedPokemons).subscribe((selectedPokemons) => {
+  //   if (selectedPokemons) {
+  //     this.selectedPokemons = selectedPokemons;
+  //     this.image = `${environment.POKEMONIMAGEAPI}${
+  //       this.selectedPokemons[0].url.split('/')[6]
+  //     }.png`;
+  //     console.log('selectPomenosModal', this.selectedPokemons[0]);
+  //   }
+  // });
+  // }
+
+  setFavs(selectedPokemons: any) {
+    this.getFavoriteFromStore(selectedPokemons[0]);
   }
 
-  // TODO: implement favs
-  setFavs() {
-    if (this.favoriteSelected) {
-      console.log('remove favs');
-      // this.store.dispatch(PokemonActions.unselectedFavorite(this.selectedPokemons[0]));
-    } else {
-      console.log('Add favs');
-      // this.store.select(getFavoritePokemon).subscribe((pokemon) => {
-      //   if (pokemon) {
-      //     this.store.dispatch(PokemonActions.selectedFavorite(pokemon));
-      //   }
-      // }
-    }
+  getFavoriteFromStore(pokemon: Pokemon) {
+    this.store
+      .select(getFavoritePokemon)
+      .pipe(
+        first(),
+        map((favorites) => {
+          if (favorites.length < 1) {
+            return this.store.dispatch(
+              PokemonActions.selectedFavorite({ pokemon: pokemon })
+            );
+          }
+          const inFavorites = favorites.find((item) => item.id === pokemon.id);
+          if (inFavorites) {
+            this.store.dispatch(
+              PokemonActions.unselectedFavorite({ pokemon: pokemon })
+            );
+            this.favoriteSelected = true;
+          } else if (favorites.length > 4) {
+            console.log('Hay 5 o mas', favorites);
+            return;
+          } else {
+            this.store.dispatch(
+              PokemonActions.selectedFavorite({ pokemon: pokemon })
+            );
+            this.favoriteSelected = false;
+          }
+        })
+      )
+      .subscribe();
   }
 
   getKeepSelectedFromStore() {
     this.store.dispatch(PokemonActions.keepSelectedPokemons());
-    this.store.select(getPokemonsInfo).subscribe((pokemon) => {
-      if (pokemon) {
-        this.keepSelected = pokemon.keepSelected;
-        console.log(
-          'keepSelected store:',
-          pokemon.keepSelected,
-          'keepSelected new valor: ',
-          pokemon
-        );
-        console.log('array2: ', pokemon.selectedPokemons);
-      }
-    });
+    this.store
+      .select(getPokemonsInfo)
+      .pipe(
+        first(),
+        map((pokemon) => {
+          if (pokemon) {
+            this.keepSelected = pokemon.keepSelected;
+          }
+        })
+      )
+      .subscribe();
   }
 
   ngOnDestroy(): void {
@@ -108,6 +151,6 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
       this.store.dispatch(PokemonActions.unloadPokemonsDescription());
       console.log('Unselected pokemon', this.selectedPokemons);
     }
-    console.log('Cerrando modal pokemon', this.selectedPokemons);
+    console.log('Closing modal pokemon', this.selectedPokemons);
   }
 }

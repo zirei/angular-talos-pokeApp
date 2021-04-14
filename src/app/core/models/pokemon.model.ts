@@ -1,11 +1,12 @@
-import { PokemonData } from "./pokemon-data.model";
+import { PokemonData } from './pokemon-data.model';
 
 export interface Pokemon {
   name: string;
   url: string;
   id: number;
-  gender_rate: any;
-  results: any;
+  gender_rate?: any;
+  favoriteSelected?: boolean;
+  results?: any;
 }
 
 export function getPokemonId(pokemon: Pokemon): number {

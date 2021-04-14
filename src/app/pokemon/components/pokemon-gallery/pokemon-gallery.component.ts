@@ -9,6 +9,8 @@ import {
   State,
   getPokemons,
   getSelectedPokemons,
+  getIsSearching,
+  getPokemonsInfo,
 } from '../../state/pokemon.reducer';
 import * as PokemonActions from '../../state/pokemon.actions';
 import { Store } from '@ngrx/store';
@@ -20,6 +22,7 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import { ToastComponent } from '../toast/toast.component';
+import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pokemon-gallery',
@@ -29,9 +32,12 @@ import { ToastComponent } from '../toast/toast.component';
 export class PokemonGalleryComponent implements OnInit {
   errorMessage = '';
   rootPokemonList: Pokemon[] = [];
-  pokemonsList: Pokemon[] = [];
+  queriedPokemons: Pokemon[] = [];
   selectedPokemons: Pokemon[] = [];
   showModal: boolean = false;
+  isSearching: boolean = false;
+  search_bar: string = '';
+
   // toast
   horizontalPosition: MatSnackBarHorizontalPosition = 'right';
   verticalPosition: MatSnackBarVerticalPosition = 'top';
@@ -58,6 +64,7 @@ export class PokemonGalleryComponent implements OnInit {
 
   ngOnInit(): void {
     this.getPokemonsDataFromStore();
+    this.isSearchingSubscription();
   }
 
   pokemonDescriptionUrl = (url: string) => {
@@ -77,7 +84,7 @@ export class PokemonGalleryComponent implements OnInit {
       } else {
         const dialogRef = this.dialog.open(PokemonsModalComponent);
       }
-    }, 500);
+    }, 300);
   }
 
   getSelectedPokemonsFromStore() {
@@ -88,10 +95,21 @@ export class PokemonGalleryComponent implements OnInit {
     });
   }
 
+  isSearchingSubscription(){
+    this.store.select(getIsSearching).pipe(
+      map((isSearching:boolean)=> {
+        this.isSearching = isSearching;
+        this.getPokemonsDataFromStore();
+        console.log(isSearching);
+      })
+    ).subscribe()
+  }
+
   getPokemonsDataFromStore() {
-    this.store.select(getPokemons).subscribe((rootPokemonList) => {
-      if (rootPokemonList) {
-        this.rootPokemonList = rootPokemonList;
+    this.store.select(getPokemonsInfo).subscribe((pokemons) => {
+      if (pokemons) {
+        this.rootPokemonList = pokemons.rootPokemonList;
+        this.queriedPokemons = pokemons.queriedPokemons;
       }
     });
   }

@@ -13,7 +13,7 @@ import {
 } from '../../state/pokemon.reducer';
 import * as PokemonActions from '../../state/pokemon.actions';
 import { state } from '@angular/animations';
-import { tap } from 'rxjs/operators';
+import { first, map, tap } from 'rxjs/operators';
 // import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
@@ -34,28 +34,37 @@ export class PokemonsModalVsComponent implements OnInit {
     this.getSelectedPokemonsFromStore();
   }
 
+  ConvertGender(gender_rate:number){
+    let default_gender = 'male'
+    if (gender_rate >= 4) {
+      return default_gender = 'female'
+    } else if (gender_rate === -1) {
+      return default_gender = 'genderless'
+    } else {
+      return default_gender
+    }
+  }
   getSelectedPokemonsFromStore() {
-    this.store.select(getPokemonsInfo).subscribe((pokemon) => {
-      if (pokemon) {
-        this.descriptionPokemons = pokemon.descriptionPokemons;
-        this.descriptionPokemonsGender = pokemon.descriptionPokemonsGender;
-        console.log('pokeINfo', this.descriptionPokemons[0]);
-        console.log('pokeINfoGender', this.descriptionPokemonsGender[0]);
-      }
-    });
-    this.store.select(getSelectedPokemons).subscribe((selectedPokemons) => {
-      if (selectedPokemons) {
-        this.selectedPokemons = selectedPokemons;
-        console.log('modal', this.selectedPokemons);
-
-        this.image = `${environment.POKEMONIMAGEAPI}${
-          this.selectedPokemons[0].url.split('/')[6]
-        }.png`;
-        this.image2 = `${environment.POKEMONIMAGEAPI}${
-          this.selectedPokemons[1].url.split('/')[6]
-        }.png`;
-      }
-    });
+    this.store.select(getPokemonsInfo).pipe(
+      first(),
+      map((pokemon) => {
+        if (pokemon) {
+          this.descriptionPokemons = pokemon.descriptionPokemons;
+          this.descriptionPokemonsGender = pokemon.descriptionPokemonsGender;
+        }
+      })
+    ).subscribe();
+    this.store.select(getSelectedPokemons)
+    .pipe(
+      first(),
+      map((selectedPokemons) => {
+        if (selectedPokemons) {
+          this.selectedPokemons = selectedPokemons;
+          this.image = `${environment.POKEMONIMAGEAPI}${this.selectedPokemons[0].url.split('/')[6]}.png`;
+          this.image2 = `${environment.POKEMONIMAGEAPI}${this.selectedPokemons[1].url.split('/')[6]}.png`;
+        }
+      })
+    ).subscribe(); 
   }
 
   ngOnDestroy(): void {

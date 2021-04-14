@@ -1,3 +1,8 @@
+:root {
+  --backGgroundColor:  rgba(110, 117, 124, 1); 
+  --back: rgba(255, 255, 255, 0);
+}
+
 .center-image {
   margin: 1rem auto;
   width: 22.5rem;
@@ -8,4 +13,8 @@
   color: var(--back);
   text-transform: uppercase;
   font-weight: 700;
+}
+
+.carousel-control-prev {
+  color: var(--backGgroundColor);
 }

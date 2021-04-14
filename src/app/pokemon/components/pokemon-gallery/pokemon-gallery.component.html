@@ -1,3 +1,4 @@
+<app-chart></app-chart>
 <div
   class='cards-container-base'
   infiniteScroll
@@ -5,7 +6,7 @@
   [infiniteScrollThrottle]='50'
   (scrolled)='loadPokemonsFromApi()'
 >
-  <div fxLayout='row wrap' fxLayoutGap='1.5rem grid'>
+  <div fxLayout='row wrap' fxLayoutGap='1.5rem grid' *ngIf='!isSearching'>
     <div
       fxFlex='20%'
       fxFlex.xs='50%'
@@ -20,7 +21,18 @@
     </div>
   </div>
 </div>
+<div fxLayout='row wrap' fxLayoutGap='1.5rem grid' *ngIf='isSearching'>
+  <div
+    fxFlex='20%'
+    fxFlex.xs='50%'
+    fxFlex.sm='33%'
+    fxFlex.md='25%'
+    *ngFor='let pokemon of queriedPokemons'
+  >
+    <app-pokemon-card
+      [pokemon]='pokemon'
+      (click)='selectPokemon(pokemon)'
+    ></app-pokemon-card>
+  </div>
+</div>
 
-<!-- TODO: Modal -->
-<!-- <app-pokemon-card (sendShowModalToParent)='receiveMessage($event)'> </app-pokemon-card> -->
-<!-- <h1 *ngIf='showModal'>Open Modal</h1> -->

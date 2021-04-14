@@ -9,7 +9,7 @@
       </button>
     </mat-grid-tile>
     <mat-grid-tile colspan='4'>
-      <button (click)='setFavs()'>
+      <button (click)='setFavs(selectedPokemons)'>
         Favs
       </button>
     </mat-grid-tile>
@@ -21,8 +21,8 @@
     </mat-grid-tile>
     <mat-grid-tile colspan='8' rowspan='3'>
       <div class='container'>
-        <p class='text-description' >{{ selectedPokemons[0].name.toLowerCase() }} Description</p>
-        <!-- <p class='text-description' >{{ descriptionPokemonsGender[0].flavor_text_entries[1].flavor_text.toLowerCase() }} </p> -->
+        <!-- <p class='text-description' >{{ selectedPokemons[0].name.toLowerCase() }} Description</p> -->
+        <p class='text-description' >{{ descriptionPokemonsGender[0].flavor_text_entries[1].flavor_text.toLowerCase() }} </p>
         <hr />
       </div>
     </mat-grid-tile>
@@ -37,7 +37,7 @@
         <tr>
         <td class='text-description' > {{ descriptionPokemons[0].height/10 }}m </td>
         <td class='text-description'> {{ descriptionPokemons[0].weight/10 }}kg </td>
-        <td class='text-description'> {{ descriptionPokemons[0].base_experience }} </td>
+        <td class='text-description'> {{ ConvertGender(descriptionPokemonsGender[0].gender_rate) }} </td>
         </tr>
       </table>
     </mat-grid-tile>

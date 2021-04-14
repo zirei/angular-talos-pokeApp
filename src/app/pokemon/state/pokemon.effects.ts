@@ -32,7 +32,7 @@ export class PokemonEffects {
           map((pokemons:any) => 
             {
               console.log(pokemons)
-              pokemons["results"].forEach( (pokemon:any) => pokemon.id = getPokemonId(pokemon))
+              pokemons['results'].forEach( (pokemon:any) => pokemon.id = getPokemonId(pokemon))
               return PokemonActions.loadPokemonsSuccess({ pokemons })
             }
           ),
@@ -58,18 +58,21 @@ export class PokemonEffects {
       )
     );
   });
+
   loadPokemonsDescriptionGender$ = createEffect(() => {
     return this.actions$.pipe(
       ofType(PokemonActions.loadPokemonsDescriptionGender),
       switchMap((action) =>
         this.PokemonDataService.getPokemonsDescriptionGenderFromApi(action.pokemon.id).pipe(
-          map((pokemonData) => 
-           PokemonActions.loadPokemonsDescriptionGenderSuccess({ pokemonData })),
+          map((pokemonData) => {
+            console.log('description dataaaaaaa', pokemonData)
+            return PokemonActions.loadPokemonsDescriptionGenderSuccess({ pokemonData })
+          },
           catchError((error) =>
             of(PokemonActions.loadPokemonsDescriptionGenderFailure({ error }))
           )
         )
       )
-    );
-  });
+    )
+  )});
 }
