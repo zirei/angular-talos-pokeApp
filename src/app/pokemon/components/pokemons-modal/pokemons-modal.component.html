@@ -1,16 +1,16 @@
 <mat-dialog-content class='mat-typography'>
-  <mat-grid-list mat-dialog-title cols='12'>
-    <mat-grid-tile colspan='4'>
-      <h1 class='fix-text'>{{ selectedPokemons[0].name }}</h1>
+  <mat-grid-list mat-dialog-title cols='24' rowHeight='2rem'>
+    <mat-grid-tile colspan='11' rowspan='2'>
+      <span class='fix-text'>{{ selectedPokemons[0].name }}</span>
     </mat-grid-tile>
-    <mat-grid-tile colspan='4'>
+    <mat-grid-tile colspan='8' rowspan='2'>
       <button (click)='getKeepSelectedFromStore()' [mat-dialog-close]='true'>
         Compare to...
       </button>
     </mat-grid-tile>
-    <mat-grid-tile colspan='4'>
-      <button (click)='setFavs(selectedPokemons)'>
-        Favs
+    <mat-grid-tile colspan='5' rowspan='2'>
+      <button mat-mini-fab color="warn" (click)='setFavs(selectedPokemons)'>
+        <mat-icon>favorite</mat-icon>
       </button>
     </mat-grid-tile>
   </mat-grid-list>
@@ -63,11 +63,14 @@
     </mat-grid-tile>
   </mat-grid-list>
   <hr />
-  <mat-grid-list cols='12' rowHeight='5rem'>
-    <span>Grafica</span>
-    <p>
-      provides the Router service to help you define navigation paths among
-      views.
-    </p>
+  <mat-grid-list cols='24' rowHeight='21rem' class="graficTittle">
+    <span>Stats</span>
+    <div *ngIf='descriptionPokemons' >
+      <app-chart
+        [descriptionPokemons] = 'descriptionPokemons'
+        [descriptionPokemonsGender] = 'descriptionPokemonsGender'
+      >
+      </app-chart>
+    </div>
   </mat-grid-list>
 </mat-dialog-content>

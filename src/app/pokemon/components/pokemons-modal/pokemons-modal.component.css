@@ -1,7 +1,10 @@
 :root {
-  --backGgroundColor:  rgba(110, 117, 124, 1); 
+  --backGgroundColor: rgba(110, 117, 124, 1);
   --textColor: rgba(241, 242, 242, 1);
+  --buttonColor: rgba(255, 140, 0, 0.993);
+  --blackBorder: rgba(255,255,255,0);
 }
+
 .img-fluid {
   width: 8rem;
 }
@@ -15,4 +18,18 @@
   margin-left: 1rem;
   color: var(--textColor);
   background-color: var(--backGgroundColor);
+}
+
+.graficTittle {
+  display: block;
+  text-align: center;
+}
+
+/* .grafStyle {
+  width: 256;
+  height: 256;
+} */
+
+.favDisplay {
+  background: var(--buttonColor);
 }

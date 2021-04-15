@@ -82,7 +82,9 @@ export class PokemonGalleryComponent implements OnInit {
       if (this.selectedPokemons.length > 1) {
         const dialogRef = this.dialog.open(PokemonsModalVsComponent);
       } else {
-        const dialogRef = this.dialog.open(PokemonsModalComponent);
+        const dialogRef = this.dialog.open(PokemonsModalComponent, {
+          width: '512px'
+        });
       }
     }, 300);
   }

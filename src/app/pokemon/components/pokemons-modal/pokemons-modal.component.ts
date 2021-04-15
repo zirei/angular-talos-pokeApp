@@ -36,6 +36,8 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   descriptionPokemons: any[] = [];
   descriptionPokemonsGender: any[] = [];
 
+  pokemonStats: any[]=[];
+
   constructor(private store: Store<State>) {}
 
   ngOnInit(): void {

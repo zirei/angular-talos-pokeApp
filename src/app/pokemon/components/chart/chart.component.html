@@ -1,51 +1,12 @@
-<!-- <div>
-  <div>
-    <div style="display: block">
-      <canvas baseChart
-        [datasets]="stats"
-        [labels]="barChartLabels"
-        [options]="barChartOptions"
-        [legend]="barChartLegend"
-        [chartType]="barChartType">
-      </canvas>
-    </div>
-  </div>
-</div> -->
-
-<!-- <div id='divChart'>
-  <canvas id='myChart'>
-  </canvas>
-</div> -->
-<!-- <div style="text-align:center">
-  <apx-chart
-    [series]="chartOptions.series"
-    [chart]="chartOptions.chart"
-    [xaxis]="chartOptions.xaxis"
-    [title]="chartOptions.title"
-  ></apx-chart>
-</div>
-<span>this is my chart</span> -->
-<!-- <div class="container mt-5 pt-5">
-  <div class="col-12">
-    <div class="row">
-      <div class="col-5 pl-5 mt-5">
-        <h1>Line Chart</h1>
-        <br>
-        <h2>Shuffle Data</h2>
-      </div>
-      <button class="btn btn-outline-primary" (click)="shuffleData()">Shuffle</button>
-      <div>
-        <div class="col-7"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-</div> -->
-
-<table>
-  <tr>
-    <td>
-      <ngx-charts-bar-vertical [results]="productSales"></ngx-charts-bar-vertical>
+<table columns="50%,50%" >
+  <tr >
+    <td id="divChart">
+      <ngx-charts-bar-vertical 
+        [results]="pokemonStats"
+        [scheme]="colorScheme"
+        [xAxis]="showXAxis"
+        [yAxis]="showYAxis"
+      ></ngx-charts-bar-vertical>
     </td>
   </tr>
 </table>
