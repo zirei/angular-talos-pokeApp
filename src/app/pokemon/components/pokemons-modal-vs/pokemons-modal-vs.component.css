@@ -16,3 +16,8 @@
 .text-description{
   vertical-align: middle;
 }
+
+.graficTittle {
+  display: block;
+  text-align: center;
+}

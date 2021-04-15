@@ -14,6 +14,7 @@ import { PokemonsModalVsComponent } from './components/pokemons-modal-vs/pokemon
 import { ChartComponent } from './components/chart/chart.component';
 import { ToastComponent } from './components/toast/toast.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { ChartVSComponent } from './components/chart-vs/chart-vs.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
     PokemonsModalVsComponent,
     ChartComponent,
     ToastComponent,
+    ChartVSComponent,
 
   ],
   imports: [

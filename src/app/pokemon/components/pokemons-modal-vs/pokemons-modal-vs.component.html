@@ -77,11 +77,14 @@
     </mat-grid-tile>
   </mat-grid-list>
   <hr />
-  <mat-grid-list cols='12' rowHeight='5rem'>
-    <span>Grafica</span>
-    <p>
-      provides the Router service to help you define navigation paths among
-      views.
-    </p>
+  <mat-grid-list cols='24' rowHeight='21rem' class="graficTittle">
+    <span>Stats</span>
+    <div *ngIf='descriptionPokemons' >
+      <app-chart-vs
+        [descriptionPokemons] = 'descriptionPokemons'
+        [descriptionPokemonsGender] = 'descriptionPokemonsGender'
+      >
+      </app-chart-vs>
+    </div>
   </mat-grid-list>
 </mat-dialog-content>

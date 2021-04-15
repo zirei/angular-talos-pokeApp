@@ -1,5 +1,4 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { first, map, tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-chart',
@@ -17,8 +16,8 @@ export class ChartComponent implements OnInit {
   // options
   showXAxis = true
   showYAxis = true;
-  colorScheme = {
-    domain: ['#5AA454','#A10A28'],
+  colorScheme:any = {
+    domain: [] = [],
   };
 
   constructor() {}
@@ -40,6 +39,10 @@ export class ChartComponent implements OnInit {
     console.log('revolution', pokemon.color.name);
     this.pokemonName = pokemon.name;
     this.pokemonColor = pokemon.color.name;
+    this.pokemonColor === 'white'
+    ? this.pokemonColor = 'rgba(255, 140, 0, 1)'
+    : this.pokemonColor
+    this.colorScheme.domain.push(this.pokemonColor)
     return (this.pokemonName, this.pokemonColor) ;
   }
 }
