@@ -26,6 +26,7 @@ export interface PokemonState {
   favoritePokemons: Pokemon[];
   descriptionPokemons: any[];
   descriptionPokemonsGender: any[];
+  maxFavoritesSelected: boolean;
   isSearching: boolean;
   showSelected: boolean;
   keepSelected: boolean;
@@ -57,6 +58,7 @@ const initialState: PokemonState = {
   ],
   descriptionPokemons: [],
   descriptionPokemonsGender: [],
+  maxFavoritesSelected: false,
   isSearching: false,
   showSelected: false,
   keepSelected: false,
@@ -197,7 +199,6 @@ export const pokemonReducer = createReducer<PokemonState>(
       };
     }
   ),
-  // TODO: unselected function
   on(
     PokemonActions.unselectedFavorite,
     (state,action): PokemonState => {

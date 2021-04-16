@@ -9,7 +9,6 @@ import { StoreModule } from '@ngrx/store';
 import { pokemonReducer } from './state/pokemon.reducer';
 import { EffectsModule } from '@ngrx/effects';
 import { PokemonEffects } from './state/pokemon.effects';
-import { PokemonToastComponent } from './components/pokemon-toast/pokemon-toast.component';
 import { PokemonsModalVsComponent } from './components/pokemons-modal-vs/pokemons-modal-vs.component';
 import { ChartComponent } from './components/chart/chart.component';
 import { ToastComponent } from './components/toast/toast.component';
@@ -21,7 +20,6 @@ import { ChartVSComponent } from './components/chart-vs/chart-vs.component';
     PokemonCardComponent,
     PokemonGalleryComponent,
     PokemonsModalComponent,
-    PokemonToastComponent,
     PokemonsModalVsComponent,
     ChartComponent,
     ToastComponent,

@@ -116,6 +116,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
             );
             this.favoriteSelected = true;
           } else if (favorites.length > 4) {
+            alert(`Hay 5 o mas ${favorites}`);
             console.log('Hay 5 o mas', favorites);
             return;
           } else {

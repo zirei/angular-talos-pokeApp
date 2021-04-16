@@ -94,3 +94,13 @@ export const unselectedFavorite = createAction(
 export const unloadPokemonsDescription = createAction(
   '[Pokemon] unload pokemon Description',
 );
+
+// maxFavsMessaje
+export const maximumNumberOfFavoritesSelected = createAction(
+  '[Pokemon] maximum number of favorites selected ',
+  props<{ pokemon: Pokemon }>()
+);
+
+export const maximumNumberOfFavoritesUnSelected = createAction(
+  '[Pokemon] maximum number of favorites unselected',
+);
