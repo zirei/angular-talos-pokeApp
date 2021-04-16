@@ -110,7 +110,7 @@ export const pokemonReducer = createReducer<PokemonState>(
   on(PokemonActions.queryPokemon, (state, action):PokemonState => {
     return {
       ...state,
-      queriedPokemons: state.rootPokemonList.filter(pokemon => pokemon.name.includes(action.query)),
+      queriedPokemons: state.rootPokemonList.filter(pokemon => pokemon.name.toLocaleLowerCase().includes(action.query.toLocaleLowerCase())),
       search_bar:action.query,
       isSearching: true,
     };

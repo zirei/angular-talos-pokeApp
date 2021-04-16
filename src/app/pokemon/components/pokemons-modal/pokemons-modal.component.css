@@ -26,11 +26,6 @@
   text-align: center;
 }
 
-/* .grafStyle {
-  width: 256;
-  height: 256;
-} */
-
 .favDisplay {
   background: var(--buttonColor);
 }

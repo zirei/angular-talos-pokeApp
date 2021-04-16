@@ -4,10 +4,9 @@
   height: 20rem;
 }
 
-/* .graf-style {
-  display: block;
-  text-align: center;
-  background-position: center;
-  margin: auto;
-  padding-left: 100px;
-} */
+@media (max-width: 576px) {
+  #divChart {
+    width: 16rem;
+    height: 20rem;
+  }
+}
