@@ -16,7 +16,6 @@ import { ToastComponent } from './components/toast/toast.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { ChartVSComponent } from './components/chart-vs/chart-vs.component';
 
-
 @NgModule({
   declarations: [ 
     PokemonCardComponent,
@@ -27,7 +26,6 @@ import { ChartVSComponent } from './components/chart-vs/chart-vs.component';
     ChartComponent,
     ToastComponent,
     ChartVSComponent,
-
   ],
   imports: [
     SharedModule,

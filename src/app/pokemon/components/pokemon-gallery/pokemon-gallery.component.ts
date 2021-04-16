@@ -21,8 +21,8 @@ import {
   MatSnackBarHorizontalPosition,
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
+import { first, map } from 'rxjs/operators';
 import { ToastComponent } from '../toast/toast.component';
-import { map } from 'rxjs/operators';
 
 @Component({
   selector: 'app-pokemon-gallery',
@@ -37,30 +37,16 @@ export class PokemonGalleryComponent implements OnInit {
   showModal: boolean = false;
   isSearching: boolean = false;
   search_bar: string = '';
+  keepSelected: boolean = false;
 
-  // toast
-  horizontalPosition: MatSnackBarHorizontalPosition = 'right';
-  verticalPosition: MatSnackBarVerticalPosition = 'top';
   constructor(
     private PokemonDataService: PokemonDataService,
     private store: Store<State>,
     public dialog: MatDialog,
-    // private _snackBar: MatSnackBar
+    private _snackBar: MatSnackBar
   ) {
     this.loadPokemonsFromApi();
   }
-  // TODO: launch the toast component
-  // constructor(private _snackBar: MatSnackBar) {}
-  // openToast() {
-  //   const snackBarRed = this._snackBar.openFromComponent(ToastComponent);
-  // }
-  // openSnackBar() {
-  //   this._snackBar.open('pokemon!!', 'x', {
-  //     duration: 500,
-  //     horizontalPosition: this.horizontalPosition,
-  //     verticalPosition: this.verticalPosition,
-  //   });
-  // }
 
   ngOnInit(): void {
     this.getPokemonsDataFromStore();
@@ -74,19 +60,27 @@ export class PokemonGalleryComponent implements OnInit {
   selectPokemon(pokemon: Pokemon) {
     this.store.dispatch(PokemonActions.selectedPokemons({ pokemon }));
     this.store.dispatch(PokemonActions.loadPokemonsDescription({ pokemon }));
-    this.store.dispatch(PokemonActions.loadPokemonsDescriptionGender({ pokemon }));
-    // this.openToast()
+    this.store.dispatch(
+      PokemonActions.loadPokemonsDescriptionGender({ pokemon })
+    );
     this.getSelectedPokemonsFromStore();
-
+    this.openDialog(this.selectedPokemons.length);
+  }
+  openDialog(amountSelectedPokemons: any) {
     setTimeout(() => {
-      if (this.selectedPokemons.length > 1) {
-        const dialogRef = this.dialog.open(PokemonsModalVsComponent);
+      if (amountSelectedPokemons > 1) {
+        const dialogRef = this.dialog.open(PokemonsModalVsComponent, {
+          width: '512px',
+        });
+        dialogRef.afterClosed().subscribe(() => this.getKeepSelectedFromStore());
       } else {
         const dialogRef = this.dialog.open(PokemonsModalComponent, {
-          width: '512px'
+          width: '512px',
         });
+        dialogRef.afterClosed().subscribe(() => this.getKeepSelectedFromStore());
       }
-    }, 300);
+    }, 350);
+    
   }
 
   getSelectedPokemonsFromStore() {
@@ -97,14 +91,17 @@ export class PokemonGalleryComponent implements OnInit {
     });
   }
 
-  isSearchingSubscription(){
-    this.store.select(getIsSearching).pipe(
-      map((isSearching:boolean)=> {
-        this.isSearching = isSearching;
-        this.getPokemonsDataFromStore();
-        console.log(isSearching);
-      })
-    ).subscribe()
+  isSearchingSubscription() {
+    this.store
+      .select(getIsSearching)
+      .pipe(
+        map((isSearching: boolean) => {
+          this.isSearching = isSearching;
+          this.getPokemonsDataFromStore();
+          console.log(isSearching);
+        })
+      )
+      .subscribe();
   }
 
   getPokemonsDataFromStore() {
@@ -119,5 +116,27 @@ export class PokemonGalleryComponent implements OnInit {
   loadPokemonsFromApi(): void {
     this.store.dispatch(PokemonActions.loadPokemons());
     this.getPokemonsDataFromStore();
+  }
+  // TODO: launch the toast component
+  openToast() {
+    const snackBarRed = this._snackBar.openFromComponent(ToastComponent);
+  }
+  getKeepSelectedFromStore() {
+    console.log('keepselectedfromstore Run');
+    this.store
+      .select(getPokemonsInfo)
+      .pipe(
+        first(),
+        map((pokemon) => {
+          if (pokemon) {
+            this.keepSelected = pokemon.keepSelected;
+            if (this.keepSelected === true) {
+              // this.openToast()
+              console.log('keep selected True');
+            }
+          }
+        })
+      )
+      .subscribe();
   }
 }

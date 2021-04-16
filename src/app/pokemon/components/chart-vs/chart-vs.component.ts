@@ -44,11 +44,13 @@ export class ChartVSComponent implements OnInit {
   }
 
   getPokemonStats(pokemon1: any, pokemon2: any) {
+    // const firstPokemon = pokemon1.name
+    const secondPokemon = pokemon2.name
     pokemon1.stats.map((state: any) => {
       this.firstPokemonStats.push({ name: state.stat.name, value: state.base_stat });
     });
     pokemon2.stats.map((state: any) => {
-      this.secondPokemonStats.push({ name: state.stat.name + 2, value: state.base_stat });
+      this.secondPokemonStats.push({ name: state.stat.name +2, value: state.base_stat });
     });
     return this.mergeStats(this.firstPokemonStats,this.secondPokemonStats);
   }

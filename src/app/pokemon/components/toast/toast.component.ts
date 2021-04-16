@@ -1,5 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {MatSnackBar} from '@angular/material/snack-bar';
+import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-toast',
@@ -7,10 +6,10 @@ import {MatSnackBar} from '@angular/material/snack-bar';
   styleUrls: ['./toast.component.css']
 })
 export class ToastComponent implements OnInit {
+  @Input() pokemonName: any = 'Pizza party!!!';
 
   constructor() { }
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
 }

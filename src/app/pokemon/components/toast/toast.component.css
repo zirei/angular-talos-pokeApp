@@ -1,3 +1,23 @@
 .example-pizza-party {
-  color: hotpink;
+  /* position: sticky;
+  top: 0;
+  z-index: 100;
+  left: 100%;
+  margin: 1rem;
+  width: 11rem;
+  text-align: justify; */
+  /* color: hotpink;
+  margin-left: 80%;
+  padding: 2rem;
+  position: sticky;
+  top: 0;
+  border: 1px solid black;
+  z-index: 100; */
+  /* margin: 0 0 278% 75%;
+  padding: 2rem;
+  background: white; */
+}
+
+.mat-snack-bar-container {
+  vertical-align: middle;
 }
