@@ -76,6 +76,7 @@ export class PokemonGalleryComponent implements OnInit {
         });
         dialogRef.afterClosed().subscribe(() => this.getKeepSelectedFromStore());
       } else {
+        this.maxFavoritesSelected = false;
         const dialogRef = this.dialog.open(PokemonsModalComponent, {
           width: '512px',
         });
