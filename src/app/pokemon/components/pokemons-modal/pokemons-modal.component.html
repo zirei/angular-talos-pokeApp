@@ -1,6 +1,6 @@
 <mat-dialog-content class='mat-typography'>
   <mat-grid-list mat-dialog-title cols='24' rowHeight='2rem'>
-    <mat-grid-tile colspan='11' rowspan='2'>
+    <mat-grid-tile colspan='12' rowspan='2'>
       <span class='fix-text'>{{ selectedPokemons[0].name }}</span>
     </mat-grid-tile>
     <mat-grid-tile colspan='8' rowspan='2'>
@@ -8,7 +8,7 @@
         Compare to...
       </button>
     </mat-grid-tile>
-    <mat-grid-tile colspan='5' rowspan='2'>
+    <mat-grid-tile colspan='4' rowspan='2'>
       <button mat-mini-fab color='warn' (click)='setFavs(selectedPokemons)'>
         <mat-icon>favorite</mat-icon>
       </button>
