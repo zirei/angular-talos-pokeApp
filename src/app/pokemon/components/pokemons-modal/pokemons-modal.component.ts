@@ -28,7 +28,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   image: string = '';
   keepSelected: boolean = false;
   showSelected: boolean = true;
-  showModalVS: boolean = false;
+  showSelectedFavoriteButtonRed: boolean = false;
   favoriteSelected: boolean = false;
   maxFavoritesSelected: boolean = false;
   selectedPokemons2: PokemonState | undefined;
@@ -43,6 +43,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.getSelectedPokemonsFromStore();
+    this.getFavs(this.selectedPokemons);
   }
 
   ConvertGender(gender_rate: number) {
@@ -86,6 +87,28 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
 
   setFavs(selectedPokemons: any) {
     this.getFavoriteFromStore(selectedPokemons[0]);
+    
+  }
+
+  getFavs(pokemon: any) {
+    this.store
+    .select(getFavoritePokemon)
+    .pipe(
+      first(),
+      map((favoritePokemon) => {
+        if (favoritePokemon.length < 1) {
+          this.showSelectedFavoriteButtonRed = false;
+        }
+        let inFavorites = favoritePokemon.find((item) => 
+        item.id === pokemon[0].id);
+        if (inFavorites) {
+          this.showSelectedFavoriteButtonRed = true;
+        }else{
+          this.showSelectedFavoriteButtonRed = false;
+        }
+      })
+      )
+      .subscribe();
   }
 
   getFavoriteFromStore(pokemon: Pokemon) {
@@ -95,6 +118,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
         first(),
         map((favorites) => {
           if (favorites.length < 1) {
+            this.showSelectedFavoriteButtonRed = true;
             return this.store.dispatch(
               PokemonActions.selectedFavorite({ pokemon: pokemon })
             );
@@ -107,6 +131,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
             this.store.dispatch(
               PokemonActions.maximumNumberOfFavoritesUnSelected()
             );
+            this.showSelectedFavoriteButtonRed = false;
             this.favoriteSelected = true;
           } else if (favorites.length > 4) {
             const maxFavName = pokemon.name;
@@ -122,6 +147,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
               PokemonActions.maximumNumberOfFavoritesUnSelected()
             );
             this.favoriteSelected = false;
+            this.showSelectedFavoriteButtonRed = true;
           }
         })
       )

@@ -1,3 +1,7 @@
+:root {
+  --white: rgb(255, 255, 255);
+  --borderToast: rgba(0, 0, 0, 0.2);
+}
 .cards-container-base {
   margin: 1% 10%;
   padding-top: 3.5rem;
@@ -14,8 +18,8 @@
   width: 12rem;
   z-index: 100;
   padding: 1rem;
-  right:  7%;
+  right: 7%;
   text-align: justify;
-  border:1px solid rgba(0, 0, 0, 0.2);
-  background: white;
+  border: 1px solid var(--borderToast);
+  background: var(--white);
 }

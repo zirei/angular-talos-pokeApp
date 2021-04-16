@@ -9,7 +9,10 @@
       </button>
     </mat-grid-tile>
     <mat-grid-tile colspan='4' rowspan='2'>
-      <button mat-mini-fab color='warn' (click)='setFavs(selectedPokemons)'>
+      <button 
+        mat-mini-fab 
+        [ngClass]="{ 'previouslyAddedToFavorites': showSelectedFavoriteButtonRed, 'normalFavButton': !showSelectedFavoriteButtonRed }" 
+        (click)='setFavs(selectedPokemons)'>
         <mat-icon>favorite</mat-icon>
       </button>
     </mat-grid-tile>

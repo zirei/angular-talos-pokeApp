@@ -4,6 +4,9 @@
   --background: rgba(200, 200, 200,0.2);
   --orange: rgb(255, 165, 0);
   --red: rgb(255, 0, 0);
+  --backGgroundColor: rgb(110, 117, 124);
+  --white: rgb(255, 255, 255);
+  --borderToast: rgba(0, 0, 0, 0.2)
 }
 html,
 body {

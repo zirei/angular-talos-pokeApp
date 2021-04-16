@@ -1,8 +1,9 @@
 :root {
-  --backGgroundColor: #6e757c;
-  --textColor: #f1f2f2;
-  --buttonColor: #ff8c00fd;
-  --blackBorder: #ffffff00;
+  --backGgroundColor: rgb(110, 117, 124);
+  --textColor: rgb(241, 242, 242);
+  --buttonColor: rgba(255, 140, 0, 0.992);
+  --blackBorder: rgba(255, 255, 255, 0);
+  --red: rgb(255, 0, 0);
 }
 
 .img-fluid {
@@ -28,4 +29,12 @@
 
 .favDisplay {
   background: var(--buttonColor);
+}
+
+.previouslyAddedToFavorites {
+  background-color: var(--red);
+}
+.normalFavButton {
+  background-color: var(--backGgroundColor);
+
 }
