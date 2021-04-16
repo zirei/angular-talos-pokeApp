@@ -1,7 +1,9 @@
 :root {
-  --backGgroundColor:  #808080; 
-  --back: #000000;
-  --orange: #800000;
+  --backGgroundColor:  rgb(128, 128, 128); 
+  --back: rgb(0, 0, 0);
+  --orange: rgb(255, 165, 0);
+  --red: rgb(255, 0, 0);
+ 
 }
 
 .center-image {
@@ -11,11 +13,19 @@
 }
 
 .carousel-caption {
-  color: var(--orange);
+  color: var(--backGgroundColor);
   text-transform: uppercase;
   font-weight: 700;
 }
 
-.colors {
-  background: var(--back);
+.carousel-control-prev {
+  color: var(--orange);
 }
+
+.colors{
+  background: var(--red);
+  border-radius: 2rem;
+  border-block-end-width: 1rem;
+  margin-bottom: -1rem;
+}
+
