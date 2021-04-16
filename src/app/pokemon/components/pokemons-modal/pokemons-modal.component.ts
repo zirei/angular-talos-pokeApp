@@ -30,13 +30,14 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   showSelected: boolean = true;
   showModalVS: boolean = false;
   favoriteSelected: boolean = false;
+  maxFavoritesSelected: boolean = false;
   selectedPokemons2: PokemonState | undefined;
   description: string = '';
   selectedPokemons: Pokemon[] = [];
   descriptionPokemons: any[] = [];
   descriptionPokemonsGender: any[] = [];
 
-  pokemonStats: any[]=[];
+  pokemonStats: any[] = [];
 
   constructor(private store: Store<State>) {}
 
@@ -114,14 +115,28 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
             this.store.dispatch(
               PokemonActions.unselectedFavorite({ pokemon: pokemon })
             );
+            this.store.dispatch(
+              PokemonActions.maximumNumberOfFavoritesUnSelected()
+            );
             this.favoriteSelected = true;
           } else if (favorites.length > 4) {
-            alert(`Hay 5 o mas ${favorites}`);
-            console.log('Hay 5 o mas', favorites);
-            return;
+            const maxFavName = pokemon.name;
+            this.store.dispatch(
+              PokemonActions.maximumNumberOfFavoritesSelected({ maxFavName })
+            );
+            alert(`You have selected to: ${favorites.map((item)=> item.name.toLocaleUpperCase(),)}. You can only have five favorite pokemons, that's why you can't add to ${maxFavName.toLocaleUpperCase()}`);
+            console.log(
+              'maximum number of favorites selected:',
+              favorites,
+              'name5: ',
+              maxFavName
+            );
           } else {
             this.store.dispatch(
               PokemonActions.selectedFavorite({ pokemon: pokemon })
+            );
+            this.store.dispatch(
+              PokemonActions.maximumNumberOfFavoritesUnSelected()
             );
             this.favoriteSelected = false;
           }
@@ -143,6 +158,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
         })
       )
       .subscribe();
+    this.store.dispatch(PokemonActions.maximumNumberOfFavoritesUnSelected());
   }
 
   ngOnDestroy(): void {

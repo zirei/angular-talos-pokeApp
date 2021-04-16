@@ -33,6 +33,7 @@ export interface PokemonState {
   scrollCounter: number;
   search_bar: string;
   error: string;
+  maxFavoritesSelectedName: string;
 }
 
 const initialState: PokemonState = {
@@ -65,6 +66,7 @@ const initialState: PokemonState = {
   scrollCounter: 0,
   search_bar: '',
   error: '',
+  maxFavoritesSelectedName: '',
 };
 
 // Selector functions
@@ -207,6 +209,27 @@ export const pokemonReducer = createReducer<PokemonState>(
         ...state,
         favoritePokemons: state.favoritePokemons.filter(pokemon => pokemon.id !== action.pokemon.id)
     };
+    }
+  ),
+  on(
+    PokemonActions.maximumNumberOfFavoritesSelected,
+    (state,action): PokemonState => {
+      console.log('max reducer ------>', action);
+      return {
+        ...state,
+        maxFavoritesSelected: true,
+        maxFavoritesSelectedName: action.maxFavName,
+      };
+    }
+  ),
+  on(
+    PokemonActions.maximumNumberOfFavoritesUnSelected,
+    (state): PokemonState => {
+      return {
+        ...state,
+        maxFavoritesSelected: false,
+        maxFavoritesSelectedName: ''
+      };
     }
   ),
   on(

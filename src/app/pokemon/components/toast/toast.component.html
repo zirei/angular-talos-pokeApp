@@ -1,8 +1,8 @@
-<div *ngIf='!dinamic'>
+<div *ngIf='!maxFavoritesSelected'>
   <span class="example-pizza-party"> Comparing pokemon</span>
   <hr />
-  <span class="example-pizza-party"> {{ pokemonName }} </span>
+  <span class="example-pizza-party"> {{ pokemonName[0].name }} </span>
 </div>
-<div *ngIf='dinamic' class="favsError" >
+<div *ngIf='maxFavoritesSelected' class="favsError" >
   <div>{{errorMessage}}</div>
 </div>

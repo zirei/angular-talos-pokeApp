@@ -18,6 +18,7 @@ export class ChartVSComponent implements OnInit {
   secondPokemonColor: string = '';
 
   // options
+  showDataLabel: boolean = true;
   showXAxis = true
   showYAxis = true;
   colorScheme:any = {

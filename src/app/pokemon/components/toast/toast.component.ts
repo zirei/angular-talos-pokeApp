@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { first, map } from 'rxjs/operators';
+import { first, map, take } from 'rxjs/operators';
 import { getPokemonsInfo, State } from '../../state/pokemon.reducer';
 import {
   MatSnackBar,
@@ -14,12 +14,13 @@ import {
   styleUrls: ['./toast.component.css']
 })
 export class ToastComponent implements OnInit{
-  @Input() pokemonName: any = 'Pizza party!!!';
-  dinamic: boolean = false;
-  errorMessage: string = 'You can only have five favorite pokemons';
+  @Input() pokemonName: any = 'Not found Pokemon';
+  @Input() maxFavoritesSelected: boolean = false;
+  // maxFavoritesSelected: boolean = false;
+  errorMessage: string = "You can only have five favorite pokemons, that's why you can't add to";
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
-
+  maxFavoritesSelectedName: string = '';
 
   constructor(private store: Store<State>,
     private _snackBar: MatSnackBar
@@ -36,16 +37,21 @@ export class ToastComponent implements OnInit{
         first(),
         map((pokemon) => {
           if (pokemon) {
-            this.dinamic = pokemon.keepSelected;
-            this.openSnackBar(this.dinamic)
+            this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
+            if(this.maxFavoritesSelected){
+              this.maxFavoritesSelectedName = pokemon.maxFavoritesSelectedName;
+              this.openSnackBar(this.maxFavoritesSelected, this.maxFavoritesSelectedName);
+            }
           }
         })
       )
       .subscribe();
   }
 
-  openSnackBar(favoriteMessajeError: boolean) {
+  openSnackBar(favoriteMessajeError: boolean, maxFavoritesSelectedName: string) {
+    console.log('open snak', favoriteMessajeError)
     if (favoriteMessajeError === true){
+      this.errorMessage += maxFavoritesSelectedName;
       this._snackBar.open(this.errorMessage, 'X', {
         duration: 2000,
         horizontalPosition: this.horizontalPosition,

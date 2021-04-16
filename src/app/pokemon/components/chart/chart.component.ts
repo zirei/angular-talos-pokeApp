@@ -12,9 +12,6 @@ export class ChartComponent implements OnInit {
   pokemonStats: any[] = [];
   pokemonName: string = '';
   pokemonColor: string = '';
-  legendPosition: string = 'below';
-  legend:boolean = true;
-  legendTitle: string = 'nombre';
   showDataLabel: boolean = true;
 
   // options

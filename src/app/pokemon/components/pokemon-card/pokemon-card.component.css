@@ -10,4 +10,5 @@
 }
 .example-card {
   max-width: 400px;
+  image-rendering: pixelated;
 }

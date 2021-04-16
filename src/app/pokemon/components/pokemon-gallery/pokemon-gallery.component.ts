@@ -38,6 +38,7 @@ export class PokemonGalleryComponent implements OnInit {
   isSearching: boolean = false;
   search_bar: string = '';
   keepSelected: boolean = false;
+  maxFavoritesSelected: boolean = false;
 
   constructor(
     private PokemonDataService: PokemonDataService,
@@ -63,6 +64,7 @@ export class PokemonGalleryComponent implements OnInit {
     this.store.dispatch(
       PokemonActions.loadPokemonsDescriptionGender({ pokemon })
     );
+    this.store.dispatch(PokemonActions.maximumNumberOfFavoritesUnSelected());
     this.getSelectedPokemonsFromStore();
     this.openDialog(this.selectedPokemons.length);
   }
@@ -117,7 +119,7 @@ export class PokemonGalleryComponent implements OnInit {
     this.store.dispatch(PokemonActions.loadPokemons());
     this.getPokemonsDataFromStore();
   }
-  // TODO: launch the toast component
+
   openToast() {
     const snackBarRed = this._snackBar.openFromComponent(ToastComponent);
   }
