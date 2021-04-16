@@ -11,14 +11,10 @@ import * as AppState from '../../state/app.state.module';
 import { Actions } from '@ngrx/effects';
 import { PokemonData } from 'src/app/core/models/pokemon-data.model';
 
-// Extends the app state to include the product feature.
-// This is required because products are lazy loaded.
-// So the reference to ProductState cannot be added to app.state.ts directly.
 export interface State extends AppState.State {
   pokemons: PokemonState;
 }
 
-// State for this feature (Product)
 export interface PokemonState {
   rootPokemonList: Pokemon[];
   queriedPokemons: Pokemon[];
@@ -190,7 +186,6 @@ export const pokemonReducer = createReducer<PokemonState>(
   on(
     PokemonActions.selectedFavorite,
     (state, action): PokemonState => {
-      console.log('selecfav reducer', action.pokemon, action);
       return {
         ...state,
         favoritePokemons: [
@@ -204,7 +199,6 @@ export const pokemonReducer = createReducer<PokemonState>(
   on(
     PokemonActions.unselectedFavorite,
     (state,action): PokemonState => {
-      console.log('selecfav reducer', action.pokemon, action);
       return {
         ...state,
         favoritePokemons: state.favoritePokemons.filter(pokemon => pokemon.id !== action.pokemon.id)
@@ -214,7 +208,6 @@ export const pokemonReducer = createReducer<PokemonState>(
   on(
     PokemonActions.maximumNumberOfFavoritesSelected,
     (state,action): PokemonState => {
-      console.log('max reducer ------>', action);
       return {
         ...state,
         maxFavoritesSelected: true,
@@ -237,7 +230,6 @@ export const pokemonReducer = createReducer<PokemonState>(
     (state, action:any ): PokemonState => {
       const updatedPokemon = state.selectedPokemons.map(
         data => action.pokemonData.id === data.id ? action.pokemonData : data);
-        console.log(action.pokemonData);
       return {
         ...state,
         descriptionPokemons:[
@@ -262,7 +254,6 @@ export const pokemonReducer = createReducer<PokemonState>(
     (state, action:any ): PokemonState => {
       const updatedPokemon = state.selectedPokemons.map(
         data => action.pokemonData.id === data.id ? action.pokemonData : data);
-        console.log('reducer descriotion', action.pokemonData);
       return {
         ...state,
         descriptionPokemonsGender:[

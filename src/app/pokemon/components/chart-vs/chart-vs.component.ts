@@ -28,10 +28,8 @@ export class ChartVSComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('chart info', this.descriptionPokemons);
     this.getPokemonStats(this.descriptionPokemons[0], this.descriptionPokemons[1]);
     this.getPokemonsNamesAndColors(this.descriptionPokemonsGender[0], this.descriptionPokemonsGender[1]);
-    console.log('stats', this.pokemonStats);
   }
 
   mergeStats(pokemon1: any[], pokemon2: any[]){
@@ -45,6 +43,7 @@ export class ChartVSComponent implements OnInit {
   }
 
   getPokemonStats(pokemon1: any, pokemon2: any) {
+    //TODO: name + color improve the transmission of information
     // const firstPokemon = pokemon1.name
     const secondPokemon = pokemon2.name
     pokemon1.stats.map((state: any) => {
@@ -57,7 +56,6 @@ export class ChartVSComponent implements OnInit {
   }
 
   getPokemonsNamesAndColors(pokemon: any, pokemon2: any) {
-    console.log('revolution', pokemon.color.name);
     this.pokemonName = pokemon.name;
     this.pokemonColor = pokemon.color.name;
     this.secondPokemonName = pokemon2.name;

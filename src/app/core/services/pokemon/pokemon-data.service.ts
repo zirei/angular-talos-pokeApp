@@ -30,7 +30,6 @@ export class PokemonDataService {
 
   getPokemonsDescriptionFromApi(url: string): Observable<PokemonData> {
     return this.http.get<PokemonData>(url).pipe(
-      // tap((data) => console.log('Description: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }
@@ -38,7 +37,6 @@ export class PokemonDataService {
   getPokemonsDescriptionGenderFromApi(id: number): Observable<any> {
     const pokemonDescriptionUrl = `${environment.POKEMONDATAAPI}pokemon-species/${id}/`;
     return this.http.get<any>(pokemonDescriptionUrl).pipe(
-      // tap((data) => console.log('Description: ' + JSON.stringify(data))),
       catchError(this.handleError)
     );
   }

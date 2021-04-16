@@ -1,8 +1,8 @@
-<div *ngIf='!maxFavoritesSelected'>
-  <span class="example-pizza-party"> Comparing pokemon</span>
+<div *ngIf='keepSelected'>
+  <span> Comparing pokemon</span>
   <hr />
-  <span class="example-pizza-party"> {{ pokemonName[0].name }} </span>
+  <span> {{ pokemonName[0].name }} </span>
 </div>
-<div *ngIf='maxFavoritesSelected' class="favsError" >
+<div *ngIf='maxFavoritesSelected'>
   <div>{{errorMessage}}</div>
 </div>

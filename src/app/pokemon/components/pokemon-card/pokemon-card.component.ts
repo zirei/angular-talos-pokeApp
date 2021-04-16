@@ -8,7 +8,6 @@ import { environment } from 'src/environments/environment';
 })
 export class PokemonCardComponent implements OnInit {
 
-  // Receive information of father component
   @Input() pokemon: any;
   image: string = '';
 

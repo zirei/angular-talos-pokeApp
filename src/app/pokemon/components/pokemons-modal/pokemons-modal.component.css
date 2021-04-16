@@ -1,8 +1,8 @@
 :root {
-  --backGgroundColor: rgba(110, 117, 124, 1);
-  --textColor: rgba(241, 242, 242, 1);
-  --buttonColor: rgba(255, 140, 0, 0.993);
-  --blackBorder: rgba(255,255,255,0);
+  --backGgroundColor: #6e757c;
+  --textColor: #f1f2f2;
+  --buttonColor: #ff8c00fd;
+  --blackBorder: #ffffff00;
 }
 
 .img-fluid {

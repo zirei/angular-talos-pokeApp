@@ -9,7 +9,7 @@
       </button>
     </mat-grid-tile>
     <mat-grid-tile colspan='5' rowspan='2'>
-      <button mat-mini-fab color="warn" (click)='setFavs(selectedPokemons)'>
+      <button mat-mini-fab color='warn' (click)='setFavs(selectedPokemons)'>
         <mat-icon>favorite</mat-icon>
       </button>
     </mat-grid-tile>
@@ -63,7 +63,7 @@
     </mat-grid-tile>
   </mat-grid-list>
   <hr />
-  <mat-grid-list cols='24' rowHeight='21rem' class="graficTittle">
+  <mat-grid-list cols='24' rowHeight='21rem' class='graficTittle'>
     <span>Stats</span>
     <div *ngIf='descriptionPokemons' >
       <app-chart

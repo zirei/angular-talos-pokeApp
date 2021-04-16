@@ -14,7 +14,6 @@ import {
 import * as PokemonActions from '../../state/pokemon.actions';
 import { state } from '@angular/animations';
 import { first, map, tap } from 'rxjs/operators';
-// import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-pokemons-modal-vs',

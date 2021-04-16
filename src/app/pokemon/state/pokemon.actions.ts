@@ -16,7 +16,8 @@ export const loadPokemonsFailure = createAction(
   '[Pokemon] Load Fail',
   props<{ error: string }>()
 );
-// queryPokemon
+
+// queryPokemon Search in navigator
 export const queryPokemon = createAction(
   '[Pokemon] query Pokemons',
   props<{ query: string }>()
@@ -26,7 +27,7 @@ export const unqueryPokemon = createAction(
 );
 
 
-// Descrition
+// Description Data
 
 export const loadPokemonsDescription = createAction(
   '[Pokemon] Selected Pokemon Description',
@@ -60,11 +61,6 @@ export const selectedPokemons = createAction(
   '[Pokemon] selected Success',
   props<{ pokemon: Pokemon }>()
 );
-
-// export const selectedPokemonsSuccess = createAction(
-//   '[Pokemon] Selected Pokemon',
-//   props<{ pokemon: Pokemon }>()
-// );
  
 export const selectedPokemonsFailure = createAction(
   '[Pokemon] Load Fail',

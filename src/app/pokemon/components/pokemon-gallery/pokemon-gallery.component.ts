@@ -34,7 +34,7 @@ export class PokemonGalleryComponent implements OnInit {
   rootPokemonList: Pokemon[] = [];
   queriedPokemons: Pokemon[] = [];
   selectedPokemons: Pokemon[] = [];
-  showModal: boolean = false;
+  showToast: boolean = false;
   isSearching: boolean = false;
   search_bar: string = '';
   keepSelected: boolean = false;
@@ -100,7 +100,6 @@ export class PokemonGalleryComponent implements OnInit {
         map((isSearching: boolean) => {
           this.isSearching = isSearching;
           this.getPokemonsDataFromStore();
-          console.log(isSearching);
         })
       )
       .subscribe();
@@ -123,8 +122,8 @@ export class PokemonGalleryComponent implements OnInit {
   openToast() {
     const snackBarRed = this._snackBar.openFromComponent(ToastComponent);
   }
+
   getKeepSelectedFromStore() {
-    console.log('keepselectedfromstore Run');
     this.store
       .select(getPokemonsInfo)
       .pipe(
@@ -132,9 +131,10 @@ export class PokemonGalleryComponent implements OnInit {
         map((pokemon) => {
           if (pokemon) {
             this.keepSelected = pokemon.keepSelected;
-            if (this.keepSelected === true) {
-              // this.openToast()
-              console.log('keep selected True');
+            this.showToast= pokemon.showSelected;
+            this.maxFavoritesSelected = pokemon.maxFavoritesSelected
+            if (this.maxFavoritesSelected === true) {
+              this.openToast()
             }
           }
         })

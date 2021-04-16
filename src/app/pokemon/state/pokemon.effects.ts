@@ -31,7 +31,6 @@ export class PokemonEffects {
         this.PokemonDataService.getPokemonsFromApi().pipe(
           map((pokemons:any) => 
             {
-              console.log(pokemons)
               pokemons['results'].forEach( (pokemon:any) => pokemon.id = getPokemonId(pokemon))
               return PokemonActions.loadPokemonsSuccess({ pokemons })
             }
@@ -65,7 +64,6 @@ export class PokemonEffects {
       switchMap((action) =>
         this.PokemonDataService.getPokemonsDescriptionGenderFromApi(action.pokemon.id).pipe(
           map((pokemonData) => {
-            console.log('description dataaaaaaa', pokemonData)
             return PokemonActions.loadPokemonsDescriptionGenderSuccess({ pokemonData })
           },
           catchError((error) =>

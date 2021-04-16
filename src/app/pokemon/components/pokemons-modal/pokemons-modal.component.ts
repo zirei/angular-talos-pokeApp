@@ -83,17 +83,6 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
       )
       .subscribe();
   }
-  // Last version
-  // this.store.select(getSelectedPokemons).subscribe((selectedPokemons) => {
-  //   if (selectedPokemons) {
-  //     this.selectedPokemons = selectedPokemons;
-  //     this.image = `${environment.POKEMONIMAGEAPI}${
-  //       this.selectedPokemons[0].url.split('/')[6]
-  //     }.png`;
-  //     console.log('selectPomenosModal', this.selectedPokemons[0]);
-  //   }
-  // });
-  // }
 
   setFavs(selectedPokemons: any) {
     this.getFavoriteFromStore(selectedPokemons[0]);
@@ -125,12 +114,6 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
               PokemonActions.maximumNumberOfFavoritesSelected({ maxFavName })
             );
             alert(`You have selected to: ${favorites.map((item)=> item.name.toLocaleUpperCase(),)}. You can only have five favorite pokemons, that's why you can't add to ${maxFavName.toLocaleUpperCase()}`);
-            console.log(
-              'maximum number of favorites selected:',
-              favorites,
-              'name5: ',
-              maxFavName
-            );
           } else {
             this.store.dispatch(
               PokemonActions.selectedFavorite({ pokemon: pokemon })
@@ -148,27 +131,26 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   getKeepSelectedFromStore() {
     this.store.dispatch(PokemonActions.keepSelectedPokemons());
     this.store
-      .select(getPokemonsInfo)
-      .pipe(
-        first(),
-        map((pokemon) => {
-          if (pokemon) {
-            this.keepSelected = pokemon.keepSelected;
+    .select(getPokemonsInfo)
+    .pipe(
+      first(),
+      map((pokemon) => {
+        if (pokemon) {
+          this.keepSelected = pokemon.keepSelected;
+          if (this.keepSelected === true){
+            this.store.dispatch(PokemonActions.maximumNumberOfFavoritesUnSelected());
+            this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
+          }
           }
         })
       )
       .subscribe();
-    this.store.dispatch(PokemonActions.maximumNumberOfFavoritesUnSelected());
   }
 
   ngOnDestroy(): void {
-    console.log(this.keepSelected);
     if (!this.keepSelected) {
-      console.log('destroy selected pokemon', this.selectedPokemons);
       this.store.dispatch(PokemonActions.unSelectedPokemons());
       this.store.dispatch(PokemonActions.unloadPokemonsDescription());
-      console.log('Unselected pokemon', this.selectedPokemons);
     }
-    console.log('Closing modal pokemon', this.selectedPokemons);
   }
 }

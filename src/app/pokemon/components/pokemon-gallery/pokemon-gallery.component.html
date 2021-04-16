@@ -1,4 +1,4 @@
-<div class="toastUbication" fxLayout='row wrap' fxLayoutGap='1.5rem grid' *ngIf='keepSelected || maxFavoritesSelected'>
+<div class='toastUbication' fxLayout='row wrap' fxLayoutGap='1.5rem grid' *ngIf='keepSelected || (maxFavoritesSelected && !keepSelected)'>
   <app-toast
   [maxFavoritesSelected]='maxFavoritesSelected'
   [pokemonName]='selectedPokemons'

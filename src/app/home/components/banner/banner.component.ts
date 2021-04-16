@@ -31,7 +31,6 @@ export class BannerComponent implements OnInit {
   }
 
   getFavoriteFromStore() {
-    console.log();
     this.store
       .select(getFavoritePokemon)
       .pipe(
