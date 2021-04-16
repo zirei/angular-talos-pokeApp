@@ -29,3 +29,11 @@
   margin-bottom: -1rem;
 }
 
+.optional-text {
+  vertical-align: middle;
+  text-align: center;
+  position: absolute;
+  font-size: 1.5rem;
+  margin: 10rem 2rem;
+  text-justify: auto;
+}

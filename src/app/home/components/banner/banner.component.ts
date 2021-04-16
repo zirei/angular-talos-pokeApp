@@ -19,7 +19,9 @@ export class BannerComponent implements OnInit {
   favoritePokemons: any[] = [];
   images: string []=[];
 
-  constructor(private store: Store<State>) {}
+  constructor(private store: Store<State>) {
+    this.getFavoriteFromStore();
+  }
 
   ngOnInit(): void {
     this.getFavoriteFromStore();
