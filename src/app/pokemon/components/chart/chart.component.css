@@ -1,12 +1,13 @@
 #divChart {
   display: block;
   width: 28rem;
-  height: 20rem;
+  height: 22rem;
 }
 
 @media (max-width: 576px) {
   #divChart {
-    width: 16rem;
-    height: 20rem;
+    display: block;
+    width: 17rem;
+    height: 17rem;
   }
 }

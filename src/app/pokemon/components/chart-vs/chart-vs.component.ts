@@ -60,14 +60,23 @@ export class ChartVSComponent implements OnInit {
     this.pokemonColor = pokemon.color.name;
     this.secondPokemonName = pokemon2.name;
     this.secondPokemonColor = pokemon2.color.name;
+    this.pokemonName === this.secondPokemonName
+    ? this.secondPokemonName = this.secondPokemonName +2
+    : ''
     this.pokemonColor === 'white'
     ? this.pokemonColor = 'rgba(255, 140, 0, 1)'
-    : this.pokemonColor
+    : ''
+    this.pokemonColor === 'yellow'
+    ? this.pokemonColor = 'rgba(255, 140, 0, 1)'
+    : ''
     this.secondPokemonColor === 'white'
-    ? this.secondPokemonColor = 'rgba(255, 140, 0, 1)'
-    : this.secondPokemonColor
+    ? this.secondPokemonColor = 'rgba(255, 0, 141, 1)'
+    : ''
+    this.secondPokemonColor === 'yellow'
+    ? this.secondPokemonColor = 'rgba(255, 0, 141, 1)'
+    : ''
     this.pokemonColor === this.secondPokemonColor
-    ? this.secondPokemonColor = 'rgba(167, 246, 222, 1)'
+    ? this.secondPokemonColor = 'rgba(255, 100, 183, 1)'
     : ''
     this.colorScheme.domain.push(this.pokemonColor, this.secondPokemonColor);
     return (this.pokemonName, this.pokemonColor) ;

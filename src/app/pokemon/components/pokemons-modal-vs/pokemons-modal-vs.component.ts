@@ -26,6 +26,7 @@ export class PokemonsModalVsComponent implements OnInit {
   selectedPokemons: Pokemon[] = [];
   image: string = '';
   image2: string = '';
+  pokemonName2: string = 'Not found name';
   descriptionPokemons: any[] = [];
   descriptionPokemonsGender: any[] = [];
 
@@ -60,6 +61,11 @@ export class PokemonsModalVsComponent implements OnInit {
           this.selectedPokemons = selectedPokemons;
           this.image = `${environment.POKEMONIMAGEAPI}${this.selectedPokemons[0].url.split('/')[6]}.png`;
           this.image2 = `${environment.POKEMONIMAGEAPI}${this.selectedPokemons[1].url.split('/')[6]}.png`;
+          if(selectedPokemons[0].name === selectedPokemons[1].name){
+            this.pokemonName2 = selectedPokemons[1].name +2;
+          }else{
+            this.pokemonName2 = selectedPokemons[1].name;
+          }
         }
       })
     ).subscribe(); 

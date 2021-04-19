@@ -39,7 +39,10 @@ export class ChartComponent implements OnInit {
     this.pokemonColor = pokemon.color.name;
     this.pokemonColor === 'white'
     ? this.pokemonColor = 'rgba(255, 140, 0, 1)'
-    : this.pokemonColor
+    : ''
+    this.pokemonColor === 'yellow'
+    ? this.pokemonColor = 'rgba(255, 140, 0, 1)'
+    : ''
     this.colorScheme.domain.push(this.pokemonColor)
     return (this.pokemonName, this.pokemonColor) ;
   }

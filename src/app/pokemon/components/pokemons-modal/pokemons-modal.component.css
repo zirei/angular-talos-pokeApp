@@ -1,5 +1,5 @@
 :root {
-  --backGgroundColor: rgb(110, 117, 124);
+  --backGgroundColor: rgb(98, 106, 112);
   --textColor: rgb(241, 242, 242);
   --buttonColor: rgba(255, 140, 0, 0.992);
   --blackBorder: rgba(255, 255, 255, 0);
@@ -17,9 +17,12 @@
 }
 
 .compare-button {
-  margin-left: 1rem;
   color: var(--textColor);
   background-color: var(--backGgroundColor);
+  font-size: small;
+  border-radius: 0.25rem;
+  border: 1px solid transparent;
+  padding: 0;
 }
 
 .graficTittle {
@@ -36,5 +39,21 @@
 }
 .normalFavButton {
   background-color: var(--backGgroundColor);
+}
+.setMarginModal {
+  margin: 0;
+}
 
+.setMarginModalLines {
+  margin: 0.3rem;
+}
+
+.text-description {
+  margin: 0;
+}
+
+@media (max-width: 576px) {
+  .mat-dialog-content{
+    max-height: 35rem;
+  }
 }

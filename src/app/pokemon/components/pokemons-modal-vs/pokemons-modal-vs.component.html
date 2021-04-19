@@ -1,8 +1,10 @@
-<mat-dialog-content class='mat-typography'>
-  <h1 class='fix-text' mat-dialog-title>
-    {{ selectedPokemons[0].name }} VS {{ selectedPokemons[1].name }}
-  </h1>
-  <hr />
+<mat-dialog-content class='mat-typography setPaddingModal'>
+  <mat-grid-list class='setMarginModal' mat-dialog-title cols='12' rowHeight='1.5rem'>
+    <mat-grid-tile colspan='12' rowspan='2'>
+      <span class='fix-text'>{{ selectedPokemons[0].name }} VS {{ pokemonName2 }}</span>
+    </mat-grid-tile>
+  </mat-grid-list>
+  <hr class='setMarginModalLines'/>
   <mat-grid-list cols='12' rowHeight='4rem'>
     <mat-grid-tile colspan='6' rowspan='2'>
       <img
@@ -21,8 +23,8 @@
       />
     </mat-grid-tile>
   </mat-grid-list>
-  <hr />
-  <mat-grid-list cols='12' rowHeight='3rem'>
+  <hr class='setMarginModalLines'/>
+  <mat-grid-list cols='13' rowHeight='3rem'>
     <mat-grid-tile colspan='5' rowspan='3'>
       <div mat-dialog-content>
         <table style='width: 100%'>
@@ -43,7 +45,7 @@
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan='2' rowspan='3'>
+    <mat-grid-tile colspan='3' rowspan='3'>
       <div mat-dialog-content>
         <table style='width: 100%'>
           <tr>
@@ -76,7 +78,7 @@
       </div>
     </mat-grid-tile>
   </mat-grid-list>
-  <hr />
+  <hr class='setMarginModalLines'/>
   <mat-grid-list cols='24' rowHeight='21rem' class='graficTittle'>
     <span>Stats</span>
     <div *ngIf='descriptionPokemons' >

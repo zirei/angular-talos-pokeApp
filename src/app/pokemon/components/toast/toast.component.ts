@@ -54,7 +54,7 @@ export class ToastComponent implements OnInit{
     if (favoriteMessajeError === true){
       this.errorMessage += maxFavoritesSelectedName.toLocaleUpperCase();
       this._snackBar.open(this.errorMessage, 'X', {
-        duration: 2000,
+        duration: 3000,
         horizontalPosition: this.horizontalPosition,
         verticalPosition: this.verticalPosition,
       });

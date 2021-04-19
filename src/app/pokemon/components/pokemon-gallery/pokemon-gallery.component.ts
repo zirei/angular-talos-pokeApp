@@ -72,13 +72,11 @@ export class PokemonGalleryComponent implements OnInit {
     setTimeout(() => {
       if (amountSelectedPokemons > 1) {
         const dialogRef = this.dialog.open(PokemonsModalVsComponent, {
-          width: '512px',
         });
         dialogRef.afterClosed().subscribe(() => this.getKeepSelectedFromStore());
       } else {
         this.maxFavoritesSelected = false;
         const dialogRef = this.dialog.open(PokemonsModalComponent, {
-          width: '512px',
         });
         dialogRef.afterClosed().subscribe(() => this.getKeepSelectedFromStore());
       }

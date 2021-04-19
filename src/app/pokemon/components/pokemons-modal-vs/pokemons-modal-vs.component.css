@@ -6,7 +6,9 @@
 }
 
 .fix-text {
+  text-align: center;
   text-transform: uppercase;
+  padding: 0;
 }
 
 .titles{
@@ -21,4 +23,18 @@
 .graficTittle {
   display: block;
   text-align: center;
+}
+
+.setMarginModalLines {
+  margin: 0.3rem;
+}
+
+.setMarginModal {
+  margin: 0;
+}
+
+@media (max-width: 576px) {
+  .mat-dialog-content{
+    max-height: 35rem;
+  }
 }
