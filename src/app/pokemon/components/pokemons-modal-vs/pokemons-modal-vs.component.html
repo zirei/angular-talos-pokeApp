@@ -1,104 +1,104 @@
-<mat-dialog-content class="mat-typography setPaddingModal">
+<mat-dialog-content class='mat-typography setPaddingModal'>
   <mat-grid-list
-    class="setMarginModal"
+    class='setMarginModal'
     mat-dialog-title
-    cols="12"
-    rowHeight="1.5rem"
+    cols='12'
+    rowHeight='1.5rem'
   >
-    <mat-grid-tile colspan="12" rowspan="2">
-      <span class="fix-text"
+    <mat-grid-tile colspan='12' rowspan='2'>
+      <span class='fix-text'
         >{{ selectedPokemons[0].name }} VS {{ pokemonName2 }}</span
       >
     </mat-grid-tile>
   </mat-grid-list>
-  <hr class="setMarginModalLines" />
-  <mat-grid-list cols="12" rowHeight="4rem">
-    <mat-grid-tile colspan="6" rowspan="2">
+  <hr class='setMarginModalLines' />
+  <mat-grid-list cols='12' rowHeight='4rem'>
+    <mat-grid-tile colspan='6' rowspan='2'>
       <img
         mat-card-image
-        class="imgFluid"
-        src="{{ image }}"
-        alt=" Not found image"
+        class='imgFluid'
+        src='{{ image }}'
+        alt=' Not found image'
       />
     </mat-grid-tile>
-    <mat-grid-tile colspan="6" rowspan="2">
+    <mat-grid-tile colspan='6' rowspan='2'>
       <img
         mat-card-image
-        class="imgFluid"
-        src="{{ image2 }}"
-        alt=" Not found image"
+        class='imgFluid'
+        src='{{ image2 }}'
+        alt=' Not found image'
       />
     </mat-grid-tile>
   </mat-grid-list>
-  <hr class="setMarginModalLines" />
-  <mat-grid-list cols="12" rowHeight="2rem">
-    <mat-grid-tile colspan="5" rowspan="1">
+  <hr class='setMarginModalLines' />
+  <mat-grid-list cols='12' rowHeight='2rem'>
+    <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
-            <span class="text-description">
+            <span class='text-description'>
               <td>{{ descriptionPokemons[0].height / 10 }}m</td>
             </span>
           </tr>
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="2" rowspan="1">
+    <mat-grid-tile colspan='2' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
-            <span class="titles"> <td>Height</td> </span>
+            <span class='titles'> <td>Height</td> </span>
           </tr>
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="5" rowspan="1">
+    <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
-            <span class="text-description">
+            <span class='text-description'>
               <td>{{ descriptionPokemons[1].height / 10 }}m</td>
             </span>
           </tr>
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="5" rowspan="1">
+    <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
-            <span class="text-description">
+            <span class='text-description'>
               <td>{{ descriptionPokemons[0].weight / 10 }}kg</td>
             </span>
           </tr>
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="2" rowspan="1">
+    <mat-grid-tile colspan='2' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
-            <span class="titles"> <td>Weight</td> </span>
+            <span class='titles'> <td>Weight</td> </span>
           </tr>
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="5" rowspan="1">
+    <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
-            <span class="text-description">
+            <span class='text-description'>
               <td>{{ descriptionPokemons[1].weight / 10 }}kg</td>
             </span>
           </tr>
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="5" rowspan="1">
+    <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
-            <span class="text-description">
+            <span class='text-description'>
               <td>
                 {{ ConvertGender(descriptionPokemonsGender[0].gender_rate) }}
               </td>
@@ -107,20 +107,20 @@
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="2" rowspan="1">
+    <mat-grid-tile colspan='2' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
-            <span class="titles"> <td>Gender</td> </span>
+            <span class='titles'> <td>Gender</td> </span>
           </tr>
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="5" rowspan="1">
+    <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
-            <span class="text-description">
+            <span class='text-description'>
               <td>
                 {{ ConvertGender(descriptionPokemonsGender[1].gender_rate) }}
               </td>
@@ -130,13 +130,13 @@
       </div>
     </mat-grid-tile>
   </mat-grid-list>
-  <mat-grid-list cols="12" rowHeight="4rem">
-    <mat-grid-tile colspan="5" rowspan="1">
+  <mat-grid-list cols='12' rowHeight='4rem'>
+    <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
             <td>
-              <div *ngFor="let abilities of descriptionPokemons[1].abilities">
+              <div *ngFor='let abilities of descriptionPokemons[1].abilities'>
                 <span>
                   {{ abilities.ability.name }}
                 </span>
@@ -146,21 +146,21 @@
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="2" rowspan="1">
+    <mat-grid-tile colspan='2' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
-            <span class="titles"> <td>Abilities</td> </span>
+            <span class='titles'> <td>Abilities</td> </span>
           </tr>
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan="5" rowspan="1">
+    <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style="width: 100%">
+        <table style='width: 100%'>
           <tr>
             <td>
-              <div *ngFor="let abilities of descriptionPokemons[0].abilities">
+              <div *ngFor='let abilities of descriptionPokemons[0].abilities'>
                 <span>
                   {{ abilities.ability.name }}
                 </span>
@@ -171,13 +171,13 @@
       </div>
     </mat-grid-tile>
   </mat-grid-list>
-  <hr class="setMarginModalLines" />
-  <mat-grid-list cols="24" rowHeight="21rem" class="graficTittle">
+  <hr class='setMarginModalLines' />
+  <mat-grid-list cols='24' rowHeight='21rem' class='graficTittle'>
     <span>Stats</span>
-    <div *ngIf="descriptionPokemons">
+    <div *ngIf='descriptionPokemons'>
       <app-chart-vs
-        [descriptionPokemons]="descriptionPokemons"
-        [descriptionPokemonsGender]="descriptionPokemonsGender"
+        [descriptionPokemons]='descriptionPokemons'
+        [descriptionPokemonsGender]='descriptionPokemonsGender'
       >
       </app-chart-vs>
     </div>
