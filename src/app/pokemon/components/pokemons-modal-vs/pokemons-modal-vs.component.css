@@ -12,12 +12,16 @@
 }
 
 .titles{
-  vertical-align: super;
+  vertical-align: middle;
   margin: auto;
+  padding: 0 1rem;
+  text-align: center;
+  font-weight: 500;
 }
 
 .text-description{
   vertical-align: middle;
+  
 }
 
 .graficTittle {
