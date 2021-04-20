@@ -1,6 +1,6 @@
 <mat-dialog-content class='mat-typography setPaddingModal'>
   <mat-grid-list
-    class='setMarginModal'
+    class='set-margin-modal'
     mat-dialog-title
     cols='12'
     rowHeight='1.5rem'
@@ -11,12 +11,12 @@
       >
     </mat-grid-tile>
   </mat-grid-list>
-  <hr class='setMarginModalLines' />
+  <hr class='set-margin-modal-lines' />
   <mat-grid-list cols='12' rowHeight='4rem'>
     <mat-grid-tile colspan='6' rowspan='2'>
       <img
         mat-card-image
-        class='imgFluid'
+        class='img-fluid'
         src='{{ image }}'
         alt=' Not found image'
       />
@@ -24,14 +24,14 @@
     <mat-grid-tile colspan='6' rowspan='2'>
       <img
         mat-card-image
-        class='imgFluid'
+        class='img-fluid'
         src='{{ image2 }}'
         alt=' Not found image'
       />
     </mat-grid-tile>
   </mat-grid-list>
-  <hr class='setMarginModalLines' />
-  <mat-grid-list cols='12' rowHeight='2rem'>
+  <hr class='set-margin-modal-lines' />
+  <mat-grid-list cols='14' rowHeight='2rem'>
     <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
         <table style='width: 100%'>
@@ -43,7 +43,7 @@
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan='2' rowspan='1'>
+    <mat-grid-tile colspan='4' rowspan='1'>
       <div mat-dialog-content>
         <table style='width: 100%'>
           <tr>
@@ -74,7 +74,7 @@
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan='2' rowspan='1'>
+    <mat-grid-tile colspan='4' rowspan='1'>
       <div mat-dialog-content>
         <table style='width: 100%'>
           <tr>
@@ -107,7 +107,7 @@
         </table>
       </div>
     </mat-grid-tile>
-    <mat-grid-tile colspan='2' rowspan='1'>
+    <mat-grid-tile colspan='4' rowspan='1'>
       <div mat-dialog-content>
         <table style='width: 100%'>
           <tr>
@@ -130,31 +130,7 @@
       </div>
     </mat-grid-tile>
   </mat-grid-list>
-  <mat-grid-list cols='12' rowHeight='4rem'>
-    <mat-grid-tile colspan='5' rowspan='1'>
-      <div mat-dialog-content>
-        <table style='width: 100%'>
-          <tr>
-            <td>
-              <div *ngFor='let abilities of descriptionPokemons[1].abilities'>
-                <span>
-                  {{ abilities.ability.name }}
-                </span>
-              </div>
-            </td>
-          </tr>
-        </table>
-      </div>
-    </mat-grid-tile>
-    <mat-grid-tile colspan='2' rowspan='1'>
-      <div mat-dialog-content>
-        <table style='width: 100%'>
-          <tr>
-            <span class='titles'> <td>Abilities</td> </span>
-          </tr>
-        </table>
-      </div>
-    </mat-grid-tile>
+  <mat-grid-list cols='14' rowHeight='4rem'>
     <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
         <table style='width: 100%'>
@@ -170,9 +146,33 @@
         </table>
       </div>
     </mat-grid-tile>
+    <mat-grid-tile colspan='4' rowspan='1'>
+      <div mat-dialog-content>
+        <table style='width: 100%'>
+          <tr>
+            <span class='titles'> <td>Abilities</td> </span>
+          </tr>
+        </table>
+      </div>
+    </mat-grid-tile>
+    <mat-grid-tile colspan='5' rowspan='1'>
+      <div mat-dialog-content>
+        <table style='width: 100%'>
+          <tr>
+            <td>
+              <div *ngFor='let abilities of descriptionPokemons[1].abilities'>
+                <span>
+                  {{ abilities.ability.name }}
+                </span>
+              </div>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </mat-grid-tile>
   </mat-grid-list>
-  <hr class='setMarginModalLines' />
-  <mat-grid-list cols='24' rowHeight='21rem' class='graficTittle'>
+  <hr class='set-margin-modal-lines' />
+  <mat-grid-list cols='14' rowHeight='21rem' class='grafic-tittle'>
     <span>Stats</span>
     <div *ngIf='descriptionPokemons'>
       <app-chart-vs

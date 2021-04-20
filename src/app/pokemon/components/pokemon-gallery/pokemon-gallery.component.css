@@ -12,14 +12,28 @@
   padding: 0rem;
 }
 
-.toastUbication {
+.toast-ubication {
   position: fixed;
-  top: 8%;
+  top: 6%;
   width: 12rem;
   z-index: 100;
   padding: 1rem;
-  right: 7%;
+  right: 4%;
   text-align: justify;
   border: 1px solid var(--borderToast);
   background: var(--white);
+}
+
+@media (max-width: 576px) {
+  .toast-ubication {
+    position: fixed;
+    top: 9%;
+    width: 11.5rem;
+    z-index: 100;
+    padding: 0.5rem;
+    right: 9%;
+    text-align: justify;
+    border: 1px solid var(--borderToast);
+    background: var(--white);
+  }
 }

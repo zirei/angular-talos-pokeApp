@@ -22,7 +22,7 @@
   color: var(--orange);
 }
 
-.colors{
+.colors {
   background: var(--red);
   border-radius: 2rem;
   border-block-end-width: 1rem;

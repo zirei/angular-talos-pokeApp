@@ -25,26 +25,26 @@
   padding: 0;
 }
 
-.graficTittle {
+.grafic-tittle {
   display: block;
   text-align: center;
 }
 
-.favDisplay {
+/* .fav-display {
   background: var(--buttonColor);
-}
+} */
 
-.previouslyAddedToFavorites {
+.previously-added-to-favorites {
   background-color: var(--red);
 }
-.normalFavButton {
+.normal-fav-button {
   background-color: var(--backGgroundColor);
 }
-.setMarginModal {
+.set-margin-modal {
   margin: 0;
 }
 
-.setMarginModalLines {
+.set-margin-modal-lines {
   margin: 0.3rem;
 }
 

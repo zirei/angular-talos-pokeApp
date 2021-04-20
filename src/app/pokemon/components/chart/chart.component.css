@@ -1,11 +1,11 @@
-#divChart {
+.div-chart {
   display: block;
   width: 28rem;
   height: 22rem;
 }
 
 @media (max-width: 576px) {
-  #divChart {
+  .div-chart {
     display: block;
     width: 17rem;
     height: 17rem;

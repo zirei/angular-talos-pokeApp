@@ -17,7 +17,7 @@ import { environment } from 'src/environments/environment';
 })
 export class BannerComponent implements OnInit {
   favoritePokemons: any[] = [];
-  images: string []=[];
+  images: string [] = [];
 
   constructor(private store: Store<State>) {
     this.getFavoriteFromStore();
@@ -28,7 +28,6 @@ export class BannerComponent implements OnInit {
   }
 
   getImage(id: number) {
-    this.images = this.favoritePokemons.map((n) => `https://picsum.photos/id/${n}/900/500`);
     return `${environment.POKEMONIMAGEAPI}${id}.png`;
   }
 

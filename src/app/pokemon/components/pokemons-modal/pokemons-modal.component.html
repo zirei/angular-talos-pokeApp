@@ -1,5 +1,5 @@
 <mat-dialog-content class='mat-typography setPaddingDialog'>
-  <mat-grid-list class='setMarginModal' mat-dialog-title cols='24' rowHeight='1.3rem'>
+  <mat-grid-list class='set-margin-modal' mat-dialog-title cols='24' rowHeight='1.3rem'>
     <mat-grid-tile colspan='12' rowspan='2'>
       <span class='fix-text'>{{ selectedPokemons[0].name }}</span>
     </mat-grid-tile>
@@ -11,13 +11,13 @@
     <mat-grid-tile colspan='4' rowspan='2'>
       <button 
         mat-mini-fab 
-        [ngClass]="{ 'previouslyAddedToFavorites': showSelectedFavoriteButtonRed, 'normalFavButton': !showSelectedFavoriteButtonRed }" 
+        [ngClass]="{ 'previously-added-to-favorites': showSelectedFavoriteButtonRed, 'normal-fav-button': !showSelectedFavoriteButtonRed }" 
         (click)='setFavs(selectedPokemons)'>
         <mat-icon>favorite</mat-icon>
       </button>
     </mat-grid-tile>
   </mat-grid-list>
-  <hr class='setMarginModalLines' />
+  <hr class='set-margin-modal-lines' />
   <mat-grid-list cols='12' rowHeight='1.8rem'>
     <mat-grid-tile colspan='4' rowspan='9'>
       <img mat-card-image class='img-fluid' src='{{ image }}' alt=' Not found image' />
@@ -25,7 +25,7 @@
     <mat-grid-tile colspan='8' rowspan='4'>
       <div class='container'>
         <p class='text-description' >{{ descriptionPokemonsGender[0].flavor_text_entries[1].flavor_text.toLowerCase() }} </p>
-        <hr class='setMarginModalLines' />
+        <hr class='set-margin-modal-lines' />
       </div>
     </mat-grid-tile>
     <mat-grid-tile colspan='8' rowspan='2'>
@@ -64,8 +64,8 @@
       </table>
     </mat-grid-tile>
   </mat-grid-list>
-  <hr class='setMarginModalLines' />
-  <mat-grid-list cols='24' rowHeight='21rem' class='graficTittle'>
+  <hr class='set-margin-modal-lines' />
+  <mat-grid-list cols='24' rowHeight='21rem' class='grafic-tittle'>
     <span>Stats</span>
     <div *ngIf='descriptionPokemons'>
       <app-chart

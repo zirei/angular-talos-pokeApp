@@ -9,7 +9,7 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        redirectTo: '/pokemonGallery',
+        redirectTo: '/pokemongallery',
         pathMatch: 'full',
       },
       {
@@ -17,7 +17,7 @@ const routes: Routes = [
         loadChildren: () => import('./home/home.module').then(m => m.HomeModule)
       },
       {
-        path: 'pokemonGallery',
+        path: 'pokemongallery',
         loadChildren: () => import('./pokemon/pokemon.module').then(m => m.PokemonModule)
       }
     ],

@@ -1,4 +1,4 @@
-.imgFluid {
+.img-fluid {
   width: 8rem;
   display: block;
   margin: auto;
@@ -11,7 +11,7 @@
   padding: 0;
 }
 
-.titles{
+.titles {
   vertical-align: middle;
   margin: auto;
   padding: 0 1rem;
@@ -19,26 +19,26 @@
   font-weight: 500;
 }
 
-.text-description{
+.text-description {
   vertical-align: middle;
   
 }
 
-.graficTittle {
+.grafic-tittle {
   display: block;
   text-align: center;
 }
 
-.setMarginModalLines {
+.set-margin-modal-lines {
   margin: 0.3rem;
 }
 
-.setMarginModal {
+.set-margin-modal {
   margin: 0;
 }
 
 @media (max-width: 576px) {
-  .mat-dialog-content{
+  .mat-dialog-content {
     max-height: 35rem;
   }
 }

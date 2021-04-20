@@ -26,11 +26,10 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     SharedModule,
     HttpClientModule,
     StoreModule.forRoot({}, {}),
-    StoreDevtoolsModule.instrument({name: 'AngularTalosPokeApp', maxAge: 25, logOnly:environment.production}),
+    StoreDevtoolsModule.instrument({ name: 'AngularTalosPokeApp', maxAge: 25, logOnly: environment.production }),
     EffectsModule.forRoot([]),
     InfiniteScrollModule,
     BrowserAnimationsModule,
-
   ],
   providers: [],
   bootstrap: [AppComponent]
