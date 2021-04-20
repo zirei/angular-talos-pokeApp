@@ -30,10 +30,6 @@
   text-align: center;
 }
 
-/* .fav-display {
-  background: var(--buttonColor);
-} */
-
 .previously-added-to-favorites {
   background-color: var(--red);
 }
@@ -50,6 +46,10 @@
 
 .text-description {
   margin: 0;
+}
+
+.table-width {
+  width: 100%;
 }
 
 @media (max-width: 576px) {

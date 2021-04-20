@@ -37,6 +37,10 @@
   margin: 0;
 }
 
+.table-width {
+  width: 100%;
+}
+
 @media (max-width: 576px) {
   .mat-dialog-content {
     max-height: 35rem;

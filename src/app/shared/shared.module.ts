@@ -5,14 +5,17 @@ import { NavbarComponent } from './components/navbar/navbar.component';
 import { MaterialModule } from '../material/material.module';
 import { FormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
+import { TransformDescriptionPipe } from './pipes/transform-description/transform-description.pipe';
 
 @NgModule({
   declarations: [
-    NavbarComponent
+    NavbarComponent,
+    TransformDescriptionPipe,
   ],
   exports: [
     NavbarComponent,
     InfiniteScrollModule,
+    TransformDescriptionPipe,
 
   ],
   imports: [

@@ -20,7 +20,7 @@
   <hr class='set-margin-modal-lines' />
   <mat-grid-list cols='12' rowHeight='1.8rem'>
     <mat-grid-tile colspan='4' rowspan='9'>
-      <img mat-card-image class='img-fluid' src='{{ image }}' alt=' Not found image' />
+      <img mat-card-image class='img-fluid' [src]='image' alt=' Not found image' />
     </mat-grid-tile>
     <mat-grid-tile colspan='8' rowspan='4'>
       <div class='container'>
@@ -29,7 +29,7 @@
       </div>
     </mat-grid-tile>
     <mat-grid-tile colspan='8' rowspan='2'>
-      <table style='width: 100%'>
+      <table class='table-width'>
         <tr>
           <th>Height</th>
           <th>Weight</th>
@@ -37,14 +37,14 @@
         </tr>
 
         <tr>
-        <td class='text-description' > {{ descriptionPokemons[0].height/10 }}m </td>
-        <td class='text-description'> {{ descriptionPokemons[0].weight/10 }}kg </td>
+        <td class='text-description' > {{ descriptionPokemons[0].height | transformDescription }}m </td>
+        <td class='text-description'> {{ descriptionPokemons[0].weight | transformDescription  }}kg </td>
         <td class='text-description'> {{ ConvertGender(descriptionPokemonsGender[0].gender_rate) }} </td>
         </tr>
       </table>
     </mat-grid-tile>
     <mat-grid-tile colspan='8' rowspan='3'>
-      <table style='width: 100%'>
+      <table class='table-width'>
         <tr>
           <th>Abilitys</th>
           <th>Type</th>

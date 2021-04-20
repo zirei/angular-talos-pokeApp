@@ -36,11 +36,10 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   selectedPokemons: Pokemon[] = [];
   descriptionPokemons: any[] = [];
   descriptionPokemonsGender: any[] = [];
-
   pokemonStats: any[] = [];
-
+  
   constructor(private store: Store<State>) {}
-
+  
   ngOnInit(): void {
     this.getSelectedPokemonsFromStore();
     this.getFavs(this.selectedPokemons);
@@ -87,7 +86,6 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
 
   setFavs(selectedPokemons: any) {
     this.getFavoriteFromStore(selectedPokemons[0]);
-    
   }
 
   getFavs(pokemon: any) {

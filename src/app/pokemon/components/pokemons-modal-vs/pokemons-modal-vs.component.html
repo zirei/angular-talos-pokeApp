@@ -17,7 +17,7 @@
       <img
         mat-card-image
         class='img-fluid'
-        src='{{ image }}'
+        [src]='image'
         alt=' Not found image'
       />
     </mat-grid-tile>
@@ -25,7 +25,7 @@
       <img
         mat-card-image
         class='img-fluid'
-        src='{{ image2 }}'
+        [src]='image2'
         alt=' Not found image'
       />
     </mat-grid-tile>
@@ -34,10 +34,10 @@
   <mat-grid-list cols='14' rowHeight='2rem'>
     <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <span class='text-description'>
-              <td>{{ descriptionPokemons[0].height / 10 }}m</td>
+              <td>{{ descriptionPokemons[0].height | transformDescription }}m</td>
             </span>
           </tr>
         </table>
@@ -45,7 +45,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan='4' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <span class='titles'> <td>Height</td> </span>
           </tr>
@@ -54,10 +54,10 @@
     </mat-grid-tile>
     <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <span class='text-description'>
-              <td>{{ descriptionPokemons[1].height / 10 }}m</td>
+              <td>{{ descriptionPokemons[1].height | transformDescription }}m</td>
             </span>
           </tr>
         </table>
@@ -65,10 +65,10 @@
     </mat-grid-tile>
     <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <span class='text-description'>
-              <td>{{ descriptionPokemons[0].weight / 10 }}kg</td>
+              <td>{{ descriptionPokemons[0].weight | transformDescription }}kg</td>
             </span>
           </tr>
         </table>
@@ -76,7 +76,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan='4' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <span class='titles'> <td>Weight</td> </span>
           </tr>
@@ -85,10 +85,10 @@
     </mat-grid-tile>
     <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <span class='text-description'>
-              <td>{{ descriptionPokemons[1].weight / 10 }}kg</td>
+              <td>{{ descriptionPokemons[1].weight | transformDescription }}kg</td>
             </span>
           </tr>
         </table>
@@ -96,7 +96,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <span class='text-description'>
               <td>
@@ -109,7 +109,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan='4' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <span class='titles'> <td>Gender</td> </span>
           </tr>
@@ -118,7 +118,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <span class='text-description'>
               <td>
@@ -133,7 +133,7 @@
   <mat-grid-list cols='14' rowHeight='4rem'>
     <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <td>
               <div *ngFor='let abilities of descriptionPokemons[0].abilities'>
@@ -148,7 +148,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan='4' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <span class='titles'> <td>Abilities</td> </span>
           </tr>
@@ -157,7 +157,7 @@
     </mat-grid-tile>
     <mat-grid-tile colspan='5' rowspan='1'>
       <div mat-dialog-content>
-        <table style='width: 100%'>
+        <table class='table-width'>
           <tr>
             <td>
               <div *ngFor='let abilities of descriptionPokemons[1].abilities'>

@@ -54,34 +54,27 @@ export class PokemonGalleryComponent implements OnInit {
     this.isSearchingSubscription();
   }
 
-  pokemonDescriptionUrl = (url: string) => {
-    return `${environment.POKEMONDATAAPI}pokemon-species/${url.split('/')[6]}/`;
-  };
-
   selectPokemon(pokemon: Pokemon) {
     this.store.dispatch(PokemonActions.selectedPokemons({ pokemon }));
     this.store.dispatch(PokemonActions.loadPokemonsDescription({ pokemon }));
     this.store.dispatch(
       PokemonActions.loadPokemonsDescriptionGender({ pokemon })
-    );
+    )
+
     this.store.dispatch(PokemonActions.maximumNumberOfFavoritesUnSelected());
     this.getSelectedPokemonsFromStore();
     this.openDialog(this.selectedPokemons.length);
   }
-  openDialog(amountSelectedPokemons: any) {
-    setTimeout(() => {
-      if (amountSelectedPokemons > 1) {
-        const dialogRef = this.dialog.open(PokemonsModalVsComponent, {
-        });
-        dialogRef.afterClosed().subscribe(() => this.getKeepSelectedFromStore());
-      } else {
-        this.maxFavoritesSelected = false;
-        const dialogRef = this.dialog.open(PokemonsModalComponent, {
-        });
-        dialogRef.afterClosed().subscribe(() => this.getKeepSelectedFromStore());
-      }
-    }, 350);
-    
+
+  openDialog(amountSelectedPokemons: number) {
+    if (amountSelectedPokemons > 1) {
+      const dialogRef = this.dialog.open(PokemonsModalVsComponent);
+      dialogRef.afterClosed().subscribe(() => this.getKeepSelectedFromStore());
+    } else {
+      this.maxFavoritesSelected = false;
+      const dialogRef = this.dialog.open(PokemonsModalComponent);
+      dialogRef.afterClosed().subscribe(() => this.getKeepSelectedFromStore());
+    }
   }
 
   getSelectedPokemonsFromStore() {
@@ -130,10 +123,10 @@ export class PokemonGalleryComponent implements OnInit {
         map((pokemon) => {
           if (pokemon) {
             this.keepSelected = pokemon.keepSelected;
-            this.showToast= pokemon.showSelected;
-            this.maxFavoritesSelected = pokemon.maxFavoritesSelected
+            this.showToast = pokemon.showSelected;
+            this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
             if (this.maxFavoritesSelected === true) {
-              this.openToast()
+              this.openToast();
             }
           }
         })

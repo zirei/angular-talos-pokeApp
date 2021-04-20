@@ -16,7 +16,7 @@
   position: fixed;
   top: 6%;
   width: 12rem;
-  z-index: 100;
+  z-index: 2;
   padding: 1rem;
   right: 4%;
   text-align: justify;
@@ -29,7 +29,7 @@
     position: fixed;
     top: 9%;
     width: 11.5rem;
-    z-index: 100;
+    z-index: 2;
     padding: 0.5rem;
     right: 9%;
     text-align: justify;
