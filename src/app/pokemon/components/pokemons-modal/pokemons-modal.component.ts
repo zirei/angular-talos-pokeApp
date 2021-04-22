@@ -27,7 +27,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   url: string = '';
   image: string = '';
   keepSelected: boolean = false;
-  showSelected: boolean = true;
+  showSelected: boolean = false;
   showSelectedFavoriteButtonRed: boolean = false;
   favoriteSelected: boolean = false;
   maxFavoritesSelected: boolean = false;
@@ -36,7 +36,6 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   selectedPokemons: Pokemon[] = [];
   descriptionPokemons: any[] = [];
   descriptionPokemonsGender: any[] = [];
-  pokemonStats: any[] = [];
   
   constructor(private store: Store<State>) {}
   
@@ -45,16 +44,16 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
     this.getFavs(this.selectedPokemons);
   }
 
-  ConvertGender(genderRate: number) {
-    let defaultGender = 'male';
-    if (genderRate >= 4) {
-      return (defaultGender = 'female');
-    } else if (genderRate === -1) {
-      return (defaultGender = 'genderless');
-    } else {
-      return defaultGender;
-    }
-  }
+  // ConvertGender(genderRate: number) {
+  //   let defaultGender = 'male';
+  //   if (genderRate >= 4) {
+  //     return (defaultGender = 'female');
+  //   } else if (genderRate === -1) {
+  //     return (defaultGender = 'genderless');
+  //   } else {
+  //     return defaultGender;
+  //   }
+  // }
 
   getSelectedPokemonsFromStore() {
     this.store

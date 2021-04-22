@@ -34,9 +34,9 @@ export class PokemonDataService {
     );
   }
   
-  getPokemonsDescriptionGenderFromApi(id: number): Observable<any> {
+  getPokemonsDescriptionGenderFromApi(id: number): Observable<PokemonData> {
     const pokemonDescriptionUrl = `${environment.POKEMONDATAAPI}pokemon-species/${id}/`;
-    return this.http.get<any>(pokemonDescriptionUrl).pipe(
+    return this.http.get<PokemonData>(pokemonDescriptionUrl).pipe(
       catchError(this.handleError)
     );
   }

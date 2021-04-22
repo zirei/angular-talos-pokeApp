@@ -16,7 +16,7 @@ import { environment } from 'src/environments/environment';
   styleUrls: ['./banner.component.css'],
 })
 export class BannerComponent implements OnInit {
-  favoritePokemons: any[] = [];
+  favoritePokemons: Pokemon[] = [];
   images: string [] = [];
 
   constructor(private store: Store<State>) {

@@ -228,7 +228,7 @@ export const pokemonReducer = createReducer<PokemonState>(
   ),
   on(
     PokemonActions.loadPokemonsDescriptionSuccess,
-    (state, action:any ): PokemonState => {
+    (state, action ): PokemonState => {
       const updatedPokemon = state.selectedPokemons.map(
         data => action.pokemonData.id === data.id ? action.pokemonData : data);
       return {
@@ -252,7 +252,7 @@ export const pokemonReducer = createReducer<PokemonState>(
   ),
   on(
     PokemonActions.loadPokemonsDescriptionGenderSuccess,
-    (state, action:any ): PokemonState => {
+    (state, action): PokemonState => {
       const updatedPokemon = state.selectedPokemons.map(
         data => action.pokemonData.id === data.id ? action.pokemonData : data);
       return {

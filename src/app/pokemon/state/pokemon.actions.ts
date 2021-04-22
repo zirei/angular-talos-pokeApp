@@ -35,7 +35,7 @@ export const loadPokemonsDescription = createAction(
 );
 export const loadPokemonsDescriptionSuccess = createAction(
   '[Pokemon] Selected Pokemon Description Success',
-  props<{ pokemonData: any }>()
+  props<{ pokemonData: PokemonData }>()
 );
 export const loadPokemonsDescriptionFailure = createAction(
   '[Pokemon] Load Pokemon Description Fail',
@@ -49,7 +49,7 @@ export const loadPokemonsDescriptionGender = createAction(
 );
 export const loadPokemonsDescriptionGenderSuccess = createAction(
   '[Pokemon] Selected Pokemon Gender Success',
-  props<{ pokemonData: any }>()
+  props<{ pokemonData: PokemonData }>()
 );
 export const loadPokemonsDescriptionGenderFailure = createAction(
   '[Pokemon] Load Pokemon Gender Fail',
@@ -94,7 +94,7 @@ export const unloadPokemonsDescription = createAction(
 // maxFavsMessaje
 export const maximumNumberOfFavoritesSelected = createAction(
   '[Pokemon] maximum number of favorites selected ',
-  props<{ maxFavName: any }>()
+  props<{ maxFavName: string }>()
 );
 
 export const maximumNumberOfFavoritesUnSelected = createAction(

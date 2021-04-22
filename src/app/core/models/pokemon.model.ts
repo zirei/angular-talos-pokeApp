@@ -4,9 +4,9 @@ export interface Pokemon {
   name: string;
   url: string;
   id: number;
-  gender_rate?: any;
+  gender_rate?: number;
   favoriteSelected?: boolean;
-  results?: any;
+  // results?: any;
 }
 
 export function getPokemonId(pokemon: Pokemon): number {

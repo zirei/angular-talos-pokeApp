@@ -34,16 +34,17 @@ export class PokemonsModalVsComponent implements OnInit {
     this.getSelectedPokemonsFromStore();
   }
 
-  ConvertGender(genderRate:number){
-    let defaultGender = 'male'
-    if (genderRate >= 4) {
-      return defaultGender = 'female'
-    } else if (genderRate === -1) {
-      return defaultGender = 'genderless'
-    } else {
-      return defaultGender
-    }
-  }
+  // ConvertGender(genderRate:number){
+  //   let defaultGender = 'male'
+  //   if (genderRate >= 4) {
+  //     return defaultGender = 'female'
+  //   } else if (genderRate === -1) {
+  //     return defaultGender = 'genderless'
+  //   } else {
+  //     return defaultGender
+  //   }
+  // }
+  
   getSelectedPokemonsFromStore() {
     this.store.select(getPokemonsInfo).pipe(
       map((pokemon) => {

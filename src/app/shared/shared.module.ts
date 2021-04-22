@@ -6,16 +6,19 @@ import { MaterialModule } from '../material/material.module';
 import { FormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
 import { TransformDescriptionPipe } from './pipes/transform-description/transform-description.pipe';
+import { ConvertGenderPipe } from './pipes/convert-gender/convert-gender.pipe';
 
 @NgModule({
   declarations: [
     NavbarComponent,
     TransformDescriptionPipe,
+    ConvertGenderPipe,
   ],
   exports: [
     NavbarComponent,
     InfiniteScrollModule,
     TransformDescriptionPipe,
+    ConvertGenderPipe,
 
   ],
   imports: [
