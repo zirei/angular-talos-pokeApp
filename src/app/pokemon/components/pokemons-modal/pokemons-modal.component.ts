@@ -45,14 +45,14 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
     this.getFavs(this.selectedPokemons);
   }
 
-  ConvertGender(gender_rate: number) {
-    let default_gender = 'male';
-    if (gender_rate >= 4) {
-      return (default_gender = 'female');
-    } else if (gender_rate === -1) {
-      return (default_gender = 'genderless');
+  ConvertGender(genderRate: number) {
+    let defaultGender = 'male';
+    if (genderRate >= 4) {
+      return (defaultGender = 'female');
+    } else if (genderRate === -1) {
+      return (defaultGender = 'genderless');
     } else {
-      return default_gender;
+      return defaultGender;
     }
   }
 

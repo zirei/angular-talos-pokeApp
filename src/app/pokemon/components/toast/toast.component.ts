@@ -18,7 +18,7 @@ export class ToastComponent implements OnInit{
   @Input() pokemonName: any = 'Not found Pokemon';
   @Input() maxFavoritesSelected: boolean = false;
   keepSelected: boolean = false;
-  errorMessage: string = "You can only have five favorite pokemons, that's why you can't add to ";
+  errorMessage: string = 'You can only have five favorite pokemons, that\'s why you can\'t add to';
   horizontalPosition: MatSnackBarHorizontalPosition = 'center';
   verticalPosition: MatSnackBarVerticalPosition = 'bottom';
   maxFavoritesSelectedName: string = '';
@@ -60,7 +60,7 @@ export class ToastComponent implements OnInit{
       });
     }else{
       this.store.dispatch(PokemonActions.maximumNumberOfFavoritesUnSelected());
-      this.errorMessage = "You can only have five favorite pokemons, that's why you can't add to ";
+      this.errorMessage = 'You can only have five favorite pokemons, that\'s why you can\'t add to';
     }
   }
 

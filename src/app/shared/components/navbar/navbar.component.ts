@@ -8,8 +8,10 @@ import * as PokemonActions from '../../../pokemon/state/pokemon.actions';
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent implements OnInit {
+export class NavbarComponent {
   private _searchPokemon: string = '';
+
+  constructor(private store: Store<State>) { }
 
   get searchPokemon(): string {
     return this._searchPokemon;
@@ -23,10 +25,4 @@ export class NavbarComponent implements OnInit {
       this.store.dispatch(PokemonActions.queryPokemon({query: this._searchPokemon}));
     }
   }
-
-  constructor(private store: Store<State>) { }
-  
-  ngOnInit(): void {
-  }
-
 }

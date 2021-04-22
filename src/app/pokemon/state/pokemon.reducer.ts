@@ -10,6 +10,7 @@ import * as PokemonActions from './pokemon.actions';
 import * as AppState from '../../state/app.state.module';
 import { Actions } from '@ngrx/effects';
 import { PokemonData } from 'src/app/core/models/pokemon-data.model';
+import { environment } from 'src/environments/environment';
 
 export interface State extends AppState.State {
   pokemons: PokemonState;
@@ -39,17 +40,17 @@ const initialState: PokemonState = {
   favoritePokemons: [
     {
       name: 'bulbasaur',
-      url: 'https://pokeapi.co/api/v2/pokemon/1/',
+      url: `${environment.POKEMONDATAAPI}pokemon/1/`,
       id: 1
     },
     {
       name: 'charmander',
-      url: 'https://pokeapi.co/api/v2/pokemon/4/',
+      url: `${environment.POKEMONDATAAPI}pokemon/4/`,
       id: 4
     },
     {
       name: 'squirtle',
-      url: 'https://pokeapi.co/api/v2/pokemon/7/',
+      url: `${environment.POKEMONDATAAPI}pokemon/7/`,
       id: 7
     },
   ],
