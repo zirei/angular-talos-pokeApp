@@ -1,11 +1,8 @@
-import { stringify } from '@angular/compiler/src/util';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { first, map } from 'rxjs/operators';
 import { Pokemon } from 'src/app/core/models/pokemon.model';
 import {
   getFavoritePokemon,
-  getPokemonsInfo,
   State,
 } from 'src/app/pokemon/state/pokemon.reducer';
 import { environment } from 'src/environments/environment';
@@ -17,31 +14,20 @@ import { environment } from 'src/environments/environment';
 })
 export class BannerComponent implements OnInit {
   favoritePokemons: Pokemon[] = [];
-  images: string [] = [];
+  images: string[] = [];
 
-  constructor(private store: Store<State>) {
-    this.getFavoriteFromStore();
-  }
+  constructor(private store: Store<State>) {}
 
   ngOnInit(): void {
-    this.getFavoriteFromStore();
+    this.store
+      .select(getFavoritePokemon)
+      .subscribe((favoritePokemons) => {
+        this.favoritePokemons = favoritePokemons;
+        console.log('favorite pokemons', favoritePokemons);
+      });
   }
 
   getImage(id: number) {
     return `${environment.POKEMONIMAGEAPI}${id}.png`;
-  }
-
-  getFavoriteFromStore() {
-    this.store
-      .select(getFavoritePokemon)
-      .pipe(
-        first(),
-        map((favorites) => {
-          if (favorites) {
-            this.favoritePokemons = favorites;
-          }
-        })
-      )
-      .subscribe();
   }
 }
