@@ -50,16 +50,16 @@ export class PokemonGalleryComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store.select(getIsSearching).subscribe((isSearching) => {
+      this.isSearching = isSearching;
+    });
     this.getPokemonsDataFromStore();
-    this.isSearchingSubscription();
   }
 
   selectPokemon(pokemon: Pokemon) {
     this.store.dispatch(PokemonActions.selectedPokemons({ pokemon }));
     this.store.dispatch(PokemonActions.loadPokemonsDescription({ pokemon }));
-    this.store.dispatch(
-      PokemonActions.loadPokemonsDescriptionGender({ pokemon })
-    )
+    this.store.dispatch(PokemonActions.loadPokemonsDescriptionGender({ pokemon }));
 
     this.store.dispatch(PokemonActions.maximumNumberOfFavoritesUnSelected());
     this.getSelectedPokemonsFromStore();
@@ -85,19 +85,14 @@ export class PokemonGalleryComponent implements OnInit {
     });
   }
 
-  isSearchingSubscription() {
-    this.store
-      .select(getIsSearching)
-      .pipe(
-        map((isSearching: boolean) => {
-          this.isSearching = isSearching;
-          this.getPokemonsDataFromStore();
-        })
-      )
-      .subscribe();
-  }
-
   getPokemonsDataFromStore() {
+    // this.store
+    //   .select(getFavoritePokemon)
+    //   .subscribe((favoritePokemons) => {
+    //     this.favoritePokemons = favoritePokemons;
+    //     console.log('favorite pokemons', favoritePokemons);
+    //   });
+
     this.store.select(getPokemonsInfo).subscribe((pokemons) => {
       if (pokemons) {
         this.rootPokemonList = pokemons.rootPokemonList;
@@ -116,6 +111,17 @@ export class PokemonGalleryComponent implements OnInit {
   }
 
   getKeepSelectedFromStore() {
+    // this.store.select(getPokemonsInfo).subscribe((pokemons) => {
+    //   if (pokemons) {
+    //     this.keepSelected = pokemons.keepSelected;
+    //     this.showToast = pokemons.showSelected;
+    //     this.maxFavoritesSelected = pokemons.maxFavoritesSelected;
+    //     if (this.keepSelected === true) {
+    //       this.openToast();
+    //     }
+    //   }
+    // });
+
     this.store
       .select(getPokemonsInfo)
       .pipe(
@@ -131,6 +137,6 @@ export class PokemonGalleryComponent implements OnInit {
           }
         })
       )
-      .subscribe();
+      .toPromise();
   }
 }

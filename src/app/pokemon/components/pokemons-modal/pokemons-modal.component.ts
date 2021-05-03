@@ -11,6 +11,8 @@ import {
   getPokemonsInfo,
   getFavoritePokemon,
   pokemonReducer,
+  getkeepSelected,
+  getMaxFav,
 } from '../../state/pokemon.reducer';
 import * as PokemonActions from '../../state/pokemon.actions';
 import { state } from '@angular/animations';
@@ -36,9 +38,9 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   selectedPokemons: Pokemon[] = [];
   descriptionPokemons: any[] = [];
   descriptionPokemonsGender: any[] = [];
-  
+
   constructor(private store: Store<State>) {}
-  
+
   ngOnInit(): void {
     this.getSelectedPokemonsFromStore();
     this.getFavs(this.selectedPokemons);
@@ -56,17 +58,23 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   // }
 
   getSelectedPokemonsFromStore() {
-    this.store
-      .select(getPokemonsInfo)
-      .pipe(
-        map((pokemon) => {
-          if (pokemon) {
-            this.descriptionPokemons = pokemon.descriptionPokemons;
-            this.descriptionPokemonsGender = pokemon.descriptionPokemonsGender;
-          }
-        })
-      )
-      .subscribe();
+    // this.store
+    //   .select(getPokemonsInfo)
+    //   .pipe(
+    //     map((pokemon) => {
+    //       if (pokemon) {
+    //         this.descriptionPokemons = pokemon.descriptionPokemons;
+    //         this.descriptionPokemonsGender = pokemon.descriptionPokemonsGender;
+    //       }
+    //     })
+    //   )
+    //   .toPromise();
+    this.store.select(getPokemonsInfo).subscribe((pokemons) => {
+      if (pokemons) {
+        this.descriptionPokemons = pokemons.descriptionPokemons;
+        this.descriptionPokemonsGender = pokemons.descriptionPokemonsGender;
+      }
+    });
     this.store
       .select(getSelectedPokemons)
       .pipe(
@@ -80,7 +88,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
           }
         })
       )
-      .subscribe();
+      .toPromise();
   }
 
   setFavs(selectedPokemons: any) {
@@ -89,23 +97,24 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
 
   getFavs(pokemon: any) {
     this.store
-    .select(getFavoritePokemon)
-    .pipe(
-      first(),
-      map((favoritePokemon) => {
-        if (favoritePokemon.length < 1) {
-          this.showSelectedFavoriteButtonRed = false;
-        }
-        let inFavorites = favoritePokemon.find((item) => 
-        item.id === pokemon[0].id);
-        if (inFavorites) {
-          this.showSelectedFavoriteButtonRed = true;
-        }else{
-          this.showSelectedFavoriteButtonRed = false;
-        }
-      })
+      .select(getFavoritePokemon)
+      .pipe(
+        first(),
+        map((favoritePokemon) => {
+          if (favoritePokemon.length < 1) {
+            this.showSelectedFavoriteButtonRed = false;
+          }
+          let inFavorites = favoritePokemon.find(
+            (item) => item.id === pokemon[0].id
+          );
+          if (inFavorites) {
+            this.showSelectedFavoriteButtonRed = true;
+          } else {
+            this.showSelectedFavoriteButtonRed = false;
+          }
+        })
       )
-      .subscribe();
+      .toPromise();
   }
 
   getFavoriteFromStore(pokemon: Pokemon) {
@@ -135,7 +144,11 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
             this.store.dispatch(
               PokemonActions.maximumNumberOfFavoritesSelected({ maxFavName })
             );
-            alert(`You have selected to: ${favorites.map((item)=> item.name.toLocaleUpperCase(),)}. You can only have five favorite pokemons, that's why you can't add to ${maxFavName.toLocaleUpperCase()}`);
+            alert(
+              `You have selected to: ${favorites.map((item) =>
+                item.name.toLocaleUpperCase()
+              )}. You can only have five favorite pokemons, that's why you can't add to ${maxFavName.toLocaleUpperCase()}`
+            );
           } else {
             this.store.dispatch(
               PokemonActions.selectedFavorite({ pokemon: pokemon })
@@ -148,26 +161,28 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
           }
         })
       )
-      .subscribe();
+      .toPromise()
   }
 
   getKeepSelectedFromStore() {
-    this.store.dispatch(PokemonActions.keepSelectedPokemons());
     this.store
-    .select(getPokemonsInfo)
-    .pipe(
-      first(),
-      map((pokemon) => {
-        if (pokemon) {
-          this.keepSelected = pokemon.keepSelected;
-          if (this.keepSelected === true){
-            this.store.dispatch(PokemonActions.maximumNumberOfFavoritesUnSelected());
-            this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
-          }
+      .select(getPokemonsInfo)
+      .pipe(
+        first(),
+        map((pokemon) => {
+          if (pokemon) {
+            this.keepSelected = pokemon.keepSelected;
+            if (this.keepSelected === true) {
+              this.store.dispatch(
+                PokemonActions.maximumNumberOfFavoritesUnSelected()
+              );
+              console.log(pokemon)
+              this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
+            }
           }
         })
       )
-      .subscribe();
+      .toPromise();
   }
 
   ngOnDestroy(): void {

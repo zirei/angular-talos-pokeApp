@@ -8,6 +8,7 @@ import {
   MatSnackBarVerticalPosition,
 } from '@angular/material/snack-bar';
 import * as PokemonActions from '../../state/pokemon.actions';
+import { Pokemon } from 'src/app/core/models/pokemon.model';
 
 @Component({
   selector: 'app-toast',
@@ -15,7 +16,7 @@ import * as PokemonActions from '../../state/pokemon.actions';
   styleUrls: ['./toast.component.css']
 })
 export class ToastComponent implements OnInit{
-  @Input() pokemonName: any = 'Not found Pokemon';
+  @Input() pokemonName: Pokemon[] = [];
   @Input() maxFavoritesSelected: boolean = false;
   keepSelected: boolean = false;
   errorMessage: string = 'You can only have five favorite pokemons, that\'s why you can\'t add to ';
@@ -32,6 +33,18 @@ export class ToastComponent implements OnInit{
   }
 
   getKeepSelectedFromStore() {
+
+    // this.store.select(getPokemonsInfo).subscribe((pokemon) => {
+    //   if (pokemon) {
+    //     this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
+    //     this.keepSelected = pokemon.keepSelected;
+    //     if(this.maxFavoritesSelected){
+    //       this.maxFavoritesSelectedName = pokemon.maxFavoritesSelectedName;
+    //       this.openSnackBar(this.maxFavoritesSelected, this.maxFavoritesSelectedName);
+    //     }
+    //   }
+    // });
+
     this.store
       .select(getPokemonsInfo)
       .pipe(
@@ -47,7 +60,7 @@ export class ToastComponent implements OnInit{
           }
         })
       )
-      .subscribe();
+      .toPromise();
   }
 
   openSnackBar(favoriteMessajeError: boolean, maxFavoritesSelectedName: string) {

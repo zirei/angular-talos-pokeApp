@@ -97,7 +97,16 @@ export const getPokemonsGender = createSelector(
   getPokemonFeatureState,
   state => state.descriptionPokemonsGender
 );
-
+// keep selected
+export const getkeepSelected = createSelector(
+  getPokemonFeatureState,
+  state => state.keepSelected
+);
+// keep selected
+export const getMaxFav = createSelector(
+  getPokemonFeatureState,
+  state => state.maxFavoritesSelected
+);
 // Favorite info
 export const getFavoritePokemon = createSelector(
   getPokemonFeatureState,

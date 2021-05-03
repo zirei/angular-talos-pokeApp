@@ -6,7 +6,6 @@ export interface Pokemon {
   id: number;
   gender_rate?: number;
   favoriteSelected?: boolean;
-  // results?: any;
 }
 
 export function getPokemonId(pokemon: Pokemon): number {

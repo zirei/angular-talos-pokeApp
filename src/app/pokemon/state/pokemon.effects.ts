@@ -29,9 +29,10 @@ export class PokemonEffects {
       ofType(PokemonActions.loadPokemons),
       mergeMap(() =>
         this.PokemonDataService.getPokemonsFromApi().pipe(
-          map((pokemons:any) => 
+          map((pokemons: any) => 
             {
-              pokemons['results'].forEach( (pokemon:any) => pokemon.id = getPokemonId(pokemon))
+              console.log('pokemons load -> ', pokemons)
+              pokemons['results'].forEach( (pokemon:Pokemon) => pokemon.id = getPokemonId(pokemon))
               return PokemonActions.loadPokemonsSuccess({ pokemons })
             }
           ),
