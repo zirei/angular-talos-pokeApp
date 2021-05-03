@@ -36,7 +36,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   selectedPokemons2: PokemonState | undefined;
   description: string = '';
   selectedPokemons: Pokemon[] = [];
-  descriptionPokemons: any[] = [];
+  descriptionPokemons: PokemonData[] = [];
   descriptionPokemonsGender: any[] = [];
 
   constructor(private store: Store<State>) {}
@@ -46,29 +46,8 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
     this.getFavs(this.selectedPokemons);
   }
 
-  // ConvertGender(genderRate: number) {
-  //   let defaultGender = 'male';
-  //   if (genderRate >= 4) {
-  //     return (defaultGender = 'female');
-  //   } else if (genderRate === -1) {
-  //     return (defaultGender = 'genderless');
-  //   } else {
-  //     return defaultGender;
-  //   }
-  // }
 
   getSelectedPokemonsFromStore() {
-    // this.store
-    //   .select(getPokemonsInfo)
-    //   .pipe(
-    //     map((pokemon) => {
-    //       if (pokemon) {
-    //         this.descriptionPokemons = pokemon.descriptionPokemons;
-    //         this.descriptionPokemonsGender = pokemon.descriptionPokemonsGender;
-    //       }
-    //     })
-    //   )
-    //   .toPromise();
     this.store.select(getPokemonsInfo).subscribe((pokemons) => {
       if (pokemons) {
         this.descriptionPokemons = pokemons.descriptionPokemons;
@@ -91,11 +70,11 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
       .toPromise();
   }
 
-  setFavs(selectedPokemons: any) {
+  setFavs(selectedPokemons: Pokemon[]) {
     this.getFavoriteFromStore(selectedPokemons[0]);
   }
 
-  getFavs(pokemon: any) {
+  getFavs(pokemon: Pokemon[]) {
     this.store
       .select(getFavoritePokemon)
       .pipe(
@@ -176,7 +155,6 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
               this.store.dispatch(
                 PokemonActions.maximumNumberOfFavoritesUnSelected()
               );
-              console.log(pokemon)
               this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
             }
           }

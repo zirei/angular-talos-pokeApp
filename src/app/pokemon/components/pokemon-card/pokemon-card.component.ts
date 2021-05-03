@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Pokemon } from 'src/app/core/models/pokemon.model';
 import { environment } from 'src/environments/environment';
 
 @Component({
@@ -8,7 +9,7 @@ import { environment } from 'src/environments/environment';
 })
 export class PokemonCardComponent implements OnInit {
 
-  @Input() pokemon: any;
+  @Input() pokemon: Pokemon | any;
   image: string = '';
 
   constructor() { }

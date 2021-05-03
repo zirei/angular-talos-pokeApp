@@ -11,6 +11,7 @@ import {
   getSelectedPokemons,
   getIsSearching,
   getPokemonsInfo,
+  PokemonState,
 } from '../../state/pokemon.reducer';
 import * as PokemonActions from '../../state/pokemon.actions';
 import { Store } from '@ngrx/store';
@@ -23,6 +24,7 @@ import {
 } from '@angular/material/snack-bar';
 import { first, map } from 'rxjs/operators';
 import { ToastComponent } from '../toast/toast.component';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-gallery',
@@ -39,6 +41,7 @@ export class PokemonGalleryComponent implements OnInit {
   search_bar: string = '';
   keepSelected: boolean = false;
   maxFavoritesSelected: boolean = false;
+  observableTest: Observable<PokemonState> = new Observable;
 
   constructor(
     private PokemonDataService: PokemonDataService,
@@ -86,13 +89,6 @@ export class PokemonGalleryComponent implements OnInit {
   }
 
   getPokemonsDataFromStore() {
-    // this.store
-    //   .select(getFavoritePokemon)
-    //   .subscribe((favoritePokemons) => {
-    //     this.favoritePokemons = favoritePokemons;
-    //     console.log('favorite pokemons', favoritePokemons);
-    //   });
-
     this.store.select(getPokemonsInfo).subscribe((pokemons) => {
       if (pokemons) {
         this.rootPokemonList = pokemons.rootPokemonList;
@@ -111,17 +107,6 @@ export class PokemonGalleryComponent implements OnInit {
   }
 
   getKeepSelectedFromStore() {
-    // this.store.select(getPokemonsInfo).subscribe((pokemons) => {
-    //   if (pokemons) {
-    //     this.keepSelected = pokemons.keepSelected;
-    //     this.showToast = pokemons.showSelected;
-    //     this.maxFavoritesSelected = pokemons.maxFavoritesSelected;
-    //     if (this.keepSelected === true) {
-    //       this.openToast();
-    //     }
-    //   }
-    // });
-
     this.store
       .select(getPokemonsInfo)
       .pipe(

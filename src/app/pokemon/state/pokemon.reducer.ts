@@ -21,7 +21,7 @@ export interface PokemonState {
   queriedPokemons: Pokemon[];
   selectedPokemons: Pokemon[];
   favoritePokemons: Pokemon[];
-  descriptionPokemons: any[];
+  descriptionPokemons: PokemonData[];
   descriptionPokemonsGender: any[];
   maxFavoritesSelected: boolean;
   isSearching: boolean;
@@ -133,12 +133,12 @@ export const pokemonReducer = createReducer<PokemonState>(
   }),
   on(
     PokemonActions.loadPokemonsSuccess,
-    (state, action: any): PokemonState => {
+    (state, action): PokemonState => {
       return {
         ...state,
         rootPokemonList: [
           ...state.rootPokemonList,
-          ...action.pokemons.results,
+          ...action.pokemons,
         ],
         error: '',
       };

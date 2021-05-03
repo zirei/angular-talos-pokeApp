@@ -1,11 +1,8 @@
 import { Injectable } from '@angular/core';
-
 import {
   mergeMap,
   map,
   catchError,
-  concatMap,
-  tap,
   switchMap,
 } from 'rxjs/operators';
 import { of } from 'rxjs';
@@ -15,6 +12,7 @@ import { PokemonDataService } from 'src/app/core/services/pokemon/pokemon-data.s
 import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
 import * as PokemonActions from './pokemon.actions';
 import { getPokemonId, Pokemon } from 'src/app/core/models/pokemon.model';
+import { PokemonLoad } from 'src/app/core/models/pokemon-load.model';
 
 @Injectable()
 export class PokemonEffects {
@@ -29,11 +27,10 @@ export class PokemonEffects {
       ofType(PokemonActions.loadPokemons),
       mergeMap(() =>
         this.PokemonDataService.getPokemonsFromApi().pipe(
-          map((pokemons: any) => 
+          map((pokemons: PokemonLoad) => 
             {
-              console.log('pokemons load -> ', pokemons)
               pokemons['results'].forEach( (pokemon:Pokemon) => pokemon.id = getPokemonId(pokemon))
-              return PokemonActions.loadPokemonsSuccess({ pokemons })
+              return PokemonActions.loadPokemonsSuccess({ pokemons: pokemons.results })
             }
           ),
           catchError((error) =>

@@ -14,6 +14,7 @@ import {
 import * as PokemonActions from '../../state/pokemon.actions';
 import { state } from '@angular/animations';
 import { first, map, tap } from 'rxjs/operators';
+import { PokemonData } from 'src/app/core/models/pokemon-data.model';
 
 @Component({
   selector: 'app-pokemons-modal-vs',
@@ -27,33 +28,21 @@ export class PokemonsModalVsComponent implements OnInit {
   image: string = '';
   image2: string = '';
   pokemonName2: string = 'Not found name';
-  descriptionPokemons: any[] = [];
+  descriptionPokemons: PokemonData[] = [];
   descriptionPokemonsGender: any[] = [];
 
   ngOnInit(): void {
     this.getSelectedPokemonsFromStore();
   }
-
-  // ConvertGender(genderRate:number){
-  //   let defaultGender = 'male'
-  //   if (genderRate >= 4) {
-  //     return defaultGender = 'female'
-  //   } else if (genderRate === -1) {
-  //     return defaultGender = 'genderless'
-  //   } else {
-  //     return defaultGender
-  //   }
-  // }
   
   getSelectedPokemonsFromStore() {
-    this.store.select(getPokemonsInfo).pipe(
-      map((pokemon) => {
-        if (pokemon) {
-          this.descriptionPokemons = pokemon.descriptionPokemons;
-          this.descriptionPokemonsGender = pokemon.descriptionPokemonsGender;
-        }
-      })
-    ).subscribe();
+    this.store.select(getPokemonsInfo).subscribe((pokemons) => {
+      if (pokemons) {
+        this.descriptionPokemons = pokemons.descriptionPokemons;
+        this.descriptionPokemonsGender = pokemons.descriptionPokemonsGender;
+      }
+    });
+
     this.store.select(getSelectedPokemons)
     .pipe(
       first(),
@@ -69,7 +58,7 @@ export class PokemonsModalVsComponent implements OnInit {
           }
         }
       })
-    ).subscribe(); 
+    ).toPromise(); 
   }
 
   ngOnDestroy(): void {

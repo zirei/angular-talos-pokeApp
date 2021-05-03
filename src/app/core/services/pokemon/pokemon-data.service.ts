@@ -5,6 +5,7 @@ import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../../models/pokemon.model';
 import { catchError, map, tap } from 'rxjs/operators';
 import { PokemonData } from '../../models/pokemon-data.model';
+import { PokemonLoad } from '../../models/pokemon-load.model';
 
 @Injectable({
   providedIn: 'root',
@@ -21,9 +22,9 @@ export class PokemonDataService {
     this.counter += 20;
   }
 
-  getPokemonsFromApi(): Observable<Pokemon[]> {
+  getPokemonsFromApi(): Observable<PokemonLoad> {
     this.counterChange();
-    return this.http.get<Pokemon[]>(this.pokemonDataApi).pipe(
+    return this.http.get<PokemonLoad>(this.pokemonDataApi).pipe(
       catchError(this.handleError)
     );
   }
