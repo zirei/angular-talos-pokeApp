@@ -33,18 +33,6 @@ export class ToastComponent implements OnInit{
   }
 
   getKeepSelectedFromStore() {
-
-    // this.store.select(getPokemonsInfo).subscribe((pokemon) => {
-    //   if (pokemon) {
-    //     this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
-    //     this.keepSelected = pokemon.keepSelected;
-    //     if(this.maxFavoritesSelected){
-    //       this.maxFavoritesSelectedName = pokemon.maxFavoritesSelectedName;
-    //       this.openSnackBar(this.maxFavoritesSelected, this.maxFavoritesSelectedName);
-    //     }
-    //   }
-    // });
-
     this.store
       .select(getPokemonsInfo)
       .pipe(
