@@ -18,6 +18,7 @@ import * as PokemonActions from '../../state/pokemon.actions';
 import { state } from '@angular/animations';
 import { first, map, tap } from 'rxjs/operators';
 import { PokemonData } from 'src/app/core/models/pokemon-data.model';
+import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
 
 @Component({
   selector: 'app-pokemons-modal',
@@ -37,7 +38,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   description: string = '';
   selectedPokemons: Pokemon[] = [];
   descriptionPokemons: PokemonData[] = [];
-  descriptionPokemonsGender: any[] = [];
+  descriptionPokemonsGender: PokemonDataGender[] = [];
 
   constructor(private store: Store<State>) {}
 

@@ -6,6 +6,7 @@ import { Pokemon } from '../../models/pokemon.model';
 import { catchError, map, tap } from 'rxjs/operators';
 import { PokemonData } from '../../models/pokemon-data.model';
 import { PokemonLoad } from '../../models/pokemon-load.model';
+import { PokemonDataGender } from '../../models/pokemon-data-gender.model';
 
 @Injectable({
   providedIn: 'root',
@@ -35,9 +36,9 @@ export class PokemonDataService {
     );
   }
   
-  getPokemonsDescriptionGenderFromApi(id: number): Observable<PokemonData> {
+  getPokemonsDescriptionGenderFromApi(id: number): Observable<PokemonDataGender> {
     const pokemonDescriptionUrl = `${environment.POKEMONDATAAPI}pokemon-species/${id}/`;
-    return this.http.get<PokemonData>(pokemonDescriptionUrl).pipe(
+    return this.http.get<PokemonDataGender>(pokemonDescriptionUrl).pipe(
       catchError(this.handleError)
     );
   }

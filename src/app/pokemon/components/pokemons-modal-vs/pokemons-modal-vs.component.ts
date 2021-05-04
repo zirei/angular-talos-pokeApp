@@ -15,6 +15,7 @@ import * as PokemonActions from '../../state/pokemon.actions';
 import { state } from '@angular/animations';
 import { first, map, tap } from 'rxjs/operators';
 import { PokemonData } from 'src/app/core/models/pokemon-data.model';
+import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
 
 @Component({
   selector: 'app-pokemons-modal-vs',
@@ -29,7 +30,7 @@ export class PokemonsModalVsComponent implements OnInit {
   image2: string = '';
   pokemonName2: string = 'Not found name';
   descriptionPokemons: PokemonData[] = [];
-  descriptionPokemonsGender: any[] = [];
+  descriptionPokemonsGender: PokemonDataGender[] = [];
 
   ngOnInit(): void {
     this.getSelectedPokemonsFromStore();

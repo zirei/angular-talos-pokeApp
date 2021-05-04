@@ -6,17 +6,17 @@ export interface PokemonData {
       };
     }
   ];
-  base_experience: number;
+  base_experience?: number;
   height: number;
-  id: number;
-  is_default: boolean;
-  location_area_encounters: string;
-  name: string;
-  order: number;
-  species: {
+  id?: number;
+  is_default?: boolean;
+  location_area_encounters?: string;
+  name?: string;
+  order?: number;
+  species?: {
     url: string;
   };
-  stats: [
+  stats?: [
     {
       base_stat: number;
     },
@@ -36,7 +36,7 @@ export interface PokemonData {
       base_stat: number;
     }
   ];
-  types: [
+  types?: [
     {
       type: {
         name: string;
@@ -44,7 +44,7 @@ export interface PokemonData {
     }
   ];
   weight: number;
-  gender_rate: number;
+  gender_rate?: number;
   flavor_text?: {
     flavor_text: string;
   };

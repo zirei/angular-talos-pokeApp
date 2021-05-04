@@ -1,4 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
+import { PokemonData } from 'src/app/core/models/pokemon-data.model';
 
 @Component({
   selector: 'app-chart-vs',
@@ -6,8 +8,8 @@ import { Component, Input, OnInit } from '@angular/core';
   styleUrls: ['./chart-vs.component.css']
 })
 export class ChartVSComponent implements OnInit {
-  @Input() descriptionPokemons: any;
-  @Input() descriptionPokemonsGender: any;
+  @Input() descriptionPokemons: PokemonData[] = [];
+  @Input() descriptionPokemonsGender: PokemonDataGender[] = [];
   xAxisTicks: any[] = [];
   pokemonStats: any[] = [];
   firstPokemonStats: any[] = [];
@@ -43,8 +45,6 @@ export class ChartVSComponent implements OnInit {
   }
 
   getPokemonStats(pokemon1: any, pokemon2: any) {
-    //TODO: name + color improve the transmission of information
-    // const firstPokemon = pokemon1.name
     const secondPokemon = pokemon2.name
     pokemon1.stats.map((state: any) => {
       this.firstPokemonStats.push({ name: state.stat.name, value: state.base_stat });

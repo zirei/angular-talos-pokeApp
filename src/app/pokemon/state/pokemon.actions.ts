@@ -1,5 +1,6 @@
 /* NgRx */
 import { createAction, props } from '@ngrx/store';
+import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
 import { PokemonData } from 'src/app/core/models/pokemon-data.model';
 import { Pokemon } from 'src/app/core/models/pokemon.model'
 
@@ -49,7 +50,7 @@ export const loadPokemonsDescriptionGender = createAction(
 );
 export const loadPokemonsDescriptionGenderSuccess = createAction(
   '[Pokemon] Selected Pokemon Gender Success',
-  props<{ pokemonData: PokemonData }>()
+  props<{ pokemonDataGender: PokemonDataGender }>()
 );
 export const loadPokemonsDescriptionGenderFailure = createAction(
   '[Pokemon] Load Pokemon Gender Fail',

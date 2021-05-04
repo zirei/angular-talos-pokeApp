@@ -1,5 +1,3 @@
-import { PokemonData } from './pokemon-data.model';
-
 export interface Pokemon {
   name: string;
   url: string;

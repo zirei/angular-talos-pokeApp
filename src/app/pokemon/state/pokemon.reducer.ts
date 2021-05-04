@@ -11,6 +11,7 @@ import * as AppState from '../../state/app.state.module';
 import { act, Actions } from '@ngrx/effects';
 import { PokemonData } from 'src/app/core/models/pokemon-data.model';
 import { environment } from 'src/environments/environment';
+import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
 
 export interface State extends AppState.State {
   pokemons: PokemonState;
@@ -22,7 +23,7 @@ export interface PokemonState {
   selectedPokemons: Pokemon[];
   favoritePokemons: Pokemon[];
   descriptionPokemons: PokemonData[];
-  descriptionPokemonsGender: any[];
+  descriptionPokemonsGender: PokemonDataGender[];
   maxFavoritesSelected: boolean;
   isSearching: boolean;
   showSelected: boolean;
@@ -263,12 +264,12 @@ export const pokemonReducer = createReducer<PokemonState>(
     PokemonActions.loadPokemonsDescriptionGenderSuccess,
     (state, action): PokemonState => {
       const updatedPokemon = state.selectedPokemons.map(
-        data => action.pokemonData.id === data.id ? action.pokemonData : data);
+        data => action.pokemonDataGender.id === data.id ? action.pokemonDataGender : data);
       return {
         ...state,
         descriptionPokemonsGender:[
           ...state.descriptionPokemonsGender,
-          action.pokemonData
+          action.pokemonDataGender
         ]
       };
     }

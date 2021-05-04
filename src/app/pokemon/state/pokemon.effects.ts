@@ -13,11 +13,14 @@ import { Actions, createEffect, Effect, ofType } from '@ngrx/effects';
 import * as PokemonActions from './pokemon.actions';
 import { getPokemonId, Pokemon } from 'src/app/core/models/pokemon.model';
 import { PokemonLoad } from 'src/app/core/models/pokemon-load.model';
+import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
+import { State } from '../state/pokemon.reducer';
+import { Store } from '@ngrx/store';
 
 @Injectable()
 export class PokemonEffects {
-  store: any;
   constructor(
+    private store: Store<State>,
     private actions$: Actions,
     private PokemonDataService: PokemonDataService
   ) {}
@@ -61,8 +64,8 @@ export class PokemonEffects {
       ofType(PokemonActions.loadPokemonsDescriptionGender),
       switchMap((action) =>
         this.PokemonDataService.getPokemonsDescriptionGenderFromApi(action.pokemon.id).pipe(
-          map((pokemonData) => {
-            return PokemonActions.loadPokemonsDescriptionGenderSuccess({ pokemonData })
+          map((pokemonDataGender) => {
+            return PokemonActions.loadPokemonsDescriptionGenderSuccess({ pokemonDataGender })
           },
           catchError((error) =>
             of(PokemonActions.loadPokemonsDescriptionGenderFailure({ error }))

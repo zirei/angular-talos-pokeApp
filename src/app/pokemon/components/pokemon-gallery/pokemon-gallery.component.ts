@@ -7,11 +7,9 @@ import { Pokemon } from 'src/app/core/models/pokemon.model';
 // Redux
 import {
   State,
-  getPokemons,
   getSelectedPokemons,
   getIsSearching,
   getPokemonsInfo,
-  PokemonState,
 } from '../../state/pokemon.reducer';
 import * as PokemonActions from '../../state/pokemon.actions';
 import { Store } from '@ngrx/store';
@@ -41,7 +39,6 @@ export class PokemonGalleryComponent implements OnInit {
   search_bar: string = '';
   keepSelected: boolean = false;
   maxFavoritesSelected: boolean = false;
-  observableTest: Observable<PokemonState> = new Observable;
 
   constructor(
     private PokemonDataService: PokemonDataService,
