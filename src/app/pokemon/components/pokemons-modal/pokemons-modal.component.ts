@@ -5,18 +5,16 @@ import { Pokemon } from 'src/app/core/models/pokemon.model';
 import { environment } from 'src/environments/environment';
 import {
   State,
-  getPokemons,
   getSelectedPokemons,
   PokemonState,
   getPokemonsInfo,
   getFavoritePokemon,
-  pokemonReducer,
-  getkeepSelected,
-  getMaxFav,
+  getPokemonsGender,
+  getPokemonsDescription,
 } from '../../state/pokemon.reducer';
 import * as PokemonActions from '../../state/pokemon.actions';
 import { state } from '@angular/animations';
-import { first, map, tap } from 'rxjs/operators';
+import { first } from 'rxjs/operators';
 import { PokemonData } from 'src/app/core/models/pokemon-data.model';
 import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
 
@@ -47,28 +45,34 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
     this.getFavs(this.selectedPokemons);
   }
 
-
   getSelectedPokemonsFromStore() {
-    this.store.select(getPokemonsInfo).subscribe((pokemons) => {
-      if (pokemons) {
-        this.descriptionPokemons = pokemons.descriptionPokemons;
-        this.descriptionPokemonsGender = pokemons.descriptionPokemonsGender;
-      }
-    });
+    this.store
+      .select(getPokemonsGender)
+      .subscribe((PokemonDescriptionGender) => {
+        if (PokemonDescriptionGender) {
+          this.descriptionPokemonsGender = PokemonDescriptionGender;
+        }
+      });
+
+    this.store
+      .select(getPokemonsDescription)
+      .subscribe((pokemonDescription) => {
+        if (pokemonDescription) {
+          this.descriptionPokemons = pokemonDescription;
+        }
+      });
+
     this.store
       .select(getSelectedPokemons)
-      .pipe(
-        first(),
-        map((selectedPokemons) => {
-          if (selectedPokemons) {
-            this.selectedPokemons = selectedPokemons;
-            this.image = `${environment.POKEMONIMAGEAPI}${
-              this.selectedPokemons[0].url.split('/')[6]
-            }.png`;
-          }
-        })
-      )
-      .toPromise();
+      .pipe(first())
+      .subscribe((selectedPokemons) => {
+        if (selectedPokemons) {
+          this.selectedPokemons = selectedPokemons;
+          this.image = `${environment.POKEMONIMAGEAPI}${
+            this.selectedPokemons[0].url.split('/')[6]
+          }.png`;
+        }
+      });
   }
 
   setFavs(selectedPokemons: Pokemon[]) {
@@ -78,90 +82,81 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   getFavs(pokemon: Pokemon[]) {
     this.store
       .select(getFavoritePokemon)
-      .pipe(
-        first(),
-        map((favoritePokemon) => {
-          if (favoritePokemon.length < 1) {
-            this.showSelectedFavoriteButtonRed = false;
-          }
-          let inFavorites = favoritePokemon.find(
-            (item) => item.id === pokemon[0].id
-          );
-          if (inFavorites) {
-            this.showSelectedFavoriteButtonRed = true;
-          } else {
-            this.showSelectedFavoriteButtonRed = false;
-          }
-        })
-      )
-      .toPromise();
+      .pipe(first())
+      .subscribe((favoritePokemon) => {
+        if (favoritePokemon.length < 1) {
+          this.showSelectedFavoriteButtonRed = false;
+        }
+        let inFavorites = favoritePokemon.find(
+          (item) => item.id === pokemon[0].id
+        );
+        if (inFavorites) {
+          this.showSelectedFavoriteButtonRed = true;
+        } else {
+          this.showSelectedFavoriteButtonRed = false;
+        }
+      });
   }
 
   getFavoriteFromStore(pokemon: Pokemon) {
     this.store
       .select(getFavoritePokemon)
-      .pipe(
-        first(),
-        map((favorites) => {
-          if (favorites.length < 1) {
-            this.showSelectedFavoriteButtonRed = true;
-            return this.store.dispatch(
-              PokemonActions.selectedFavorite({ pokemon: pokemon })
-            );
-          }
-          const inFavorites = favorites.find((item) => item.id === pokemon.id);
-          if (inFavorites) {
-            this.store.dispatch(
-              PokemonActions.unselectedFavorite({ pokemon: pokemon })
-            );
-            this.store.dispatch(
-              PokemonActions.maximumNumberOfFavoritesUnSelected()
-            );
-            this.showSelectedFavoriteButtonRed = false;
-            this.favoriteSelected = true;
-          } else if (favorites.length > 4) {
-            const maxFavName = pokemon.name;
-            this.store.dispatch(
-              PokemonActions.maximumNumberOfFavoritesSelected({ maxFavName })
-            );
-            alert(
-              `You have selected to: ${favorites.map((item) =>
-                item.name.toLocaleUpperCase()
-              )}. You can only have five favorite pokemons, that's why you can't add to ${maxFavName.toLocaleUpperCase()}`
-            );
-          } else {
-            this.store.dispatch(
-              PokemonActions.selectedFavorite({ pokemon: pokemon })
-            );
-            this.store.dispatch(
-              PokemonActions.maximumNumberOfFavoritesUnSelected()
-            );
-            this.favoriteSelected = false;
-            this.showSelectedFavoriteButtonRed = true;
-          }
-        })
-      )
-      .toPromise()
+      .pipe(first())
+      .subscribe((favorites) => {
+        if (favorites.length < 1) {
+          this.showSelectedFavoriteButtonRed = true;
+          return this.store.dispatch(
+            PokemonActions.selectedFavorite({ pokemon: pokemon })
+          );
+        }
+        const inFavorites = favorites.find((item) => item.id === pokemon.id);
+        if (inFavorites) {
+          this.store.dispatch(
+            PokemonActions.unselectedFavorite({ pokemon: pokemon })
+          );
+          this.store.dispatch(
+            PokemonActions.maximumNumberOfFavoritesUnSelected()
+          );
+          this.showSelectedFavoriteButtonRed = false;
+          this.favoriteSelected = true;
+        } else if (favorites.length > 4) {
+          const maxFavName = pokemon.name;
+          this.store.dispatch(
+            PokemonActions.maximumNumberOfFavoritesSelected({ maxFavName })
+          );
+          alert(
+            `You have selected to: ${favorites.map((item) =>
+              item.name.toLocaleUpperCase()
+            )}. You can only have five favorite pokemons, that's why you can't add to ${maxFavName.toLocaleUpperCase()}`
+          );
+        } else {
+          this.store.dispatch(
+            PokemonActions.selectedFavorite({ pokemon: pokemon })
+          );
+          this.store.dispatch(
+            PokemonActions.maximumNumberOfFavoritesUnSelected()
+          );
+          this.favoriteSelected = false;
+          this.showSelectedFavoriteButtonRed = true;
+        }
+      });
   }
 
   getKeepSelectedFromStore() {
     this.store
       .select(getPokemonsInfo)
-      .pipe(
-        first(),
-        map((pokemon) => {
-          if (pokemon) {
-            this.keepSelected = pokemon.keepSelected;
-            if (this.keepSelected === true) {
-              this.store.dispatch(
-                PokemonActions.maximumNumberOfFavoritesUnSelected()
-              );
-              this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
-            }
+      .pipe(first())
+      .subscribe((pokemon) => {
+        if (pokemon) {
+          this.keepSelected = pokemon.keepSelected;
+          if (this.keepSelected === true) {
+            this.store.dispatch(
+              PokemonActions.maximumNumberOfFavoritesUnSelected()
+            );
+            this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
           }
-        })
-      )
-      .toPromise();
+        }
+      });
   }
 
   ngOnDestroy(): void {

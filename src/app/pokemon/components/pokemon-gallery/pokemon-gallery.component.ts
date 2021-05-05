@@ -10,6 +10,8 @@ import {
   getSelectedPokemons,
   getIsSearching,
   getPokemonsInfo,
+  getPokemons,
+  getPokemonsQuery,
 } from '../../state/pokemon.reducer';
 import * as PokemonActions from '../../state/pokemon.actions';
 import { Store } from '@ngrx/store';
@@ -22,7 +24,6 @@ import {
 } from '@angular/material/snack-bar';
 import { first, map } from 'rxjs/operators';
 import { ToastComponent } from '../toast/toast.component';
-import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-pokemon-gallery',
@@ -86,10 +87,15 @@ export class PokemonGalleryComponent implements OnInit {
   }
 
   getPokemonsDataFromStore() {
-    this.store.select(getPokemonsInfo).subscribe((pokemons) => {
-      if (pokemons) {
-        this.rootPokemonList = pokemons.rootPokemonList;
-        this.queriedPokemons = pokemons.queriedPokemons;
+    this.store.select(getPokemons).subscribe((rootPokemons) => {
+      if (rootPokemons) {
+        this.rootPokemonList = rootPokemons;
+      }
+    });
+
+    this.store.select(getPokemonsQuery).subscribe((queryPokemons) => {
+      if (queryPokemons) {
+        this.queriedPokemons = queryPokemons;
       }
     });
   }
@@ -104,21 +110,15 @@ export class PokemonGalleryComponent implements OnInit {
   }
 
   getKeepSelectedFromStore() {
-    this.store
-      .select(getPokemonsInfo)
-      .pipe(
-        first(),
-        map((pokemon) => {
-          if (pokemon) {
-            this.keepSelected = pokemon.keepSelected;
-            this.showToast = pokemon.showSelected;
-            this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
-            if (this.maxFavoritesSelected === true) {
-              this.openToast();
-            }
-          }
-        })
-      )
-      .toPromise();
+    this.store.select(getPokemonsInfo).subscribe((pokemon) => {
+      if (pokemon) {
+        this.keepSelected = pokemon.keepSelected;
+        this.showToast = pokemon.showSelected;
+        this.maxFavoritesSelected = pokemon.maxFavoritesSelected;
+        if (this.maxFavoritesSelected === true) {
+          this.openToast();
+        }
+      }
+    }).unsubscribe();
   }
 }

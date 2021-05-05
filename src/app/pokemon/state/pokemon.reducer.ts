@@ -77,6 +77,11 @@ export const getPokemons = createSelector(
   getPokemonFeatureState,
   state => state.rootPokemonList
 );
+// queried Pokemon List
+export const getPokemonsQuery = createSelector(
+  getPokemonFeatureState,
+  state => state.queriedPokemons
+);
 
 // Selected pokemons
 export const getSelectedPokemons = createSelector(
@@ -97,6 +102,11 @@ export const getPokemonsInfo = createSelector(
 export const getPokemonsGender = createSelector(
   getPokemonFeatureState,
   state => state.descriptionPokemonsGender
+);
+// state Description
+export const getPokemonsDescription = createSelector(
+  getPokemonFeatureState,
+  state => state.descriptionPokemons
 );
 // keep selected
 export const getkeepSelected = createSelector(

@@ -23,7 +23,7 @@ export class BannerComponent implements OnInit {
       .select(getFavoritePokemon)
       .subscribe((favoritePokemons) => {
         this.favoritePokemons = favoritePokemons;
-      });
+      }).unsubscribe();
   }
 
   getImage(id: number) {
