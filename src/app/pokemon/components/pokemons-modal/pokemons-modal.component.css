@@ -8,6 +8,10 @@
   padding: 0;
 }
 
+.tables {
+  display: table-column;
+}
+
 .compare-button {
   color: var(--textColor);
   background-color: var(--backGgroundColor);
@@ -38,6 +42,20 @@
 
 .text-description {
   margin: 0;
+}
+
+.tables {
+  display: table-column;
+}
+
+.text-description-tittle {
+  display: table-cell;
+  font-weight: 500;
+}
+
+.text-description-chart {
+  text-align: center;
+  font-weight: 500;
 }
 
 .table-width {

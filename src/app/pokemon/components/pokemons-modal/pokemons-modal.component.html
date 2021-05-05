@@ -1,76 +1,132 @@
-<div *ngIf='descriptionPokemons.length >= 1 && descriptionPokemonsGender.length >= 1'>
+<div
+  *ngIf='
+    descriptionPokemons.length >= 1 && descriptionPokemonsGender.length >= 1
+  '
+>
   <mat-dialog-content class='mat-typography setPaddingDialog'>
-    <mat-grid-list class='set-margin-modal' mat-dialog-title cols='24' rowHeight='1.3rem'>
+    <mat-grid-list
+      class='set-margin-modal'
+      mat-dialog-title
+      cols='24'
+      rowHeight='1.3rem'
+    >
       <mat-grid-tile colspan='12' rowspan='2'>
         <span class='fix-text'>{{ selectedPokemons[0].name }}</span>
       </mat-grid-tile>
       <mat-grid-tile colspan='8' rowspan='2'>
-        <button class='compare-button' (click)='getKeepSelectedFromStore()' [mat-dialog-close]='true'>
+        <button
+          class='compare-button'
+          (click)='getKeepSelectedFromStore()'
+          [mat-dialog-close]='true'
+        >
           Compare to...
         </button>
       </mat-grid-tile>
       <mat-grid-tile colspan='4' rowspan='2'>
-        <button 
-          mat-mini-fab 
-          [ngClass]="{ 'previously-added-to-favorites': showSelectedFavoriteButtonRed, 'normal-fav-button': !showSelectedFavoriteButtonRed }" 
-          (click)='setFavs(selectedPokemons)'>
+        <button
+          mat-mini-fab
+          [ngClass]="{
+            'previously-added-to-favorites': showSelectedFavoriteButtonRed,
+            'normal-fav-button': !showSelectedFavoriteButtonRed
+          }"
+          (click)='setFavs(selectedPokemons)'
+        >
           <mat-icon>favorite</mat-icon>
         </button>
       </mat-grid-tile>
     </mat-grid-list>
     <hr class='set-margin-modal-lines' />
-    <mat-grid-list cols='12' rowHeight='1.8rem'>
-      <mat-grid-tile colspan='4' rowspan='9'>
-        <img mat-card-image class='img-fluid' [src]='image' alt=' Not found image' />
+    <mat-grid-list cols='14' rowHeight='1.43rem'>
+      <mat-grid-tile colspan='5' rowspan='11'>
+        <img
+          mat-card-image
+          class='img-fluid'
+          [src]='image'
+          alt=' Not found image'
+        />
       </mat-grid-tile>
-      <mat-grid-tile colspan='8' rowspan='4'>
+      <mat-grid-tile colspan='9' rowspan='5'>
         <div class='container'>
-          <p class='text-description' >{{ descriptionPokemonsGender[0].flavor_text_entries[1].flavor_text.toLowerCase() }} </p>
+          <p class='text-description'>
+            {{
+              descriptionPokemonsGender[0].flavor_text_entries[1].flavor_text.toLowerCase()
+            }}
+          </p>
           <hr class='set-margin-modal-lines' />
         </div>
       </mat-grid-tile>
-      <mat-grid-tile colspan='8' rowspan='2'>
-        <table class='table-width'>
-          <tr>
-            <th>Height</th>
-            <th>Weight</th>
-            <th>Gender</th>
-          </tr>
-          <tr>
-          <td class='text-description' > {{ descriptionPokemons[0].height | transformDescription }}m </td>
-          <td class='text-description'> {{ descriptionPokemons[0].weight | transformDescription  }}kg </td>
-          <td class='text-description'> {{ descriptionPokemonsGender[0].gender_rate | convertGender }} </td>
-          </tr>
-        </table>
+      <mat-grid-tile colspan='3' rowspan='1'>
+        <div class='tables'>
+          <span class='text-description-tittle'>Height</span>
+        </div>
       </mat-grid-tile>
-      <mat-grid-tile colspan='8' rowspan='3'>
-        <table class='table-width'>
-          <tr>
-            <th>Abilitys</th>
-            <th>Type</th>
-          </tr>
-          <tr>
-            <td>
-              <ul *ngFor='let pokemon of descriptionPokemons'>
-                <li *ngFor='let abilities of pokemon.abilities'>{{ abilities.ability.name }}</li>
-              </ul>
-            </td>
-            <td>
-              <ul *ngFor='let pokemon of descriptionPokemons'>
-                <li *ngFor='let types of pokemon.types'>{{ types.type.name }}</li>
-              </ul>
-            </td>
-          </tr>
-        </table>
+      <mat-grid-tile colspan='3' rowspan='1'>
+        <div class='tables'>
+          <span class='text-description-tittle'>Weight</span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan='3' rowspan='1'>
+        <div class='tables'>
+          <span class='text-description-tittle'>Gender</span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan='3' rowspan='1'>
+        <div class='tables'>
+          <span>
+            {{ descriptionPokemons[0].height | transformDescription }}m
+          </span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan='3' rowspan='1'>
+        <div class='tables'>
+          <span>
+            {{ descriptionPokemons[0].weight | transformDescription }}kg
+          </span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan='3' rowspan='1'>
+        <div class='tables'>
+          <span>
+            {{ descriptionPokemonsGender[0].gender_rate | convertGender }}
+          </span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan='4' rowspan='1'>
+        <div class='tables'>
+          <span class='text-description-tittle'>Abilitys</span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan='4' rowspan='1'>
+        <div class='tables'>
+          <span class='text-description-tittle'>Type</span>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan='4' rowspan='3'>
+        <div class='tables'>
+          <ul *ngFor='let pokemon of descriptionPokemons'>
+            <li *ngFor='let abilities of pokemon.abilities'>
+              {{ abilities.ability.name }}
+            </li>
+          </ul>
+        </div>
+      </mat-grid-tile>
+      <mat-grid-tile colspan='4' rowspan='3'>
+        <div class='tables'>
+          <ul *ngFor='let pokemon of descriptionPokemons'>
+            <li *ngFor='let types of pokemon.types'>
+              {{ types.type.name }}
+            </li>
+          </ul>
+        </div>
       </mat-grid-tile>
     </mat-grid-list>
     <hr class='set-margin-modal-lines' />
     <mat-grid-list cols='24' rowHeight='21rem' class='grafic-tittle'>
-      <span>Stats</span>
+      <span class='text-description-chart'>Stats</span>
       <div *ngIf='descriptionPokemons'>
         <app-chart
-          [descriptionPokemons] = 'descriptionPokemons'
-          [descriptionPokemonsGender] = 'descriptionPokemonsGender'
+          [descriptionPokemons]='descriptionPokemons'
+          [descriptionPokemonsGender]='descriptionPokemonsGender'
         >
         </app-chart>
       </div>

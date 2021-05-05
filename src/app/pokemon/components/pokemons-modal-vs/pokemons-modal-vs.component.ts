@@ -30,7 +30,7 @@ export class PokemonsModalVsComponent implements OnInit {
   image2: string = '';
   pokemonName2: string = 'Not found name';
   descriptionPokemons: PokemonData[] = [];
-  descriptionPokemonsGender: PokemonDataGender[] = [];
+  descriptionPokemonsGender: PokemonDataGender | any;
 
   ngOnInit(): void {
     this.getSelectedPokemonsFromStore();

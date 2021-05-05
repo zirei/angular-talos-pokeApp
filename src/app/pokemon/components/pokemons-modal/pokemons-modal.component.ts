@@ -38,7 +38,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   description: string = '';
   selectedPokemons: Pokemon[] = [];
   descriptionPokemons: PokemonData[] = [];
-  descriptionPokemonsGender: PokemonDataGender[] = [];
+  descriptionPokemonsGender: PokemonDataGender | any;
 
   constructor(private store: Store<State>) {}
 
