@@ -1,7 +1,7 @@
 /* NgRx */
 import { createAction, props } from '@ngrx/store';
 import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
-import { PokemonData } from 'src/app/core/models/pokemon-data.model';
+import { PokemonData } from 'src/app/core/models/pokemon-data-interfaces/pokemon-data.model';
 import { Pokemon } from 'src/app/core/models/pokemon.model'
 
 export const loadPokemons = createAction(

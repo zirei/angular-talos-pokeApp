@@ -4,7 +4,7 @@ import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
 import { Pokemon } from '../../models/pokemon.model';
 import { catchError, map, tap } from 'rxjs/operators';
-import { PokemonData } from '../../models/pokemon-data.model';
+import { PokemonData } from '../../models/pokemon-data-interfaces/pokemon-data.model';
 import { PokemonLoad } from '../../models/pokemon-load.model';
 import { PokemonDataGender } from '../../models/pokemon-data-gender.model';
 

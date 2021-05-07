@@ -1,6 +1,9 @@
 <div
   *ngIf='
-    descriptionPokemons.length >= 1 && descriptionPokemonsGender.length >= 1
+    descriptionPokemonsGender &&
+    descriptionPokemons &&
+    descriptionPokemons.length >= 1 &&
+    descriptionPokemonsGender.length >= 1
   '
 >
   <mat-dialog-content class='mat-typography setPaddingDialog'>

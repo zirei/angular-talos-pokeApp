@@ -1,4 +1,10 @@
-<mat-card class='example-card' >
-  <img mat-card-image src='{{ image }}' alt=' Not found image of {{ pokemon.name }}' />
-  <mat-card-footer class='fix-text'>{{ pokemon.name }}</mat-card-footer>
-</mat-card>
+<div *ngIf='pokemon'>
+  <mat-card class='example-card'>
+    <img
+      mat-card-image
+      src='{{ pokemon.url | convertToImage }}'
+      alt=' Not found image of {{ pokemon.name }}'
+    />
+    <mat-card-footer class='fix-text'>{{ pokemon.name }}</mat-card-footer>
+  </mat-card>
+</div>

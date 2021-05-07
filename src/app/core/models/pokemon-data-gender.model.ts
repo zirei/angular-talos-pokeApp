@@ -5,12 +5,10 @@ export interface PokemonDataGender {
     name: string;
     url: string;
   };
-  egg_groups: [
-    {
-      name: string;
-      url: string;
-    }
-  ];
+  egg_groups: {
+    name: string;
+    url: string;
+  }[];
   evolution_chain: {
     url: string;
   };
@@ -18,35 +16,29 @@ export interface PokemonDataGender {
     name: string;
     url: string;
   };
-  flavor_text_entries: [
-    {
-      flavor_text: string;
-      language: {
-        name: string;
-        url: string;
-      };
-      version: {
-        name: string;
-        url: string;
-      };
-    }
-  ];
-  form_descriptions: [
-    {
-      length: number;
-    }
-  ];
+  flavor_text_entries: {
+    flavor_text: string;
+    language: {
+      name: string;
+      url: string;
+    };
+    version: {
+      name: string;
+      url: string;
+    };
+  }[];
+  form_descriptions: {
+    length: number;
+  }[];
   forms_switchable: boolean;
   gender_rate: number;
-  genera: [
-    {
-      genus: string;
-      language: {
-        name: string;
-        url: string;
-      };
-    }
-  ];
+  genera: {
+    genus: string;
+    language: {
+      name: string;
+      url: string;
+    };
+  }[];
   generation: {
     name: string;
     url: string;
@@ -66,46 +58,38 @@ export interface PokemonDataGender {
   is_legendary: boolean;
   is_mythical: boolean;
   name: string;
-  names: [
-    {
-      language: {
-        name: string;
-        url: string;
-      };
+  names: {
+    language: {
       name: string;
-    }
-  ];
+      url: string;
+    };
+    name: string;
+  }[];
   order: number;
-  pal_park_encounters: [
-    {
-      area: {
-        name: string;
-        url: string;
-      };
-      base_score: number;
-      rate: number;
-    }
-  ];
-  pokedex_numbers: [
-    {
-      entry_number: number;
-      pokedex: {
-        name: string;
-        url: string;
-      };
-    }
-  ];
+  pal_park_encounters: {
+    area: {
+      name: string;
+      url: string;
+    };
+    base_score: number;
+    rate: number;
+  }[];
+  pokedex_numbers: {
+    entry_number: number;
+    pokedex: {
+      name: string;
+      url: string;
+    };
+  }[];
   shape: {
     name: string;
     url: string;
   };
-  varieties: [
-    {
-      is_default: boolean;
-      pokemon: {
-        name: string;
-        url: string;
-      };
-    }
-  ];
+  varieties: {
+    is_default: boolean;
+    pokemon: {
+      name: string;
+      url: string;
+    };
+  }[];
 }

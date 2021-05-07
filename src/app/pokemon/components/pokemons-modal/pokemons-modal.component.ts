@@ -15,7 +15,7 @@ import {
 import * as PokemonActions from '../../state/pokemon.actions';
 import { state } from '@angular/animations';
 import { first } from 'rxjs/operators';
-import { PokemonData } from 'src/app/core/models/pokemon-data.model';
+import { PokemonData } from 'src/app/core/models/pokemon-data-interfaces/pokemon-data.model';
 import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
 
 @Component({
@@ -36,7 +36,7 @@ export class PokemonsModalComponent implements OnInit, OnDestroy {
   description: string = '';
   selectedPokemons: Pokemon[] = [];
   descriptionPokemons: PokemonData[] = [];
-  descriptionPokemonsGender: PokemonDataGender | any;
+  descriptionPokemonsGender: PokemonDataGender[] = [];
 
   constructor(private store: Store<State>) {}
 

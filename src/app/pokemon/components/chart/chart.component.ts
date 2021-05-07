@@ -1,7 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
-import { PokemonData } from 'src/app/core/models/pokemon-data.model';
+import { PokemonData } from 'src/app/core/models/pokemon-data-interfaces/pokemon-data.model';
+import { StatsPokemonData } from 'src/app/core/models/pokemon-data-interfaces/stats-pokemon-data.model';
+import { PokemonStatsCharts } from 'src/app/core/models/pokemon-charts-interfaces/pokemon-stats-charts.model';
 import { Pokemon } from 'src/app/core/models/pokemon.model';
+import { PokemonColorCharts } from 'src/app/core/models/pokemon-charts-interfaces/pokemon-color-charts';
 
 @Component({
   selector: 'app-chart',
@@ -11,8 +14,8 @@ import { Pokemon } from 'src/app/core/models/pokemon.model';
 export class ChartComponent implements OnInit {
   @Input() descriptionPokemons: PokemonData[] = [];
   @Input() descriptionPokemonsGender: PokemonDataGender[] = [];
-  xAxisTicks: any[] = [];
-  pokemonStats: any[] = [];
+  xAxisTicks: [] = [];
+  pokemonStats: PokemonStatsCharts[] = [];
   pokemonName: string = '';
   pokemonColor: string = '';
   showDataLabel: boolean = true;
@@ -20,7 +23,7 @@ export class ChartComponent implements OnInit {
   // options
   showXAxis = true
   showYAxis = true;
-  colorScheme: any = {
+  colorScheme: PokemonColorCharts = {
     domain: [] = [],
   };
 
@@ -32,14 +35,14 @@ export class ChartComponent implements OnInit {
     this.getPokemonNameAndColor(this.descriptionPokemonsGender[0]);
   }
 
-  getPokemonStats(pokemon: any) {
-    pokemon.stats.map((state: any) => {
+  getPokemonStats(pokemon: PokemonData) {
+    pokemon.stats.map((state: StatsPokemonData) => {
       this.pokemonStats.push({ name: state.stat.name, value: state.base_stat });
     });
     return this.pokemonStats;
   }
 
-  getPokemonNameAndColor(pokemon: any) {
+  getPokemonNameAndColor(pokemon: PokemonDataGender) {
     this.pokemonName = pokemon.name;
     this.pokemonColor = pokemon.color.name;
     this.pokemonColor === 'white'

@@ -9,7 +9,7 @@ import { getPokemonId, Pokemon } from 'src/app/core/models/pokemon.model';
 import * as PokemonActions from './pokemon.actions';
 import * as AppState from '../../state/app.state.module';
 import { act, Actions } from '@ngrx/effects';
-import { PokemonData } from 'src/app/core/models/pokemon-data.model';
+import { PokemonData } from 'src/app/core/models/pokemon-data-interfaces/pokemon-data.model';
 import { environment } from 'src/environments/environment';
 import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
 

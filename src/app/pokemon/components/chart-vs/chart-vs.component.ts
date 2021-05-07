@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
-import { PokemonData } from 'src/app/core/models/pokemon-data.model';
+import { PokemonData } from 'src/app/core/models/pokemon-data-interfaces/pokemon-data.model';
+import { StatsPokemonData } from 'src/app/core/models/pokemon-data-interfaces/stats-pokemon-data.model';
+import { PokemonStatsCharts } from 'src/app/core/models/pokemon-charts-interfaces/pokemon-stats-charts.model';
+import { PokemonColorCharts } from 'src/app/core/models/pokemon-charts-interfaces/pokemon-color-charts';
 
 @Component({
   selector: 'app-chart-vs',
@@ -10,10 +13,10 @@ import { PokemonData } from 'src/app/core/models/pokemon-data.model';
 export class ChartVSComponent implements OnInit {
   @Input() descriptionPokemons: PokemonData[] = [];
   @Input() descriptionPokemonsGender: PokemonDataGender[] = [];
-  xAxisTicks: any[] = [];
-  pokemonStats: any[] = [];
-  firstPokemonStats: any[] = [];
-  secondPokemonStats: any[] = [];
+  xAxisTicks: [] = [];
+  pokemonStats: PokemonStatsCharts[] = [];
+  firstPokemonStats: PokemonStatsCharts[] = [];
+  secondPokemonStats: PokemonStatsCharts[] = [];
   pokemonName: string = '';
   pokemonColor: string = '';
   secondPokemonName: string = '';
@@ -23,7 +26,7 @@ export class ChartVSComponent implements OnInit {
   showDataLabel: boolean = true;
   showXAxis = true;
   showYAxis = true;
-  colorScheme: any = {
+  colorScheme: PokemonColorCharts = {
     domain: ([] = []),
   };
 
@@ -40,7 +43,7 @@ export class ChartVSComponent implements OnInit {
     );
   }
 
-  mergeStats(pokemon1: any[], pokemon2: any[]) {
+  mergeStats(pokemon1: PokemonStatsCharts[], pokemon2: PokemonStatsCharts[]) {
     const size = pokemon1.length + pokemon2.length;
     let item = 0;
     for (
@@ -54,15 +57,15 @@ export class ChartVSComponent implements OnInit {
     }
   }
 
-  getPokemonStats(pokemon1: any, pokemon2: any) {
+  getPokemonStats(pokemon1: PokemonData, pokemon2: PokemonData) {
     const secondPokemon = pokemon2.name;
-    pokemon1.stats.map((state: any) => {
+    pokemon1.stats.map((state: StatsPokemonData) => {
       this.firstPokemonStats.push({
         name: state.stat.name,
         value: state.base_stat,
       });
     });
-    pokemon2.stats.map((state: any) => {
+    pokemon2.stats.map((state: StatsPokemonData) => {
       this.secondPokemonStats.push({
         name: state.stat.name + 2,
         value: state.base_stat,
@@ -71,7 +74,7 @@ export class ChartVSComponent implements OnInit {
     return this.mergeStats(this.firstPokemonStats, this.secondPokemonStats);
   }
 
-  getPokemonsNamesAndColors(pokemon: any, pokemon2: any) {
+  getPokemonsNamesAndColors(pokemon: PokemonDataGender, pokemon2: PokemonDataGender) {
     this.pokemonName = pokemon.name;
     this.pokemonColor = pokemon.color.name;
     this.secondPokemonName = pokemon2.name;

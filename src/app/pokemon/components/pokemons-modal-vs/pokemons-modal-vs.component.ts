@@ -1,22 +1,16 @@
-import { Component, Input, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Store } from '@ngrx/store';
-import { Observable } from 'rxjs';
 import { Pokemon } from 'src/app/core/models/pokemon.model';
 import { environment } from 'src/environments/environment';
 import {
   State,
-  getPokemons,
   getSelectedPokemons,
-  PokemonState,
-  getPokemonsInfo,
-  pokemonReducer,
   getPokemonsGender,
   getPokemonsDescription,
 } from '../../state/pokemon.reducer';
 import * as PokemonActions from '../../state/pokemon.actions';
-import { state } from '@angular/animations';
-import { first, map, tap } from 'rxjs/operators';
-import { PokemonData } from 'src/app/core/models/pokemon-data.model';
+import { first } from 'rxjs/operators';
+import { PokemonData } from 'src/app/core/models/pokemon-data-interfaces/pokemon-data.model';
 import { PokemonDataGender } from 'src/app/core/models/pokemon-data-gender.model';
 
 @Component({
@@ -32,7 +26,7 @@ export class PokemonsModalVsComponent implements OnInit {
   image2: string = '';
   pokemonName2: string = 'Not found name';
   descriptionPokemons: PokemonData[] = [];
-  descriptionPokemonsGender: PokemonDataGender | any;
+  descriptionPokemonsGender: PokemonDataGender[] = [];
 
   ngOnInit(): void {
     this.getSelectedPokemonsFromStore();

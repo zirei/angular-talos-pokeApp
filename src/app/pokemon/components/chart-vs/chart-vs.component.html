@@ -1,15 +1,15 @@
-<div class="tables">
-  <span [ngStyle]="{ color: pokemonColor }">{{ pokemonName }} </span> vs
-  <span [ngStyle]="{ color: secondPokemonColor }">
+<div class='tables'>
+  <span [ngStyle]='{ color: pokemonColor }'>{{ pokemonName }} </span> vs
+  <span [ngStyle]='{ color: secondPokemonColor }'>
     {{ secondPokemonName }}</span
   >
-  <div class="div-chart">
+  <div class='div-chart'>
     <ngx-charts-bar-vertical
-      [results]="pokemonStats"
-      [scheme]="colorScheme"
-      [xAxis]="showXAxis"
-      [yAxis]="showYAxis"
-      [showDataLabel]="showDataLabel"
+      [results]='pokemonStats'
+      [scheme]='colorScheme'
+      [xAxis]='showXAxis'
+      [yAxis]='showYAxis'
+      [showDataLabel]='showDataLabel'
     ></ngx-charts-bar-vertical>
   </div>
 </div>
