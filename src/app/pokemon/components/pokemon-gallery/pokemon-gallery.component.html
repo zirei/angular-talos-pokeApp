@@ -1,43 +1,43 @@
-<div class='toast-ubication' fxLayout='row wrap' fxLayoutGap='1.5rem grid' *ngIf='keepSelected || (maxFavoritesSelected && !keepSelected)'>
+<div class="toast-ubication" fxLayout="row wrap" fxLayoutGap="1.5rem grid" *ngIf="keepSelected || (maxFavoritesSelected && !keepSelected)">
   <app-toast
-  [maxFavoritesSelected]='maxFavoritesSelected'
-  [pokemonName]='selectedPokemons'
+  [maxFavoritesSelected]="maxFavoritesSelected"
+  [pokemonName]="selectedPokemons"
   >
   </app-toast>
 </div>
 <div
-  class='cards-container-base'
+  class="cards-container-base"
   infiniteScroll
-  [infiniteScrollDistance]='1'
-  [infiniteScrollThrottle]='50'
-  (scrolled)='loadPokemonsFromApi()'
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="loadPokemonsFromApi()"
 >
-  <div fxLayout='row wrap' fxLayoutGap='1.5rem grid' *ngIf='!isSearching'>
+  <div fxLayout="row wrap" fxLayoutGap="1.5rem grid" *ngIf="!isSearching">
     <div
-      fxFlex='20%'
-      fxFlex.xs='50%'
-      fxFlex.sm='33%'
-      fxFlex.md='25%'
-      *ngFor='let pokemon of rootPokemonList'
+      fxFlex="20%"
+      fxFlex.xs="50%"
+      fxFlex.sm="33%"
+      fxFlex.md="25%"
+      *ngFor="let pokemon of rootPokemonList"
     >
       <app-pokemon-card
-        [pokemon]='pokemon'
-        (click)='selectPokemon(pokemon)'
+        [pokemon]="pokemon"
+        (click)="selectPokemon(pokemon)"
       ></app-pokemon-card>
     </div>
   </div>
 </div>
-<div fxLayout='row wrap' fxLayoutGap='1.5rem grid' *ngIf='isSearching'>
+<div fxLayout="row wrap" fxLayoutGap="1.5rem grid" *ngIf="isSearching">
   <div
-    fxFlex='20%'
-    fxFlex.xs='50%'
-    fxFlex.sm='33%'
-    fxFlex.md='25%'
-    *ngFor='let pokemon of queriedPokemons'
+    fxFlex="20%"
+    fxFlex.xs="50%"
+    fxFlex.sm="33%"
+    fxFlex.md="25%"
+    *ngFor="let pokemon of queriedPokemons"
   >
     <app-pokemon-card
-      [pokemon]='pokemon'
-      (click)='selectPokemon(pokemon)'
+      [pokemon]="pokemon"
+      (click)="selectPokemon(pokemon)"
     ></app-pokemon-card>
   </div>
 </div>

@@ -1,40 +1,40 @@
-<nav class='navbar navbar-expand-md navbar-light bg-light fixed-top'>
-  <div class='container-fluid'>
-    <a class='navbar-brand' routerLink='/home'>PokeApp</a>
+<nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+  <div class="container-fluid">
+    <a class="navbar-brand" routerLink="/home">PokeApp</a>
     <button
-      class='navbar-toggler'
-      type='button'
-      data-bs-toggle='collapse'
-      data-bs-target='#navbar-Supported-Content'
-      aria-controls='navbar-Supported-Content'
-      aria-expanded='false'
-      aria-label='Toggle navigation'
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbar-supported-content"
+      aria-controls="navbar-supported-content"
+      aria-expanded="false"
+      aria-label="Toggle navigation"
     >
-      <span class='navbar-toggler-icon'></span>
+      <span class="navbar-toggler-icon"></span>
     </button>
-    <div class='collapse navbar-collapse' id='navbar-Supported-Content'>
-      <ul class='navbar-nav me-auto mb-2 mb-lg-0'>
-        <li class='nav-item'>
+    <div class="collapse navbar-collapse" id="navbar-supported-content">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item">
           <a
-            class='nav-link active'
-            aria-current='page'
-            routerLink='/pokemongallery'
-            data-bs-toggle='collapse'
-            data-bs-target='#navbar-Supported-Content'
-            aria-controls='navbar-Supported-Content'
+            class="nav-link active"
+            aria-current="page"
+            routerLink="/pokemongallery"
+            data-bs-toggle="collapse"
+            data-bs-target="#navbar-supported-content"
+            aria-controls="navbar-supported-content"
           >
             Pokemons
           </a>
         </li>
       </ul>
-      <form class='d-flex'>
+      <form class="d-flex">
         <input
-          class='form-control me-2'
-          type='text'
-          placeholder='Search'
-          aria-label='Search'
-          [(ngModel)]='searchPokemon'
-          [ngModelOptions]='{standalone: true}'
+          class="form-control me-2"
+          type="text"
+          placeholder="Search"
+          aria-label="Search"
+          [(ngModel)]="searchPokemon"
+          [ngModelOptions]="{standalone: true}"
         />
       </form>
     </div>
