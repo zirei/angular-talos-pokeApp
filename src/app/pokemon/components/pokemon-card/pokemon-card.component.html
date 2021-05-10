@@ -1,4 +1,10 @@
-<div class="card card-settings " (click)="selectPokemon()">
-    <img src="{{pokemon.image}}" class="center-image" alt=" don't found image">
-    <span class="card-header fix-text">{{pokemon.name}}</span>
+<div *ngIf="pokemon">
+  <mat-card class="example-card">
+    <img
+      mat-card-image
+      [src]="pokemon.url | convertToImage"
+      alt=" Not found image of {{ pokemon.name }}"
+    />
+    <mat-card-footer class="fix-text">{{ pokemon.name }}</mat-card-footer>
+  </mat-card>
 </div>

@@ -1,12 +1,35 @@
 .cards-container-base {
-  margin: calc(var(--bs-gutter-x) + 0.25rem) 0rem 0rem
-    calc(var(--bs-gutter-x) + 2rem);
-  /* margin: calc(var(--bs-gutter-x) + 2rem); */
-  /* margin-top: calc(var(--bs-gutter-y) * -1);
-    margin-right: calc(var(--bs-gutter-x)/ -2); */
+  margin: 1% 10%;
+  padding-top: 3.5rem;
 }
 
 .cards-settings {
   margin: 0rem;
   padding: 0rem;
+}
+
+.toast-ubication {
+  position: fixed;
+  top: 6%;
+  width: 12rem;
+  z-index: 2;
+  padding: 1rem;
+  right: 4%;
+  text-align: justify;
+  border: 1px solid var(--borderToast);
+  background: var(--white);
+}
+
+@media (max-width: 576px) {
+  .toast-ubication {
+    position: fixed;
+    top: 9%;
+    width: 11.5rem;
+    z-index: 2;
+    padding: 0.5rem;
+    right: 9%;
+    text-align: justify;
+    border: 1px solid var(--borderToast);
+    background: var(--white);
+  }
 }

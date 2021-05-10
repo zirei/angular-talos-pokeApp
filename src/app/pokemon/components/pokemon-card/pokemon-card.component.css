@@ -1,19 +1,14 @@
-:root {
-  --back: rgb(0, 0, 0);
-}
-
 .card-settings {
   width: 10rem; 
-  /* margin: 1rem; */
   margin: 1rem 1rem 0.5rem 0.5rem;
-}
-
-.center-image {
-  border-top-left-radius: calc(.25rem - 1px);
-  border-top-right-radius: calc(.25rem - 1px);
 }
 
 .fix-text {
   text-align: center;
   text-transform: uppercase;
+  background: var(--background);
+}
+.example-card {
+  max-width: 400px;
+  image-rendering: pixelated;
 }

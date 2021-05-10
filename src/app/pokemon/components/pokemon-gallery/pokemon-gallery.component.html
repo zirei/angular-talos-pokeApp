@@ -1,18 +1,44 @@
-<div class="row">
-  <div class="col-11">
-    <div class="row cards-container-base">
-      <div class="col-3 col-xl-auto col-md-auto col-sm-auto col-xs-auto cards-settings" *ngFor="let pokemon of pokemonsList.results">
-        <app-pokemon-card [pokemon]="pokemon"></app-pokemon-card>
-      </div>
-    </div>
-  </div>
-  <div class="col-1">
-    <div class="row">
-      <div class="col-12 col-xl-12 col-md-12 col-sm-12 col-xs-12">
-        <!-- Toast-->
-      </div>
-    </div>
-  </div>
-
+<div class="toast-ubication" fxLayout="row wrap" fxLayoutGap="1.5rem grid" *ngIf="keepSelected || (maxFavoritesSelected && !keepSelected)">
+  <app-toast
+  [maxFavoritesSelected]="maxFavoritesSelected"
+  [pokemonName]="selectedPokemons"
+  >
+  </app-toast>
 </div>
-<!-- Modal -->
+<div
+  class="cards-container-base"
+  infiniteScroll
+  [infiniteScrollDistance]="1"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="loadPokemonsFromApi()"
+>
+  <div fxLayout="row wrap" fxLayoutGap="1.5rem grid" *ngIf="!isSearching">
+    <div
+      fxFlex="20%"
+      fxFlex.xs="50%"
+      fxFlex.sm="33%"
+      fxFlex.md="25%"
+      *ngFor="let pokemon of rootPokemonList"
+    >
+      <app-pokemon-card
+        [pokemon]="pokemon"
+        (click)="selectPokemon(pokemon)"
+      ></app-pokemon-card>
+    </div>
+  </div>
+</div>
+<div fxLayout="row wrap" fxLayoutGap="1.5rem grid" *ngIf="isSearching">
+  <div
+    fxFlex="20%"
+    fxFlex.xs="50%"
+    fxFlex.sm="33%"
+    fxFlex.md="25%"
+    *ngFor="let pokemon of queriedPokemons"
+  >
+    <app-pokemon-card
+      [pokemon]="pokemon"
+      (click)="selectPokemon(pokemon)"
+    ></app-pokemon-card>
+  </div>
+</div>
+

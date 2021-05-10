@@ -2,6 +2,14 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.5.
 
+## Online project link
+
+[run online project](https://angular-talos-pokeapp.web.app)
+
+or copy the link:
+    
+    https://angular-talos-pokeapp.web.app
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.

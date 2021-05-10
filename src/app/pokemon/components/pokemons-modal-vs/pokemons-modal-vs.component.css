@@ -1,0 +1,52 @@
+.img-fluid {
+  width: 8rem;
+  display: block;
+  margin: auto;
+  image-rendering: pixelated;
+}
+
+.fix-text {
+  text-align: center;
+  text-transform: uppercase;
+  padding: 0;
+}
+
+.titles {
+  vertical-align: middle;
+  margin: auto;
+  padding: 0 1rem;
+  text-align: center;
+  font-weight: 500;
+}
+
+.text-description {
+  vertical-align: middle;
+  
+}
+
+.grafic-tittle {
+  display: block;
+  text-align: center;
+}
+
+.set-margin-modal-lines {
+  margin: 0.3rem;
+}
+
+.set-margin-modal {
+  margin: 0;
+}
+
+.table-width {
+  width: 100%;
+}
+
+.tables {
+  display: table-column;
+}
+
+@media (max-width: 576px) {
+  .mat-dialog-content {
+    max-height: 35rem;
+  }
+}

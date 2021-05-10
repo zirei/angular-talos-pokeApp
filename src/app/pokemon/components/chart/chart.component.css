@@ -1,0 +1,23 @@
+.div-chart {
+  display: block;
+  width: 28rem;
+  height: 22rem;
+}
+
+.tables {
+  display: table;
+  box-sizing: border-box;
+  text-indent: initial;
+  border-spacing: 0.125rem;
+  border-color: var(--chartBorder);
+  caption-side: bottom;
+  border-collapse: collapse;
+}
+
+@media (max-width: 576px) {
+  .div-chart {
+    display: block;
+    width: 17rem;
+    height: 17rem;
+  }
+}
